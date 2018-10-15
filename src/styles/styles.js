@@ -213,6 +213,11 @@ icon:{
   width:20,
   height:20
 },
+iconHeart:{
+  width:20,
+  height:20,
+  marginTop :-40
+},
 socialIcon:{
   width:40,
   height:40,
@@ -391,7 +396,6 @@ cardContainerSignUp:{
          position: 'absolute',
          justifyContent: 'center'
       },
-      
       ToastBoxInsideText:
       {
          fontSize: 15,
@@ -400,6 +404,14 @@ cardContainerSignUp:{
       },
       toast:{
         alignItems:align.center
+      },
+      homemodalBackground: {
+        flex:1,
+        marginTop :-80,
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        backgroundColor: '#00000040'
       },
       modalBackground: {
         flex: 1,
@@ -416,6 +428,13 @@ cardContainerSignUp:{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around'
+      },
+      homeModalStyle: {
+        backgroundColor: '#FFFFFF',
+        height: 300,
+        width: '90%',
+        borderRadius: 10,
+        alignItems: 'center'
       },
       footer:{
         position:'absolute',
@@ -697,13 +716,15 @@ cardContainerSignUp:{
       flexDirection:'row'
     },
     name:{
-      width:'35%'
+      width:'32%'
+     
     },
     blank:{
-      width:'45%'
+      width:'48%',
+      textAlign :'center'
     },
     arrowView:{
-      width:'20%'
+      
     },
     welcomeLoginText :{
       color:colors.white,
@@ -848,7 +869,8 @@ cardContainerSignUp:{
         color:colors.themecolor,
       },
       centerText :{
-        textAlign :'center'
+        textAlign :'center',
+        fontSize:20
       },
       contentMargin:{
         margin: 10
@@ -858,6 +880,10 @@ cardContainerSignUp:{
       },
       jobTitle :{
         fontSize:20, 
+        color:'black'
+      },
+      jobDescription :{
+        fontSize:25, 
         color:'black'
       },
       textInRowJob:{
@@ -899,25 +925,219 @@ cardContainerSignUp:{
         paddingTop:10
       },
       topInput:{
-        width:'100%'
+        width:'80%',
+        color :'white',
+        fontSize :20
       },
       searchContainer:{
         marginLeft:20,
         borderWidth: 1,
-        borderColor:'white'
+        borderColor:'white',
+        height :40,
+        width:'90%'
       },
       topSearchbar:{
-        flexDirection:'row'
+        flexDirection:'row',
+        paddingTop :8
       },
       listCardWidth : {
-        width: '90%'
+        width: '100%'
+      },
+      freelancerlistCardWidth : {
+        width: '90%',
       },
       listCenter:{
-        alignItems:align.center
-      }
-
+        alignItems:align.center,
+        marginTop :10
+      },
+      commontoolbar:{
+        backgroundColor:colors.themeColor,
+        paddingTop:10,
+        flexDirection:'row',
+        height:50    //Step 1
+    },
+    modalToolbar:{
+      paddingTop:10,
+      flexDirection:'row',
+      height:50    //Step 1
+  },
+    commontoolbarButton:{
+        width: 50,            //Step 2
+        color:'#fff',
+        textAlign:'center',
+        paddingTop:5,
+        paddingLeft :10
+        
+    },
+    commontoolbarTitle:{
+        color:'#fff',
+        textAlign:'center',
+        fontWeight:'bold',
+        flex:1 ,
+       //Step 3
+    },
+    modalTitle:{
+      textAlign:'center',
+      fontWeight:'bold',
+      flex:1 ,
+     //Step 3
+  },
+    commonBackIcon:{
+      width:25,
+      height :20
+    },
+    textFontSideMenu :{
+      fontSize:20
+    },
+    MainContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor : '#F5F5F5'
+      },
       
-
+      FloatingButtonStyle: {
+      resizeMode: 'contain',
+      width: 70,
+      height: 70
+      },
+      TouchableOpacityStyle:{
+      position: 'absolute',
+      width: 70,
+      height: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      right: 30,
+      bottom: 30,
+      },
       
+      postprojectinput: {
+      margin: 10,
+      height: 40,
+      borderColor: '#AEA9A8',
+      borderWidth: 1,
+      padding:5,
+      width:'95%'
+      },
+      
+      bottomView:{
+        margin: 10,
+      width: '95%', 
+      height: 50, 
+      backgroundColor: '#FF9800', 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      position:'absolute',
+      bottom :0
+      },
+      textStyle:{
+      color: '#fff',
+      fontSize:22
+      },
+        MainContainer:
+       {
+        flex: 1,
+        alignItems: 'center',
+        paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
+       },
+    bottomView:{
+      width: '95%', 
+      height: 50, 
+      backgroundColor:colors.themeColor, 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      position: 'absolute',
+      bottom: 10
+    },
+    textStyle:{
+      color: '#fff',
+      fontSize:22
+    },
+    closeButtton:{
+      color:'white',
+      fontSize:20,
+      marginTop :-3
+    },
+  noTextContainer :{
+    marginTop:30,
+    alignItems:align.center
+  },
+  defaultTextSize:{
+    fontSize:20
+  },
+  bottomViewrequest:{
+  height: 50, 
+  backgroundColor: '#FF9800', 
+  position:'absolute',
+  bottom :0
+  },
+  MainContainerRequest:
+  {
+   flex: 1,
+   alignItems:'center'
+  },
+  rowAlignSideMenuRequest :{
+    flexDirection:'row'
+  },
+  emptySpaceRequest :{
+    width:'10%'
+  },
+  buttonWidthRequest :{
+    width:'35%',
+    backgroundColor: colors.themeColor,
+    color:'#fff'
+  },
+  requestButton :{
+    width:0,
+    color :'white'
+  },
+  footer:{
+    position:'absolute',
+    bottom:10
+  },
+  dateTextColor :{
+    color : '#AEA9A8',
+    padding :8
+  },
+  categoryText:{
+    color : '#AEA9A8',
+    textAlign: 'left',
+    borderColor: '#AEA9A8',
+    borderWidth: 1,
+    width:'95%',
+    height:40
+  },
+  MainContainerProfile:
+  {
+   flex: 1,
+   paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
+  },
+  postprojectinputprofile: {
+    height: 40,
+    borderColor: '#AEA9A8',
+    borderWidth: 1,
+    padding:5,
+    width:'95%',
+    marginTop :5 
+    },
+    categoryTextProfile:{
+      color : '#AEA9A8',
+      textAlign: 'left',
+      borderColor: '#AEA9A8',
+      borderWidth: 1,
+      width:'95%',
+      height:40,
+      marginTop :8
+    },
+    dateTextColorProfile :{
+      padding :8
+    },
+    toastCenter :{
+      alignItems : 'center'
+    }
+  
+  
+  
 
+  
 })

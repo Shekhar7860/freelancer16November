@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, TextInput, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
-
+import MyView from './MyView';
 export default class Payment extends Component {
  constructor(props){
      super(props);
@@ -10,6 +10,7 @@ export default class Payment extends Component {
      constants = new Constants();
      this.state = {
         userData: { picture_large:{ data:{}}},
+        search : true
       };
    
  }
@@ -19,8 +20,8 @@ export default class Payment extends Component {
  openDrawer = () => {
    this.props.navigation.openDrawer()}
 
-  searchPage = () =>{
-    alert("searching Page")   
+   searchPage = () =>{
+    this.setState({ search: false});
         }
 
   render() {
@@ -31,7 +32,16 @@ export default class Payment extends Component {
       source={constants.loginbg}
       style={styles.container}>
     
-    <View style={styles.toolbar} >
+    <View style={styles.topView}>
+       <MyView  hide={this.state.search} style={styles.searchContainer}>
+          <View style={styles.topSearchbar}>
+              <Image source={constants.searchicon} style={styles.newsearchIcon} />
+              <View style={styles.empty}>
+              </View>
+            <TextInput  style={styles.searchContainer} placeholder="Search job"  placeholderTextColor="white" style={styles.topInput}/>
+          </View>
+      </MyView>
+    <MyView style={styles.tabsToolbar} hide={!this.state.search}>
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
@@ -39,6 +49,7 @@ export default class Payment extends Component {
          <TouchableOpacity onPress={() => this.searchPage()}>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
+     </MyView>
      </View>
      <View style={styles.homeContent}>
          <View style={styles.messageBox}>

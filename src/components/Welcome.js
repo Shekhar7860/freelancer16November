@@ -19,17 +19,20 @@ componentDidMount ()   {
     console.log("local", keyValue);
     var parsedData = JSON.parse(keyValue);
     console.log("sidemenujson", parsedData);
-    if(parsedData.usertype !== null)
+    if(parsedData)
     {
-      if(parsedData.usertype == 1 )
-     {
-     this.props.navigation.navigate('FindFreelancer')
-     }
-     else
-     {
-      this.props.navigation.navigate('Home') 
-     }
-    }
+      if(parsedData.usertype !== null)
+      {
+        if(parsedData.usertype == 1 )
+      {
+      this.props.navigation.navigate('Jobs')
+      }
+      else
+      {
+        this.props.navigation.navigate('Home') 
+      }
+      }
+   }
     this.setState({ userResponse: parsedData});
  }, (error) => {
     console.log(error) //Display error

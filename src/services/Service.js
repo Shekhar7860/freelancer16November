@@ -13,9 +13,6 @@ export default class Service {
     
   }
 
-  
-
-
 saveUserData = async (key, value) => {
   //console.log(key ,value);
   try {
@@ -27,10 +24,7 @@ saveUserData = async (key, value) => {
 };
 
 getUserData = async (key) => {
-  
-    var data = await AsyncStorage.getItem(key) || 'none';
-    // console.log("check data ")
-  
+  var data = await AsyncStorage.getItem(key) || 'none';
   return data;
 }
 
@@ -161,6 +155,18 @@ findFreelancer = (token) =>
    });
 }
 
+jobs = (token) => 
+{
+ return fetch(constants.apiUrl + `/user/jobs?&api_token=${token}`,
+    {
+      method: "GET"
+   }).then((response) => 
+   response.json())
+   .catch((error) => {
+     console.error(error);
+   });
+}
+
 addFav = (token,jobId,isFav) => 
 {
   var data = {
@@ -197,17 +203,62 @@ getFavJobList = (token) =>
    });
 }
 
-profile_update = (api_token,username,email,about_me) => 
+profile_update = (api_token,username,email,about_me, imageUri) => 
 {
+
+console.log("newimage", imageUri);
+var photo = {
+    uri: imageUri.uri,
+    type: 'multipart/form-data',
+    name: 'photo.jpg',
+  };
+
 var data = {
 api_token: api_token,
 user_name: username,
 email:email,
 about_me:about_me,
+CV_file : "",
+identity_Id : "",
+categoryId : "",
+image_file : imageUri
 
 }
-console.log(username)
+var body = new FormData();
+body.append('api_token', api_token);
+body.append('user_name',  username);
+body.append('email', email);
+body.append('about_me', about_me);
+body.append('CV_file', " ");
+body.append('identity_Id', "");
+body.append('categoryId', "");
+body.append('image_file', photo);
+
+console.log(data)
 return fetch(constants.apiUrl + '/user/update/profile',
+{
+method: "POST",
+headers: {
+'Content-Type': 'multipart/form-data'
+},
+body: body
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
+
+sendProposal= (api_token, freelancerId, jobId) => 
+{
+var data = {
+api_token: api_token,
+freelancer_id: freelancerId ,
+job_id: jobId
+
+}
+console.log(data);
+return fetch(constants.apiUrl + '/client/sendJobRequest',
 {
 method: "POST",
 headers: {
@@ -222,6 +273,79 @@ console.error(error);
 });
 }
 
+post_project = (api_token,title,description,country,category,job_type,budget,start_date,end_date, skills) => 
+{
+var data = {
+"api_token":api_token ,
+"title": title,
+"description": description,
+"country": country,
+"category": category,
+"job_type": job_type,
+"budget": budget,
+"start_date": start_date,
+"end_date":end_date,
+"skills_name": {
+"lastname": "",
+"email": "",
+"phone": ""
+},
+"publics":1
+}
+console.log(data)
+console.log(constants.apiUrl + '/submit-job')
+return fetch(constants.apiUrl + '/submit-job',
+{
+method: "POST",
+headers: {
+"Accept": "application/json",
+"Content-Type": "application/json"
+},
+body: JSON.stringify(data)
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
+
+requestResponse = (api_token, requestStatus, jobId) => 
+{
+var data = {
+"api_token":api_token ,
+"request_status" :requestStatus,
+"job_id" : jobId
+
+}
+console.log(data)
+console.log(constants.apiUrl + '/user/accept/jobs')
+return fetch(constants.apiUrl + '/user/accept/jobs',
+{
+method: "POST",
+headers: {
+"Accept": "application/json",
+"Content-Type": "application/json"
+},
+body: JSON.stringify(data)
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
+
+
+category = () => 
+{
+return fetch(constants.apiUrl + `/categories`,
+{
+method: "GET"
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
  
   
   

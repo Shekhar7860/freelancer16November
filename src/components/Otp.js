@@ -42,6 +42,7 @@ import CustomToast from './CustomToast';
           this.setState({ type:this.props.navigation.state.params.mobile.type})
         }
       }
+      
    }
  
    gotoSignIn = () =>
@@ -91,14 +92,28 @@ import CustomToast from './CustomToast';
      }
 
    goToHome = (res) => {
-     if(res.user.usertype == 1 )
-     {
-     this.props.navigation.navigate('FindFreelancer')
-     }
-     else
-     {
-      this.props.navigation.navigate('Home') 
-     }
+     
+    service.getUserData('count').then((keyValue) => {
+      if(keyValue === "none")
+      {
+        this.props.navigation.navigate('About')
+      }
+      else
+      {
+        if(res.user.usertype == 1 )
+        {
+        this.props.navigation.navigate('Jobs')
+        }
+        else
+        {
+          this.props.navigation.navigate('Home') 
+        }
+      }
+   }, (error) => {
+      console.log(error) //Display error
+    });
+
+    
    }
 
    resendOtp()

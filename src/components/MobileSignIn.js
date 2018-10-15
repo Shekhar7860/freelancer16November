@@ -68,6 +68,7 @@ import Loader from './Loader';
                   type : res.usertype
                 }
                 console.log(personData)
+                this.refs.defaultToastBottom.ShowToastFunction("Otp Send Successfully");
                 this.openOtp(personData);
               }
               }

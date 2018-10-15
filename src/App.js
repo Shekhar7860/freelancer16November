@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, BackHandler, Alert} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { createStackNavigator, DrawerNavigator } from 'react-navigation';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
@@ -37,6 +37,11 @@ import FEED from './components/Feed';
 import Jobs from './components/Jobs';
 import UpdateProfile from './components/UpdateProfile';
 import Service from './services/Service';
+import Balance from './components/Balance';
+import PostProject from './components/PostProject';
+import JobDetails from './components/JobDetails';
+import CATEGORY from './components/Category';
+import SubCategory from './components/SubCategory';
 export const Menu = DrawerNavigator({
   Home: { screen: Home},
   Messages: { screen: Messages},
@@ -50,14 +55,19 @@ export const Menu = DrawerNavigator({
   FindFreelancer: { screen: FindFreelancer},
   FreelancerDetails : {screen : FreelancerDetails},
   UpdateProfile : {screen : UpdateProfile},
-  Jobs : {screen : Jobs}
+  Jobs : {screen : Jobs},
+  Balance : {screen : Balance},
+  PostProject :{screen :PostProject},
+  JobDetails :{screen : JobDetails},
+  Sub: { screen: SubCategory},
+  Cat: { screen: CATEGORY}
 }, {
   contentComponent: SideMenu,
   drawerWidth: 300
 });
 
 // routing 
-const AppNavigator = StackNavigator(
+const AppNavigator = createStackNavigator(
   {
     Welcome: { screen: Welcome},
     Select: { screen: SelectAccount },
@@ -65,11 +75,10 @@ const AppNavigator = StackNavigator(
     Login2: { screen: MobileSignin2 },
     SignUp: { screen: SignUp},
     Forgot: { screen: ForgotPassword },
-    Home: { screen: Menu },
+    Home2: { screen: Menu },
     Otp : { screen: Otp},
     Profile : { screen: Profile},
     Details : {screen : Details}
-   
   },
   { headerMode: 'none' }
 );
@@ -83,29 +92,12 @@ export default class App extends Component {
       userResponse: {},
       firstScreen : Welcome
     };
+    console.reportErrorsAsExceptions = false;
   }
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     SplashScreen.hide()
-    service.getUserData('user').then((keyValue) => {
-      console.log("local", keyValue);
-      var parsedData = JSON.parse(keyValue);
-      console.log("sidemenujson", parsedData);
-      if(parsedData.usertype !== null)
-      {
-        if(parsedData.usertype == 1 )
-       {
-       this.props.navigation.navigate('FindFreelancer')
-       }
-       else
-       {
-        this.props.navigation.navigate('Home') 
-       }
-      }
-      this.setState({ userResponse: parsedData});
-   }, (error) => {
-      console.log(error) //Display error
-    });
+    
   }
 
   componentWillUnmount = () =>{
@@ -121,8 +113,8 @@ export default class App extends Component {
   }
   
   handleBackButton = () => {
-    
-     if(this.state.navState.routeName == "Home" || this.state.navState.routeName == "FindFreelancer")
+    console.log(this.state.navState.routeName);
+     if(this.state.navState.routeName == "Home" || this.state.navState.routeName == "Jobs" || this.state.navState.routeName == "Profile" || this.state.navState.routeName == "Home2" || this.state.navState.routeName == "About")
     {
       Alert.alert(
         'Exit App',
