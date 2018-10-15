@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, Text, View, TextInput, Image, SafeAreaView, ImageBackground,  TouchableOpacity, StatusBar, ScrollView} from 'react-native';
+import {Platform, Text, View, TextInput, ScrollView, Image, SafeAreaView, ImageBackground,  TouchableOpacity, StatusBar} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';

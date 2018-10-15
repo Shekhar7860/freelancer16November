@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView, FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, SafeAreaView, ScrollView, FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
@@ -44,7 +44,7 @@ getCategoryResponse = () => {
  
 goToSubCategory = (val) => {
 var subCategoryData = {
-  "data":val,
+  "data": val,
   "page" : this.state.page
 }
   this.props.navigation.navigate('Sub',  { subCategory: subCategoryData })  
@@ -55,14 +55,14 @@ var subCategoryData = {
       <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-    <View style={styles.toolbar} >
+      <ScrollView>
+       <View style={styles.toolbar} >
         <TouchableOpacity>
         </TouchableOpacity>
          <Text style={styles.toolbarTitle}>Category</Text>
          <TouchableOpacity>
         </TouchableOpacity>
-     </View>
-    
+        </View>
      <View style={styles.listCenter}>
         <FlatList
               data={this.state.categories}
@@ -84,6 +84,7 @@ var subCategoryData = {
        
        <Loader
               loading={this.state.loading} />
+  </ScrollView>
  </SafeAreaView>
       
      

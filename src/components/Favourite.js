@@ -28,7 +28,6 @@ export default class FAVOURITE extends Component {
  }
  openDrawer = () => {
    this.props.navigation.openDrawer()}
-
    getFeedRes = () => {
     service.getFeedList(this.state.userResponse.api_token).then((res) => {
       console.log("checkres", res);
@@ -59,7 +58,6 @@ export default class FAVOURITE extends Component {
          <TouchableOpacity onPress={() => this.searchPage()}>
          <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
-       
        </View>
        <FlatList
          data={this.state.feeds.user.Job}

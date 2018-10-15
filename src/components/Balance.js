@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, SafeAreaView,ScrollView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 
@@ -27,10 +27,10 @@ export default class Balance extends Component {
    
     return (
         
-     <SafeAreaView
+     <SafeAreaView>
       source={constants.loginbg}
       style={styles.container}>
-    
+      <ScrollView>
     <View style={styles.toolbar} >
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
@@ -45,6 +45,7 @@ export default class Balance extends Component {
         
          </View>
      </View>
+     </ScrollView>
  </SafeAreaView>
       
      

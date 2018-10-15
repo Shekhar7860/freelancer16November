@@ -46,6 +46,7 @@ class SideMenu extends Component {
        }
      ]
      }; 
+     
 }
 
 takePicture = () => {
@@ -183,8 +184,7 @@ goToFeedbackPage = () => {
  
 
   render () {
-   // console.log("Fbdata",  this.state.userFbData, "GoogleData", this.state.userGoogleData)
-  console.log(this.state.userResponse)
+    this.componentDidMount();
    const  NewImage =   <Image source={constants.defaultImage} style={styles.profilePic}/>
    const personImage = <Image source={{uri: this.state.userResponse.image_path }} style={styles.profilePic} />;
    const fbName = <Text style={styles.userName}>{this.state.userFbData.name}</Text>
@@ -194,7 +194,7 @@ goToFeedbackPage = () => {
    const ProfileName2 = <Text style={styles.defaultUserName}>Freelancer</Text>
    
       var profile;
-      if (this.state.userResponse.usertype == 1) 
+      if (this.state.userResponse.usertype == "1") 
         {
           profile = ProfileName
         } 

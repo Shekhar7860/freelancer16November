@@ -363,6 +363,7 @@ cardContainerSignUp:{
       marginTop:30,
       width:80,
      height:80,
+     borderRadius : 40
     },
     freelancerprofilePic:{
       width:70,
@@ -716,11 +717,11 @@ cardContainerSignUp:{
       flexDirection:'row'
     },
     name:{
-      width:'32%'
+      width:'35%'
      
     },
     blank:{
-      width:'48%',
+      width:'45%',
       textAlign :'center'
     },
     arrowView:{

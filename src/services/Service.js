@@ -93,7 +93,7 @@ resendOtp = (mobile) =>
     mobile: mobile
    }
    console.log(data);
- return  fetch(constants.apiUrl + '/user/resend-otp',
+   return  fetch(constants.apiUrl + '/user/resend-otp',
     {
       method: "POST",
       headers: {
@@ -203,15 +203,26 @@ getFavJobList = (token) =>
    });
 }
 
-profile_update = (api_token,username,email,about_me, imageUri) => 
+profile_update = (api_token,username,email,about_me, imageUri, category) => 
 {
 
-console.log("newimage", imageUri);
+// console.log("newimage", imageUri);
+if(imageUri.uri != undefined)
+{
 var photo = {
     uri: imageUri.uri,
     type: 'multipart/form-data',
     name: 'photo.jpg',
   };
+}
+else
+{
+  var photo = {
+    uri: imageUri,
+    type: 'multipart/form-data',
+    name: 'photo.jpg',
+  }; 
+}
 
 var data = {
 api_token: api_token,
@@ -220,10 +231,10 @@ email:email,
 about_me:about_me,
 CV_file : "",
 identity_Id : "",
-categoryId : "",
+categoryId : category,
 image_file : imageUri
-
 }
+
 var body = new FormData();
 body.append('api_token', api_token);
 body.append('user_name',  username);
@@ -234,7 +245,7 @@ body.append('identity_Id', "");
 body.append('categoryId', "");
 body.append('image_file', photo);
 
-console.log(data)
+// console.log(body)
 return fetch(constants.apiUrl + '/user/update/profile',
 {
 method: "POST",

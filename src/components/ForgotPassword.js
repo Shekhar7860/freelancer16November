@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, Text, View, TextInput, Image, SafeAreaView, ImageBackground,  TouchableOpacity, StatusBar, ScrollView} from 'react-native';
+import {Platform, Text, View, TextInput, Image, SafeAreaView, ScrollView,ImageBackground,  TouchableOpacity, StatusBar} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -65,6 +65,7 @@ import Loader from './Loader';
     return (
      
       <SafeAreaView style={styles.mainContainer}>
+      <ScrollView>
       <View style={styles.upperContainer}>
         <View style={styles.imgContainer}>
          <TouchableOpacity onPress={() => this.goToLogin()}>
@@ -95,16 +96,12 @@ import Loader from './Loader';
                         </TouchableOpacity>
                 </View>
             </View>
-           
-            
-      
        </View>
-     
        <CustomToast ref = "defaultToastBottom"/>
       </View>
-     
         <Loader
           loading={this.state.loading} />
+          </ScrollView>
      </SafeAreaView>
      
     );

@@ -37,7 +37,11 @@ export default class SubCategory extends Component {
   }
   else 
   {
-    this.props.navigation.navigate('UpdateProfile',  { category: val })  
+    var userInputData =  {
+      selectedCategory : val,
+      inputData : this.props.navigation.state.params.subCategory.page
+    }
+    this.props.navigation.navigate('UpdateProfile',  { category: userInputData })  
   }
  }
  

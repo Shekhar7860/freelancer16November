@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -38,19 +38,17 @@ export default class Profile extends Component {
     });
    }
 
-   
 
-  // going to next screen
-  goToLogin = () =>{
-   this.props.navigation.navigate('Login')
-  }
-  goToSignUp = (userType) =>{
-  this.props.navigation.navigate('SignUp', { type: userType })
-      }
-
-     goBack = () =>{
-        this.props.navigation.pop()
-       }
+goToHome = () => {
+    if(this.state.userResponse.usertype == 1 )
+    {
+    this.props.navigation.navigate('Jobs')
+    }
+    else
+    {
+      this.props.navigation.navigate('Home') 
+    }
+ }
 
  goToUpdateProfile = () =>
  {
@@ -66,81 +64,72 @@ export default class Profile extends Component {
     // const fbImage = <Image source={{uri: this.state.userFbData.picture_large.data.url}} style={styles.profilePic} />;
     return (
   <SafeAreaView>
-	    <View style={styles.toolbar}>
-			<Text style={styles.backButton} onPress={() => this.goBack()}>
-			<Image source={constants.backicon} style={styles.icon}/>
-			</Text>
-         <Text style={styles.toolbarTitle}>Profile</Text>
-         <TouchableOpacity onPress={() => this.goToUpdateProfile()}>
-        <Image source={constants.editIcon} style={styles.searchIcon} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.profileContainer}>
-      <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic} />
-      </View>
-      <View style={{padding:10}}>
-      <Text>
-           Name
-      </Text>
-      <View  style={styles.categoryTextProfile}>
-          <Text style={styles.dateTextColorProfile}>
-         {this.state.userResponse.username}
-          </Text>
-       </View>
-          </View>
-          <View style={{padding:10}}>
-          <Text >
-              Email
-          </Text>
-          <View style={styles.categoryTextProfile}>
-                  <Text style={styles.dateTextColorProfile} >
-                  {this.state.userResponse.email}
-                  </Text>
-              </View>
+    <ScrollView>
+        <View style={styles.toolbar}>
+        <Text style={styles.backButton} onPress={() => this.goToHome()}>
+        <Image source={constants.backicon} style={styles.icon}/>
+        </Text>
+          <Text style={styles.toolbarTitle}>Profile</Text>
+          <TouchableOpacity onPress={() => this.goToUpdateProfile()}>
+          <Image source={constants.editIcon} style={styles.searchIcon} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.profileContainer}>
+        <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic} />
+        </View>
+        <View style={{padding:10}}>
+        <Text>
+            Name
+        </Text>
+        <View  style={styles.categoryTextProfile}>
+            <Text style={styles.dateTextColorProfile}>
+          {this.state.userResponse.username}
+            </Text>
+        </View>
             </View>
-          <View style={{padding:10}}>
+            <View style={{padding:10}}>
             <Text >
-                About Me
+                Email
             </Text>
-            <View  style={styles.categoryTextProfile}>
-                  <Text style={styles.dateTextColorProfile} >
-                  {this.state.userResponse.short_bio}
-                  </Text>
+            <View style={styles.categoryTextProfile}>
+                    <Text style={styles.dateTextColorProfile} >
+                    {this.state.userResponse.email}
+                    </Text>
+                </View>
               </View>
-          </View>
-          <View style={{padding:10}}>
-            <Text >
-             User Type
-            </Text>
-             <View  style={styles.categoryTextProfile}>
-                  <Text style={styles.dateTextColorProfile} >
-                  Client
-                  </Text>
-              </View>
-          </View>
-          <View style={{padding:10}}>
+            <View style={{padding:10}}>
               <Text >
-                  Category
+                  About Me
               </Text>
               <View  style={styles.categoryTextProfile}>
-                  <Text style={styles.dateTextColorProfile} >
-                  Developer
-                  </Text>
-              </View>
-          </View>
-          <View style={{backgroundColor:'clear',marginLeft: 0,marginTop: 20,marginRight: 20,height: 90, flexDirection: 'row', alignItems: 'center',justifyContent: 'center'}}>
-<TouchableOpacity onPress={() => this.UploadDocumentImage()}><Image source={this.state.docImage === null ? constants.docsIcon : this.state.docImage} style={{width:50,height:72,marginTop: 10, marginLeft: 20}}/></TouchableOpacity>
-
-<TouchableOpacity onPress={() => this.UploadResumeImage()}><Image source={this.state.resumeImage === null ? constants.resumeIcon : this.state.resumeImage} style={{width:50,height:72,marginTop: 10, marginLeft: 50}}/></TouchableOpacity>
- </View>
-<View style={{backgroundColor:'clear',marginLeft: 0,marginTop: 10,marginRight: 20,height: 30, flexDirection: 'row', alignItems: 'center',justifyContent: 'center'}}>
-<Text style={{marginLeft: 20}}>ID Proof</Text>
-<Text style={{marginLeft: 50}}>Resume</Text>
-
-</View>
-      
-	    
-       </SafeAreaView>
+                    <Text style={styles.dateTextColorProfile} >
+                    {this.state.userResponse.short_bio}
+                    </Text>
+                </View>
+            </View>
+            <View style={{padding:10}}>
+              <Text >
+              User Type
+              </Text>
+              <View  style={styles.categoryTextProfile}>
+                    <Text style={styles.dateTextColorProfile} >
+                    {this.state.userType}
+                    </Text>
+                </View>
+            </View>
+            <View style={{padding:10}}>
+                <Text >
+                    Category
+                </Text>
+                <View  style={styles.categoryTextProfile}>
+                    <Text style={styles.dateTextColorProfile} >
+                    Developer
+                    </Text>
+                </View>
+            </View>
+            
+</ScrollView>
+</SafeAreaView>
 	   
     );
   }

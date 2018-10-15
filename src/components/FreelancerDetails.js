@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, SafeAreaView,Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, View, SafeAreaView, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Loader from './Loader';
@@ -65,6 +65,7 @@ this.props.navigation.navigate('Jobs')
   render() {
     return (
   <SafeAreaView style = { styles.MainContainer }>
+  <ScrollView>
 	    <View style={styles.toolbar}>
 			<Text style={styles.backButton} onPress={() => this.goBack()}>
 			<Image source={constants.backicon} style={styles.icon}/>
@@ -82,7 +83,8 @@ this.props.navigation.navigate('Jobs')
     <TouchableOpacity style={ styles.bottomView} onPress={() => this.submitProposal()}>
       <Text style={styles.textStyle}>Submit Proposal</Text>
       </TouchableOpacity> 
-      <CustomToast ref = "defaultToastBottom"/>     
+      <CustomToast ref = "defaultToastBottom"/> 
+      </ScrollView>    
    </SafeAreaView>
 	   
     );

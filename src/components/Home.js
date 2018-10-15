@@ -344,7 +344,7 @@ hideTab = () => {
               <Text>Know About the Application</Text>
         </View>
       </View>
-    </Modal>      
+    </Modal>   
  </SafeAreaView>
       
      

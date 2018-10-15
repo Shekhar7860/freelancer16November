@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, TextInput, FlatList, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, TextInput, FlatList, ScrollView, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
@@ -85,6 +85,7 @@ export default class FindFreelancer extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
+      <ScrollView>
       <View style={styles.topView}>
        <MyView  hide={this.state.search} style={styles.searchContainer}>
           <View style={styles.topSearchbar}>
@@ -129,6 +130,7 @@ export default class FindFreelancer extends Component {
      </View>
      <Loader
               loading={this.state.loading} />
+</ScrollView>
  </SafeAreaView>
       
      

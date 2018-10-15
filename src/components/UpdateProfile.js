@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, Button,  View, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import CustomToast from './CustomToast';
 import Loader from './Loader';
 import ImagePicker from "react-native-image-picker";
+import MyView from './MyView';
+import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 export default class UpdateProfile extends Component {
   
   constructor(props){
@@ -23,7 +25,8 @@ export default class UpdateProfile extends Component {
         pickedImage: null,
         docImage: null,
         resumeImage: null,
-        imagePath : ''
+        imagePath : '',
+        imageExists : false
       }
   }
  
@@ -40,6 +43,9 @@ export default class UpdateProfile extends Component {
           pickedImage: { uri: res.uri }
         });
         this.setState({ imagePath: res});
+        this.setState({
+          imageExists: true
+        });
  
       }
     });
@@ -58,6 +64,7 @@ export default class UpdateProfile extends Component {
         this.setState({
           docImage: { uri: res.uri }
         });
+       
  
       }
     });
@@ -84,24 +91,56 @@ export default class UpdateProfile extends Component {
     if(this.props.navigation.state.params)
     {
       console.log(this.props.navigation.state.params.category)
-      this.setState ({ category: this.props.navigation.state.params.category});
+      this.setState ({ category: this.props.navigation.state.params.category.selectedCategory});
+      this.setState ({ name: this.props.navigation.state.params.category.inputData.name});
+      this.setState ({ email: this.props.navigation.state.params.category.inputData.email});
+      this.setState ({ about: this.props.navigation.state.params.category.inputData.about});
+      if( this.props.navigation.state.params.category.inputData.image.uri !== null)
+      {
+        this.setState ({ pickedImage: this.props.navigation.state.params.category.inputData.image.uri});
+        this.setState({
+          imageExists: false
+        });
+      }
+      else
+      {
+        this.setState({
+          imageExists: true
+        });
+      }
     }
+    else
+    {
+      console.log("first time")
     service.getUserData('user').then((keyValue) => {
       console.log("local", keyValue);
       var parsedData = JSON.parse(keyValue);
       console.log("json", parsedData);
-      if(parsedData.usertype == 1)
-      {
-      this.setState({ userType: "Client"});
-      }
-      else
-      {
-      this.setState({ userType: "Freelancer"}); 
-      }
       this.setState({ userResponse: parsedData});
+      this.setState ({ name: this.state.userResponse.username});
+      this.setState ({ email: this.state.userResponse.email});
+      this.setState ({ about: this.state.userResponse.short_bio});
    }, (error) => {
       console.log(error) //Display error
     });
+   }
+
+   service.getUserData('user').then((keyValue) => {
+    console.log("local", keyValue);
+    var parsedData = JSON.parse(keyValue);
+    console.log("json", parsedData);
+    this.setState({ userResponse: parsedData});
+ }, (error) => {
+    console.log(error) //Display error
+  });
+   if(this.state.userResponse.usertype == 1)
+   {
+   this.setState({ userType: "Client"});
+   }
+   else
+   {
+   this.setState({ userType: "Freelancer"}); 
+   }
    }
 
   // going to next screen
@@ -113,28 +152,57 @@ export default class UpdateProfile extends Component {
       }
  
  updateProfile = () => {
-          this.setState ({ loading: true});
-          setTimeout(() => 
-          {
-          this.setState({loading: false})
-          service.profile_update(this.state.userResponse.api_token,this.state.name, " ",this.state.about, this.state.pickedImage).then((res) => {
-            console.log(res)
-            if(res)
-            {
-              if(res.status == "success")
+      if(this.state.pickedImage !== null || this.state.userResponse.image_path !== null)
+      {
+              this.setState ({ loading: true});
+              setTimeout(() => 
               {
-                this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
-                service.saveUserData('user', res.user);
-                 this.goToHome(res);
-              }
-             
+              this.setState({loading: false})
+               console.log(this.state.userResponse.api_token);
+            if(this.state.pickedImage !== null)
+            {
+                service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category).then((res) => {
+                  console.log(res)
+                  if(res)
+                  {
+                    if(res.status == "success")
+                    {
+                      this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
+                      service.saveUserData('user', res.user);
+                      this.goToHome(res);
+                    }
+                  }
+                  else
+                  {
+                    this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                  }
+              })
             }
             else
             {
-              this.refs.defaultToastBottom.ShowToastFunction('Network error');
-            }
-          })
-          }, 3000)
+              service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category).then((res) => {
+                console.log(res)
+                if(res)
+                {
+                  if(res.status == "success")
+                  {
+                    this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
+                    service.saveUserData('user', res.user);
+                    this.goToHome(res);
+                  }
+                }
+                else
+                {
+                  this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                }
+            })
+          }
+              }, 3000)
+      }
+      else
+      {
+        this.refs.defaultToastBottom.ShowToastFunction('Please select an image');
+      }
  }
 
  goToHome = (user) => {
@@ -152,11 +220,34 @@ export default class UpdateProfile extends Component {
  }
 
  openCategory = () => {
-  this.props.navigation.navigate("Cat",  { page: 'settings' });
+  var projectData = {
+    "name" :  this.state.name,
+    "email" : this.state.email,
+    "about" : this.state.about,
+    "pageName" : 'settings', 
+    "image" : this.state.pickedImage
+  }
+  this.props.navigation.navigate("Cat",  { page: projectData });
 }
 
  goBack = () =>{
   this.props.navigation.navigate('Profile')
+ }
+
+ selectdoc = () => {
+  DocumentPicker.show({
+    filetype: [DocumentPickerUtil.images()],
+  },(error,res) => {
+    
+    // Android
+    console.log(
+      "response",
+       res.uri,
+       res.type, // mime type
+       res.fileName,
+       res.fileSize
+    );
+  });
  }
 
   render() {
@@ -164,18 +255,13 @@ export default class UpdateProfile extends Component {
   //   console.log(this.state.pickedImage);
 
    
-    if (this.state.userResponse.image_path !== " ")
-    {
+  
       defaultImg = 'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg';
-    }
-    else 
-    {
-      defaultImg = 'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg';
-    }
+    
     
   
-   //  const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={this.state.pickedImage === null ? constants.defaultImage : this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
-    const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={{uri : this.state.pickedImage === null ?  defaultImg : this.state.pickedImage}} style={styles.profilePic}/></TouchableOpacity>
+     const  ImagePicked =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
+     const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
      
 
     
@@ -190,9 +276,12 @@ export default class UpdateProfile extends Component {
          <Text style={styles.updateText}>DONE</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.profileContainer}>
+      <MyView style={styles.profileContainer} hide={this.state.imageExists}>
       { NewImage}
-      </View>
+      </MyView>
+      <MyView style={styles.profileContainer} hide={!this.state.imageExists}>
+      { ImagePicked}
+      </MyView>
       <View style={{padding:10}}>
       <Text >
            Name
@@ -205,7 +294,7 @@ export default class UpdateProfile extends Component {
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.userResponse.username}
+            value={this.state.name}
           />
           </View>
           <View style={{padding:10}}>
@@ -220,8 +309,7 @@ export default class UpdateProfile extends Component {
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            editable={false}
-            value={this.state.userResponse.email}
+            value={this.state.email}
           />
           </View>
           <View style={{padding:10}}>
@@ -236,7 +324,7 @@ export default class UpdateProfile extends Component {
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.userResponse.short_bio}
+            value={this.state.about}
           />
           </View>
           <View style={{padding:10}}>
@@ -254,16 +342,20 @@ export default class UpdateProfile extends Component {
           />
           </View>
           <View style={{padding:10}}>
-      <Text >
-           Category
-      </Text>
-      <View  style={styles.categoryTextProfile}>
-           <Text style={styles.dateTextColorProfile} onPress={() => this.openCategory()}>
-           {this.state.category}
-          </Text>
+              <Text >
+                  Category
+              </Text>
+              <View  style={styles.categoryTextProfile}>
+                  <Text style={styles.dateTextColorProfile} onPress={() => this.openCategory()}>
+                  {this.state.category}
+                  </Text>
+              </View>
       </View>
-          </View>
 
+      <View>
+
+      </View>
+      
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>
       </View>

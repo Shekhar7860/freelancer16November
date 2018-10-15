@@ -78,7 +78,8 @@ const AppNavigator = createStackNavigator(
     Home2: { screen: Menu },
     Otp : { screen: Otp},
     Profile : { screen: Profile},
-    Details : {screen : Details}
+    Details : {screen : Details},
+    UpdateProfile : {screen : UpdateProfile}
   },
   { headerMode: 'none' }
 );
