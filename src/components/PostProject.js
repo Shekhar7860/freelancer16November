@@ -64,8 +64,11 @@ export default class PostProject extends Component {
   componentDidMount() {
     if(this.props.navigation.state.params)
     {
-      console.log(this.props.navigation.state.params.category)
-      this.setState ({ category: this.props.navigation.state.params.category});
+     // console.log(this.props.navigation.state.params.category)
+      this.setState ({ category: this.props.navigation.state.params.category.selectedCategory});
+      this.setState ({ title: this.props.navigation.state.params.category.inputData.title});
+      this.setState ({ description: this.props.navigation.state.params.category.inputData.description});
+      this.setState ({ country: this.props.navigation.state.params.category.inputData.country});
     }
       service.getUserData("user").then(
         keyValue => {
@@ -82,7 +85,13 @@ export default class PostProject extends Component {
     }
     
     openCategory = () => {
-      this.props.navigation.navigate("Cat",  { page: 'post' });
+      var projectData = {
+        "title" :this.state.title,
+        "description" : this.state.description,
+        "country" : this.state.country,
+        "pageName" : 'post'
+      }
+      this.props.navigation.navigate("Cat",  { page: projectData });
     }
 
   goToproject = () => {
@@ -95,14 +104,17 @@ export default class PostProject extends Component {
 
 
   post_project = () => {
-    this.setState ({ loading: true});
-    setTimeout(() => 
+    if(this.state.endDateText >= this.state.startDateText)
     {
-    this.setState({loading: false})
-    service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.country, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, this.state.skills).then((res) => {
-      console.log(res)
-      if(res)
+      this.setState({loading: true})
+      setTimeout(() => 
       {
+      this.setState({loading: false})
+      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.country, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, this.state.skills).then((res) => {
+      console.log(this.state.startDateText);
+      console.log(this.state.endDateText);
+      if(res)
+     {
         if(res.status == "success")
         {
           this.refs.defaultToastBottom.ShowToastFunction('Project Posted Successfully');
@@ -112,14 +124,18 @@ export default class PostProject extends Component {
         {
           this.refs.defaultToastBottom.ShowToastFunction('An Error Occured');
         }
-       
       }
-      else
+     else
       {
         this.refs.defaultToastBottom.ShowToastFunction('Network error');
-      }
-    })
+     }
+   })
     }, 3000)
+  }
+  else
+  {
+    this.refs.defaultToastBottom.ShowToastFunction('End Date should not be lesser than start date');
+  }
 }
 
 openProject()
@@ -148,6 +164,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            value={this.state.title}
           />
           <TextInput
             style={styles.postprojectinput}
@@ -157,6 +174,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            value={this.state.description}
           />
           <TextInput
             style={styles.postprojectinput}
@@ -166,6 +184,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            value={this.state.country}
           />
           <View  style={styles.categoryText}>
            <Text style={styles.dateTextColor} onPress={() => this.openCategory()}>

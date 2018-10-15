@@ -27,9 +27,13 @@ export default class SubCategory extends Component {
 
  selectCategory = (val) => {
 
-  if(this.props.navigation.state.params.subCategory.page == "post")
+  if(this.props.navigation.state.params.subCategory.page.pageName == "post")
   {
-  this.props.navigation.navigate('PostProject',  { category: val }) 
+  var userInputData =  {
+    selectedCategory : val,
+    inputData : this.props.navigation.state.params.subCategory.page
+  }
+   this.props.navigation.navigate('PostProject',  { category: userInputData }) 
   }
   else 
   {

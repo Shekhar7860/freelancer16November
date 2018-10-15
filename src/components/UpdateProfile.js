@@ -160,8 +160,8 @@ export default class UpdateProfile extends Component {
  }
 
   render() {
-    console.log(this.state.userResponse);
-    console.log(this.state.pickedImage);
+    // console.log(this.state.userResponse);
+  //   console.log(this.state.pickedImage);
 
    
     if (this.state.userResponse.image_path !== " ")

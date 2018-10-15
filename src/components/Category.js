@@ -20,6 +20,7 @@ export default class CATEGORY extends Component {
  componentDidMount() {
   if(this.props.navigation.state.params)
   {
+    console.log(this.props.navigation.state.params);
     this.setState ({ page: this.props.navigation.state.params.page});
   }
   this.setState ({ loading: true});
