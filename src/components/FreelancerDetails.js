@@ -6,6 +6,7 @@ import Loader from './Loader';
 import HTMLView from 'react-native-htmlview';
 import CustomToast from './CustomToast';
 import Service from '../services/Service';
+import MyView from './MyView';
 export default class FreelancerDetails extends Component {
   constructor(props){
     super(props);
@@ -14,7 +15,8 @@ export default class FreelancerDetails extends Component {
     this.state = { 
         freelancerDetails : "",
         loading:false,
-        search : true
+        search : true,
+        isJobId : true
       }
   }
 
@@ -24,7 +26,11 @@ export default class FreelancerDetails extends Component {
       this.setState ({ loading: false});
       if(this.props.navigation.state.params)
   {
-   console.log(this.props.navigation.state.params.freelancerdetails)
+    console.log(this.props.navigation.state.params.freelancerdetails.clt_Details);
+   if (this.props.navigation.state.params.freelancerdetails.clt_Details !== undefined)
+   {
+    this.setState({ isJobId : false })
+   }
    this.setState({ freelancerDetails: this.props.navigation.state.params.freelancerdetails.freelancerDetails})
   }    
       }, 1000)
@@ -65,7 +71,6 @@ this.props.navigation.navigate('Jobs')
   render() {
     return (
   <SafeAreaView style = { styles.MainContainer }>
-  <ScrollView>
 	    <View style={styles.toolbar}>
 			<Text style={styles.backButton} onPress={() => this.goBack()}>
 			<Image source={constants.backicon} style={styles.icon}/>
@@ -77,14 +82,15 @@ this.props.navigation.navigate('Jobs')
          <Text>{this.state.freelancerDetails.username}</Text>
          <Text>{this.state.freelancerDetails.short_bio}</Text>
          <Text>{this.state.freelancerDetails.skills}</Text>
-   </View>
+   </View> 
    <Loader
               loading={this.state.loading} /> 
-    <TouchableOpacity style={ styles.bottomView} onPress={() => this.submitProposal()}>
+     <MyView hide={this.state.isJobId}  style={ styles.bottomView}>
+    <TouchableOpacity onPress={() => this.submitProposal()}>
       <Text style={styles.textStyle}>Submit Proposal</Text>
-      </TouchableOpacity> 
+      </TouchableOpacity>
+      </MyView>
       <CustomToast ref = "defaultToastBottom"/> 
-      </ScrollView>    
    </SafeAreaView>
 	   
     );

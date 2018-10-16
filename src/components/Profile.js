@@ -64,7 +64,6 @@ goToHome = () => {
     // const fbImage = <Image source={{uri: this.state.userFbData.picture_large.data.url}} style={styles.profilePic} />;
     return (
   <SafeAreaView>
-    <ScrollView>
         <View style={styles.toolbar}>
         <Text style={styles.backButton} onPress={() => this.goToHome()}>
         <Image source={constants.backicon} style={styles.icon}/>
@@ -74,6 +73,7 @@ goToHome = () => {
           <Image source={constants.editIcon} style={styles.searchIcon} />
           </TouchableOpacity>
         </View>
+        <ScrollView>
         <View style={styles.profileContainer}>
         <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic} />
         </View>

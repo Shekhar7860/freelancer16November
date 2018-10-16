@@ -5,47 +5,49 @@ import Constants from '../constants/Constants';
 import MyView from './MyView';
 
 class SideMenu extends Component {
+  state = {
+    userFbData: { picture_large:{ data:{}}},
+    userGoogleData:{},
+    name:"",
+    logOut: true,
+    items : false,
+    icon : constants.downIcon,
+    personData: {},
+    names: [
+     {
+        id: 0,
+        name: 'Home',
+        icon:constants.homeIcon
+     },
+     {
+       id: 1,
+       name: 'Messages',
+       icon:constants.messagesIcon
+    },
+     {
+        id: 2,
+        name: 'My Payment',
+        icon:constants.paymentIcon
+     },
+     {
+        id: 3,
+        name: 'My Projects',
+        icon:constants.projectsIcon,
+     },
+     {
+       id: 4,
+       name: 'Account',
+       icon:constants.accountIcon,
+    }
+  ]
+  }; 
   constructor(props){
     super(props);
    // console.log('propvalue', props);
     service = new Service();
     constants = new Constants();
-    this.state = {
-       userFbData: { picture_large:{ data:{}}},
-       userGoogleData:{},
-       name:"",
-       logOut: true,
-       items : false,
-       icon : constants.downIcon,
-       userResponse: {},
-       names: [
-        {
-           id: 0,
-           name: 'Home',
-           icon:constants.homeIcon
-        },
-        {
-          id: 1,
-          name: 'Messages',
-          icon:constants.messagesIcon
-       },
-        {
-           id: 2,
-           name: 'My Payment',
-           icon:constants.paymentIcon
-        },
-        {
-           id: 3,
-           name: 'My Projects',
-           icon:constants.projectsIcon,
-        },
-        {
-          id: 4,
-          name: 'Account',
-          icon:constants.accountIcon,
-       }
-     ]
-     }; 
+    
+   this.componentWillReceiveProps();
      
 }
 
@@ -73,9 +75,8 @@ logOut = () =>{
   
 }
 
-componentDidMount ()   {
+componentWillReceiveProps(props) {
   service.getUserData('user').then((keyValue) => {
-    console.log("local", keyValue);
     var parsedData = JSON.parse(keyValue);
     console.log("sidemenujson", parsedData);
     if(parsedData.usertype == 1)
@@ -110,11 +111,95 @@ componentDidMount ()   {
        ]  
       });
     }
-    this.setState({ userResponse: parsedData});
+    this.setState({ personData: parsedData});
+  }, (error) => {
+    console.log(error) //Display error
+  });
+}
+
+componentDidMount ()   {
+  service.getUserData('user').then((keyValue) => {
+    var parsedData = JSON.parse(keyValue);
+    console.log("sidemenujson", parsedData);
+    if(parsedData.usertype == 1)
+    {
+      this.setState ({
+         names: [
+          {
+             id: 0,
+             name: 'Messages',
+             icon:constants.messagesIcon
+          },
+          {
+             id: 1,
+             name: 'My Balance',
+             icon:constants.balanceIcon
+          },
+          {
+             id: 2,
+             name: 'Find Works',
+             icon:constants.searchFreelancerIcon
+          },
+          {
+             id: 3,
+             name: 'My Jobs',
+             icon:constants.projectsIcon,
+          },
+          {
+            id: 4,
+            name: 'Account',
+            icon:constants.accountIcon,
+         }
+       ]  
+      });
+    }
+    this.setState({ personData: parsedData});
  }, (error) => {
     console.log(error) //Display error
   });
  }
+ 
+ userData = () => {
+ service.getUserData('user').then((keyValue) => {
+  var parsedData = JSON.parse(keyValue);
+  console.log("sidemenujson", parsedData);
+  if(parsedData.usertype == 1)
+  {
+    this.setState ({
+       names: [
+        {
+           id: 0,
+           name: 'Messages',
+           icon:constants.messagesIcon
+        },
+        {
+           id: 1,
+           name: 'My Balance',
+           icon:constants.balanceIcon
+        },
+        {
+           id: 2,
+           name: 'Find Works',
+           icon:constants.searchFreelancerIcon
+        },
+        {
+           id: 3,
+           name: 'My Jobs',
+           icon:constants.projectsIcon,
+        },
+        {
+          id: 4,
+          name: 'Account',
+          icon:constants.accountIcon,
+       }
+     ]  
+    });
+  }
+  this.setState({ personData: parsedData});
+}, (error) => {
+  console.log(error) //Display error
+});
+}
 
 exit = () => {
   //service.clearLocalStorage();
@@ -184,17 +269,17 @@ goToFeedbackPage = () => {
  
 
   render () {
-    this.componentDidMount();
+    // this.componentDidMount();
    const  NewImage =   <Image source={constants.defaultImage} style={styles.profilePic}/>
-   const personImage = <Image source={{uri: this.state.userResponse.image_path }} style={styles.profilePic} />;
-   const fbName = <Text style={styles.userName}>{this.state.userFbData.name}</Text>
+   const personImage = <Image source={{uri: this.state.personData.image_path }} style={styles.profilePic} />;
+   const fbName =      <Text style={styles.userName}>{this.state.userFbData.name}</Text>
    const GoogleName = <Text style={styles.userName}>{this.state.userGoogleData.name}</Text>
-   const DefaultName = <Text style={styles.defaultUserName}>{this.state.userResponse.username}</Text>
+   const DefaultName = <Text style={styles.defaultUserName}>{this.state.personData.username}</Text>
    const ProfileName = <Text style={styles.defaultUserName}>Client</Text>
    const ProfileName2 = <Text style={styles.defaultUserName}>Freelancer</Text>
    
       var profile;
-      if (this.state.userResponse.usertype == "1") 
+      if (this.state.personData.usertype == "1") 
         {
           profile = ProfileName
         } 
@@ -202,7 +287,7 @@ goToFeedbackPage = () => {
         {
           profile = ProfileName2
         }
-          if (this.state.userResponse.image_path !== "") {
+          if (this.state.personData.image_path !== "") {
             userImage = personImage
           } 
           
@@ -222,7 +307,7 @@ goToFeedbackPage = () => {
           <View style={styles.upperContainerSideMenu}>
             <View style={styles.sideMenuAlign}>
             <TouchableOpacity style={styles.arrowView} onPress = {() => this.goToProfile()}>
-            <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic} />
+            <Image source={{uri: this.state.personData.image_path || defaultImg  }} style={styles.profilePic} />
           </TouchableOpacity>
             <View style={styles.rowAlignSideMenu}>
                   <View style={styles.name}>

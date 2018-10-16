@@ -32,7 +32,7 @@ export default class About extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.MainContainer}>
-      <ScrollView>
+      
           <View style={styles.toolbar} >
               <TouchableOpacity onPress={() => this.openDrawer()}>
               <Image source={constants.menuicon} style={styles.hamburgerIcon} />
@@ -42,9 +42,10 @@ export default class About extends Component {
               <Image source={constants.fgggf} style={styles.searchIcon} />
               </TouchableOpacity>
           </View>
+          <ScrollView>
           <View style={{width:'90%', paddingTop:30}}>
               <Text style={{fontSize:20}}>Every Individual Deserves a Website
-      We believe every individual should have the power to create their own website or online store. If you can point and click, you can create a professional website or online store using our free and intuitive tools.
+              We believe every individual should have the power to create their own website or online store. If you can point and click, you can create a professional website or online store using our free and intuitive tools.
       </Text>
       </View>
       <View style={{width:'90%', paddingTop:20}}>
@@ -56,10 +57,13 @@ export default class About extends Component {
       <Text style={{fontSize:20}}>
       We are personally committed to delivering the very best</Text>
       </View>
+      </ScrollView>
+              
           <TouchableOpacity style={ styles.bottomView} onPress={() => this.goToProfile()}>
               <Text style={styles.textStyle}>Go To Profile</Text>
             </TouchableOpacity>
-  </ScrollView>
+            
+
  </SafeAreaView>
       
      

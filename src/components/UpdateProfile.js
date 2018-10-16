@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Button,  View, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, Button,  View, ScrollView,  SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -95,19 +95,7 @@ export default class UpdateProfile extends Component {
       this.setState ({ name: this.props.navigation.state.params.category.inputData.name});
       this.setState ({ email: this.props.navigation.state.params.category.inputData.email});
       this.setState ({ about: this.props.navigation.state.params.category.inputData.about});
-      if( this.props.navigation.state.params.category.inputData.image.uri !== null)
-      {
-        this.setState ({ pickedImage: this.props.navigation.state.params.category.inputData.image.uri});
-        this.setState({
-          imageExists: false
-        });
-      }
-      else
-      {
-        this.setState({
-          imageExists: true
-        });
-      }
+      
     }
     else
     {
@@ -276,6 +264,7 @@ export default class UpdateProfile extends Component {
          <Text style={styles.updateText}>DONE</Text>
         </TouchableOpacity>
       </View>
+     <ScrollView>
       <MyView style={styles.profileContainer} hide={this.state.imageExists}>
       { NewImage}
       </MyView>
@@ -355,6 +344,7 @@ export default class UpdateProfile extends Component {
       <View>
 
       </View>
+      </ScrollView>
       
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>

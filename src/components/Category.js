@@ -55,7 +55,6 @@ var subCategoryData = {
       <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-      <ScrollView>
        <View style={styles.toolbar} >
         <TouchableOpacity>
         </TouchableOpacity>
@@ -63,7 +62,8 @@ var subCategoryData = {
          <TouchableOpacity>
         </TouchableOpacity>
         </View>
-     <View style={styles.listCenter}>
+        <ScrollView>
+        <View style={styles.listCenter}>
         <FlatList
               data={this.state.categories}
               keyExtractor={(item, index) => index}
@@ -81,10 +81,10 @@ var subCategoryData = {
               )}
             />
        </View>
+       </ScrollView>
        
        <Loader
               loading={this.state.loading} />
-  </ScrollView>
  </SafeAreaView>
       
      

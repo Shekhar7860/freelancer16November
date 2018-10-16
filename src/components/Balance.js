@@ -27,10 +27,9 @@ export default class Balance extends Component {
    
     return (
         
-     <SafeAreaView>
+     <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-      <ScrollView>
     <View style={styles.toolbar} >
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
@@ -40,6 +39,7 @@ export default class Balance extends Component {
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
      </View>
+     <ScrollView>
      <View style={styles.homeContent}>
          <View style={styles.messageBox}>
         

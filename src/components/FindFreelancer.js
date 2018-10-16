@@ -60,12 +60,21 @@ export default class FindFreelancer extends Component {
    }
 
    openFreelancerDetails = (val) => {
-   var clientDetails = 
+   if(this.props.navigation.state.params)
    {
-     clt_Details : this.props.navigation.state.params.client_Details,
-     freelancerDetails : val
-
-   }
+    var clientDetails = 
+    {
+      clt_Details : this.props.navigation.state.params,
+      freelancerDetails : val
+    }
+  }
+  else 
+  {
+      var clientDetails = 
+    {
+      freelancerDetails : val
+    }
+  }
    this.props.navigation.navigate('FreelancerDetails', { freelancerdetails: clientDetails }) 
  }
 
@@ -85,7 +94,6 @@ export default class FindFreelancer extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-      <ScrollView>
       <View style={styles.topView}>
        <MyView  hide={this.state.search} style={styles.searchContainer}>
           <View style={styles.topSearchbar}>
@@ -105,6 +113,8 @@ export default class FindFreelancer extends Component {
         </TouchableOpacity>
      </MyView>
      </View>
+     <ScrollView>
+     <ScrollView>
      <View style={styles.listCenter}>
      <FlatList
         data={this.state.freelancers.freelancer}
@@ -128,6 +138,7 @@ export default class FindFreelancer extends Component {
          )}
          />
      </View>
+     </ScrollView>
      <Loader
               loading={this.state.loading} />
 </ScrollView>

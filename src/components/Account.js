@@ -30,7 +30,7 @@ export default class Account extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-    <ScrollView>
+    
     <View style={styles.toolbar} >
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
@@ -40,12 +40,13 @@ export default class Account extends Component {
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
      </View>
+     <ScrollView>
      <View style={styles.homeContent}>
          <View style={styles.messageBox}>
         
          </View>
      </View>
-  </ScrollView>
+    </ScrollView>
  </SafeAreaView>
       
      

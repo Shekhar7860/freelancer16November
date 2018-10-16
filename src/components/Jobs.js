@@ -11,17 +11,20 @@ import {
   Button,
   TextInput, 
   TouchableOpacity,
-  Modal
+  Modal,
+  ScrollView
 } from "react-native";
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
 import styles from "../styles/styles";
 import MyView from './MyView';
 import Loader from './Loader';
+import SideMenu from './SideMenu';
 export default class Jobs extends Component {
   constructor(props) {
     super(props);
     service = new Service();
+    sidemenu = new SideMenu();
     constants = new Constants();
     this.state = {
       userResponse: {},
@@ -78,6 +81,7 @@ export default class Jobs extends Component {
   }
 
   openDrawer = () => {
+    // sidemenu.userData();
     this.props.navigation.openDrawer();
   };
 
@@ -139,6 +143,7 @@ export default class Jobs extends Component {
         </MyView>
        
        </View>
+       <ScrollView>
         <View style={styles.listCenter}>
         <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
         <FlatList
@@ -193,7 +198,8 @@ export default class Jobs extends Component {
                 </View>
               )}
             />
-       </View>
+        </View>
+       </ScrollView>
      
           <TouchableOpacity
             activeOpacity={0.5}
