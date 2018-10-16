@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, ScrollView, SafeAreaView,Image, TextIn
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
-
+import MyView from './MyView';
 export default class Profile extends Component {
   
   constructor(props){
@@ -15,7 +15,14 @@ export default class Profile extends Component {
       userType : "",
       pickedImage: null,
       docImage: null,
-      resumeImage: null
+      resumeImage: null,
+      isFreelancer : false,
+      name : ' ',
+      email : ' ',
+      about : ' ',
+      CV : ' ', 
+      proof : ' ',
+      category : ''
      }
   }
 
@@ -24,9 +31,31 @@ export default class Profile extends Component {
       console.log("local", keyValue);
       var parsedData = JSON.parse(keyValue);
       console.log("json", parsedData);
+      if(parsedData.username !== null) 
+      {
+        this.setState({ name: parsedData.username});
+      }
+      this.setState({ category : parsedData.categoryId});
+      if(parsedData.email !== null) 
+      {
+        this.setState({ email: parsedData.email});
+      }
+      if(parsedData.short_bio !== "null") 
+      {
+        this.setState({ about: parsedData.short_bio});
+      }
+      if(parsedData.CV  !== null) 
+      {
+        this.setState({ CV : parsedData.CV});
+      }
+      if(parsedData.identityId !== null) 
+      {
+        this.setState({ proof : parsedData.identityId});
+      }
       if(parsedData.usertype == 1)
       {
       this.setState({ userType: "Client"});
+      this.setState({ isFreelancer: true});
       }
       else
       {
@@ -63,7 +92,7 @@ goToHome = () => {
    
     // const fbImage = <Image source={{uri: this.state.userFbData.picture_large.data.url}} style={styles.profilePic} />;
     return (
-  <SafeAreaView>
+  <SafeAreaView style={styles.profileContainerView}>
         <View style={styles.toolbar}>
         <Text style={styles.backButton} onPress={() => this.goToHome()}>
         <Image source={constants.backicon} style={styles.icon}/>
@@ -83,7 +112,7 @@ goToHome = () => {
         </Text>
         <View  style={styles.categoryTextProfile}>
             <Text style={styles.dateTextColorProfile}>
-          {this.state.userResponse.username}
+          {this.state.name}
             </Text>
         </View>
             </View>
@@ -93,7 +122,7 @@ goToHome = () => {
             </Text>
             <View style={styles.categoryTextProfile}>
                     <Text style={styles.dateTextColorProfile} >
-                    {this.state.userResponse.email}
+                    {this.state.email}
                     </Text>
                 </View>
               </View>
@@ -103,11 +132,11 @@ goToHome = () => {
               </Text>
               <View  style={styles.categoryTextProfile}>
                     <Text style={styles.dateTextColorProfile} >
-                    {this.state.userResponse.short_bio}
+                    {this.state.about}
                     </Text>
                 </View>
             </View>
-            <View style={{padding:10}}>
+            <View style={{padding:10}} >
               <Text >
               User Type
               </Text>
@@ -117,16 +146,36 @@ goToHome = () => {
                     </Text>
                 </View>
             </View>
-            <View style={{padding:10}}>
+            <MyView style={{padding:10}} hide={this.state.isFreelancer}>
                 <Text >
                     Category
                 </Text>
                 <View  style={styles.categoryTextProfile}>
                     <Text style={styles.dateTextColorProfile} >
-                    Developer
+                  {this.state.category}
                     </Text>
                 </View>
-            </View>
+            </MyView>
+            <MyView style={{padding:10}} hide={this.state.isFreelancer}>
+                <Text >
+                    C.V
+                </Text>
+                <View  style={styles.categoryTextProfile}>
+                    <Text style={styles.CVtext} >
+                    {this.state.CV}
+                    </Text>
+                </View>
+            </MyView>
+            <MyView style={{padding:10}} hide={this.state.isFreelancer}>
+                <Text >
+                    I.D Proof
+                </Text>
+                <View  style={styles.categoryTextProfile}>
+                    <Text style={styles.CVtext} >
+                    {this.state.proof}
+                    </Text>
+                </View>
+            </MyView>
             
 </ScrollView>
 </SafeAreaView>

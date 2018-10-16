@@ -8,7 +8,7 @@ class SideMenu extends Component {
   state = {
     userFbData: { picture_large:{ data:{}}},
     userGoogleData:{},
-    name:"",
+    name: " ",
     logOut: true,
     items : false,
     icon : constants.downIcon,
@@ -112,6 +112,10 @@ componentWillReceiveProps(props) {
       });
     }
     this.setState({ personData: parsedData});
+    if(parsedData.username != null || parsedData.username != "null")
+    {
+    this.setState({ name: parsedData.username});
+    }
   }, (error) => {
     console.log(error) //Display error
   });
@@ -154,6 +158,10 @@ componentDidMount ()   {
       });
     }
     this.setState({ personData: parsedData});
+    if(parsedData.username != null || parsedData.username != "null")
+    {
+    this.setState({ name: parsedData.username});
+    }
  }, (error) => {
     console.log(error) //Display error
   });
@@ -196,6 +204,10 @@ componentDidMount ()   {
     });
   }
   this.setState({ personData: parsedData});
+  if(parsedData.username != null || parsedData.username != "null")
+    {
+    this.setState({ name: parsedData.username});
+    }
 }, (error) => {
   console.log(error) //Display error
 });
@@ -274,7 +286,7 @@ goToFeedbackPage = () => {
    const personImage = <Image source={{uri: this.state.personData.image_path }} style={styles.profilePic} />;
    const fbName =      <Text style={styles.userName}>{this.state.userFbData.name}</Text>
    const GoogleName = <Text style={styles.userName}>{this.state.userGoogleData.name}</Text>
-   const DefaultName = <Text style={styles.defaultUserName}>{this.state.personData.username}</Text>
+   const DefaultName = <Text style={styles.defaultUserName}>{this.state.name}</Text>
    const ProfileName = <Text style={styles.defaultUserName}>Client</Text>
    const ProfileName2 = <Text style={styles.defaultUserName}>Freelancer</Text>
    

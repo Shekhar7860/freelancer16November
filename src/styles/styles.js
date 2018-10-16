@@ -743,8 +743,8 @@ cardContainerSignUp:{
       },
       toastCenter:{
         flex:1,
-        alignItems:align.center,
-        justifyContent:align.center
+        alignItems:align.center
+      
       },
       profileContainer:{
         alignItems:align.center
@@ -1135,7 +1135,30 @@ cardContainerSignUp:{
     },
     toastCenter :{
       alignItems : 'center'
-    }
+    },
+    docWidth:{
+      paddingTop: ( Platform.OS === 'ios' ) ? 0 : 10,
+      width:'50%'
+    },
+    CV :{
+      padding :10,
+    },
+    proof : {
+      padding :10,
+    },
+    uploadButton :{
+     
+    },
+     profileContainerView :{
+      flex:1
+      },
+      CVtext :{
+        width:'100%',
+        flexDirection:'row',
+        flex: 1
+      }
+
+    
   
   
   

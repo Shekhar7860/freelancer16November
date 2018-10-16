@@ -203,9 +203,9 @@ getFavJobList = (token) =>
    });
 }
 
-profile_update = (api_token,username,email,about_me, imageUri, category) => 
+profile_update = (api_token,username,email,about_me, imageUri, category, file, ID, user) => 
 {
-
+console.log("id", ID + "file", file)
 // console.log("newimage", imageUri);
 if(imageUri.uri != undefined)
 {
@@ -224,28 +224,81 @@ else
   }; 
 }
 
+if(file.fileName != undefined)
+{
+  console.log('FILE')
+  var fileUploaded = {
+    name: file.fileName,
+    uri: file.uri,
+    type: file.type
+  }
+}
+else
+{
+  var fileUploaded = {
+    name: 'doc.jpg',
+    uri: file,
+   type: 'multipart/form-data'
+  }
+}
+
+if(ID.fileName != undefined)
+{
+  console.log('ID')
+     var proof = {
+      name: ID.fileName,
+      uri: ID.uri,
+     type: ID.type
+    }
+}
+else
+{
+  var proof = {
+    name: 'photo.jpg',
+    uri: ID,
+   type: 'multipart/form-data'
+  }
+}
+
+
 var data = {
 api_token: api_token,
 user_name: username,
 email:email,
 about_me:about_me,
-CV_file : "",
-identity_Id : "",
+CV_file : file,
+identity_Id : proof,
 categoryId : category,
-image_file : imageUri
+image_file : photo
 }
 
+
+
+
 var body = new FormData();
+console.log("type", user)
+if(user === "client")
+{
+  console.log(user)
 body.append('api_token', api_token);
 body.append('user_name',  username);
 body.append('email', email);
 body.append('about_me', about_me);
-body.append('CV_file', " ");
-body.append('identity_Id', "");
-body.append('categoryId', "");
 body.append('image_file', photo);
+}
+else
+{
+  body.append('api_token', api_token);
+  body.append('user_name',  username);
+  body.append('email', email);
+  body.append('about_me', about_me);
+  body.append('CV_file', fileUploaded);
+  body.append('identity_Id', proof);
+  body.append('categoryId', category);
+  body.append('image_file', photo);
+}
+console.log("res", body)
 
-// console.log(body)
 return fetch(constants.apiUrl + '/user/update/profile',
 {
 method: "POST",
@@ -304,7 +357,7 @@ var data = {
 "publics":1
 }
 console.log(data)
-console.log(constants.apiUrl + '/submit-job')
+// console.log(constants.apiUrl + '/submit-job')
 return fetch(constants.apiUrl + '/submit-job',
 {
 method: "POST",

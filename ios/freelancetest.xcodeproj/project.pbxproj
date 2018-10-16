@@ -362,6 +362,7 @@
 		04305CC42165CAED0039300F /* FontsFree-Net-Proxima-Nova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "FontsFree-Net-Proxima-Nova-Bold.otf"; path = "../assets/fonts/FontsFree-Net-Proxima-Nova-Bold.otf"; sourceTree = "<group>"; };
 		04305CC52165CAED0039300F /* GothamMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GothamMedium.ttf; path = ../assets/fonts/GothamMedium.ttf; sourceTree = "<group>"; };
 		04305CC62165CAEE0039300F /* blackjack.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = blackjack.otf; path = ../assets/fonts/blackjack.otf; sourceTree = "<group>"; };
+		0481B95F2175A5FC00DD0F5B /* freelancetest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = freelancetest.entitlements; path = freelancetest/freelancetest.entitlements; sourceTree = "<group>"; };
 		0BA2594157204974A2945F17 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -558,6 +559,7 @@
 		13B07FAE1A68108700A75B9A /* freelancetest */ = {
 			isa = PBXGroup;
 			children = (
+				0481B95F2175A5FC00DD0F5B /* freelancetest.entitlements */,
 				04305CC62165CAEE0039300F /* blackjack.otf */,
 				04305CC42165CAED0039300F /* FontsFree-Net-Proxima-Nova-Bold.otf */,
 				04305CC52165CAED0039300F /* GothamMedium.ttf */,
@@ -803,6 +805,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = T32RA6FL5Q;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1382,6 +1389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = freelancetest/freelancetest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1412,6 +1420,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = freelancetest/freelancetest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

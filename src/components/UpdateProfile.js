@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Button,  View, ScrollView,  SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, Button, Alert, View, ScrollView, KeyboardAvoidingView, SafeAreaView,Image, TextInput, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -8,6 +8,7 @@ import Loader from './Loader';
 import ImagePicker from "react-native-image-picker";
 import MyView from './MyView';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+
 export default class UpdateProfile extends Component {
   
   constructor(props){
@@ -18,7 +19,7 @@ export default class UpdateProfile extends Component {
        userResponse: {},
         email:'',
         name:'',
-        about:'',
+        about: '',
         loading: false,
         userType : "",
         category :'Category',
@@ -26,7 +27,13 @@ export default class UpdateProfile extends Component {
         docImage: null,
         resumeImage: null,
         imagePath : '',
-        imageExists : false
+        imageExists : false,
+        isFreelancer : false,
+        document : 'CV',
+        proof : 'ID proof',
+        file : "",
+        fileID : "",
+        ifCV : false
       }
   }
  
@@ -51,42 +58,6 @@ export default class UpdateProfile extends Component {
     });
   }
  
-  UploadDocumentImage = () =>
-  {
- //Alert.alert("Clicked.");
- 
- ImagePicker.showImagePicker({title: "Pick an Image", maxWidth: 800, maxHeight: 600}, res => {
-      if (res.didCancel) {
-        console.log("User cancelled!");
-      } else if (res.error) {
-        console.log("Error", res.error);
-      } else {
-        this.setState({
-          docImage: { uri: res.uri }
-        });
-       
- 
-      }
-    });
-  }
- 
-  UploadResumeImage = () =>
-  {
- //Alert.alert("Clicked.");
- 
- ImagePicker.showImagePicker({title: "Pick an Image", maxWidth: 800, maxHeight: 600}, res => {
-      if (res.didCancel) {
-        console.log("User cancelled!");
-      } else if (res.error) {
-        console.log("Error", res.error);
-      } else {
-        this.setState({
-          resumeImage: { uri: res.uri }
-        });
- 
-      }
-    });
-  }
   componentDidMount ()   {
     if(this.props.navigation.state.params)
     {
@@ -95,19 +66,52 @@ export default class UpdateProfile extends Component {
       this.setState ({ name: this.props.navigation.state.params.category.inputData.name});
       this.setState ({ email: this.props.navigation.state.params.category.inputData.email});
       this.setState ({ about: this.props.navigation.state.params.category.inputData.about});
-      
     }
     else
     {
-      console.log("first time")
+    
     service.getUserData('user').then((keyValue) => {
       console.log("local", keyValue);
       var parsedData = JSON.parse(keyValue);
       console.log("json", parsedData);
       this.setState({ userResponse: parsedData});
+      if(this.state.userResponse.username !== null)
+      {
       this.setState ({ name: this.state.userResponse.username});
+      }
+      if(this.state.userResponse.email !== null)
+      {
       this.setState ({ email: this.state.userResponse.email});
+      }
+      if(this.state.userResponse.short_bio !== "null")
+      {
       this.setState ({ about: this.state.userResponse.short_bio});
+      }
+      if(this.state.userResponse.CV  !== null) 
+      {
+        this.setState({ document : this.state.userResponse.CV});
+      }
+      if(this.state.userResponse.identityId !== null) 
+      {
+        this.setState({ proof : this.state.userResponse.identityId});
+      }
+      if(this.state.userResponse.CV !== "") 
+      {
+        this.setState({ ifCV : true});
+      }
+      this.setState ({ document: this.state.userResponse.CV});
+      this.setState ({ proof: this.state.userResponse.identityId});
+      this.setState ({ category: this.state.userResponse.categoryId});
+
+    if (this.state.userResponse.usertype == "1")
+   {
+    this.setState({ isFreelancer: true});
+    this.setState({ userType: "Client"});
+   }
+   else
+   {
+   this.setState({ userType: "Freelancer"}); 
+   }
    }, (error) => {
       console.log(error) //Display error
     });
@@ -121,7 +125,7 @@ export default class UpdateProfile extends Component {
  }, (error) => {
     console.log(error) //Display error
   });
-   if(this.state.userResponse.usertype == 1)
+   if(this.state.userResponse.usertype == "1")
    {
    this.setState({ userType: "Client"});
    }
@@ -140,56 +144,187 @@ export default class UpdateProfile extends Component {
       }
  
  updateProfile = () => {
-      if(this.state.pickedImage !== null || this.state.userResponse.image_path !== null)
-      {
-              this.setState ({ loading: true});
-              setTimeout(() => 
-              {
-              this.setState({loading: false})
-               console.log(this.state.userResponse.api_token);
-            if(this.state.pickedImage !== null)
+  if(this.state.pickedImage || this.state.userResponse.image_path )
+   {
+     if(this.state.userResponse.usertype == "1")
+     {
+          if(this.state.name && this.state.email && this.state.about)
+          {
+            console.log("client")
+            if ( service.validateEmail(this.state.email)) 
             {
-                service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category).then((res) => {
-                  console.log(res)
-                  if(res)
+                  this.setState ({ loading: true});
+                  setTimeout(() => 
                   {
-                    if(res.status == "success")
-                    {
-                      this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
-                      service.saveUserData('user', res.user);
-                      this.goToHome(res);
-                    }
-                  }
-                  else
-                  {
-                    this.refs.defaultToastBottom.ShowToastFunction('Network error');
-                  }
-              })
-            }
-            else
-            {
-              service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category).then((res) => {
-                console.log(res)
-                if(res)
+                  console.log(this.state.userResponse.api_token);
+                if(this.state.pickedImage !== null)
                 {
-                  if(res.status == "success")
-                  {
-                    this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
-                    service.saveUserData('user', res.user);
-                    this.goToHome(res);
-                  }
+                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
+                      console.log(res)
+                      if(res)
+                      {
+                      this.setState({loading: false})
+                        if(res.status == "success")
+                        {
+                          setTimeout(() => {
+                            Alert.alert(
+                              'Profile Updated Successfully'
+                            )
+                          service.saveUserData('user', res.user);
+                          this.goToHome(res);
+                            }, 1000)
+                        
+                        }
+                      }
+                      else
+                      {
+                        this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                      }
+                  })
                 }
                 else
                 {
-                  this.refs.defaultToastBottom.ShowToastFunction('Network error');
-                }
-            })
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
+                    //console.log("data", this.state.email, this.state.username, this.state.about)
+                    //console.log(res)
+                    if(res)
+                      {
+                      this.setState({loading: false})
+                        if(res.status == "success")
+                        {
+                          setTimeout(() => {
+                        //  this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
+                            Alert.alert(
+                              'Profile Updated Successfully'
+                          )
+                          service.saveUserData('user', res.user);
+                          this.goToHome(res);
+                            }, 1000)
+                        
+                        }
+                      }
+                      else
+                      {
+                        this.setState({loading: false})
+                        this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                      }
+                })
+              }
+                  }, 3000)
           }
-              }, 3000)
+          else
+          {
+            Alert.alert(
+              'Please enter valid email address'
+          )
+          }
+
+          }
+          else
+          {
+            Alert.alert(
+              'Please fill all details'
+          )
+          }
+    }
+    else 
+    {
+      console.log("this one")
+          if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof")
+          {
+            if ( service.validateEmail(this.state.email)) 
+            {
+                  this.setState ({ loading: true});
+                  setTimeout(() => 
+                  {
+                  console.log(this.state.userResponse.api_token);
+                  console.log("file", this.state.file);
+                  if(this.state.file == "")
+                  {
+                    this.setState({ file : this.state.userResponse.CV});
+                  }
+                  if(this.state.fileID == "")
+                  {
+                    this.setState({ fileID : this.state.userResponse.identityId});
+                  }
+                console.log("file", this.state.file)
+                console.log("fileId", this.state.fileID)
+                if(this.state.pickedImage !== null)
+                {
+                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "freelancer").then((res) => {
+                      console.log(res)
+                      if(res)
+                      {
+                      this.setState({loading: false})
+                        if(res.status == "success")
+                        {
+                          setTimeout(() => {
+                            Alert.alert(
+                              'Profile Updated Successfully'
+                            )
+                          service.saveUserData('user', res.user);
+                          this.goToHome(res);
+                            }, 1000)
+                        
+                        }
+                      }
+                      else
+                      {
+                        this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                      }
+                  })
+                }
+                else
+                {
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer").then((res) => {
+                    //console.log("data", this.state.email, this.state.username, this.state.about)
+                    //console.log(res)
+                    if(res)
+                      {
+                      this.setState({loading: false})
+                        if(res.status == "success")
+                        {
+                          setTimeout(() => {
+                        //  this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
+                            Alert.alert(
+                              'Profile Updated Successfully'
+                          )
+                          service.saveUserData('user', res.user);
+                          this.goToHome(res);
+                            }, 1000)
+                        
+                        }
+                      }
+                      else
+                      {
+                        this.setState({loading: false})
+                        this.refs.defaultToastBottom.ShowToastFunction('Network error');
+                      }
+                })
+              }
+                  }, 3000)
+          }
+          else
+          {
+            Alert.alert(
+              'Please enter valid email address'
+          )
+          }
+
+          }
+          else
+          {
+            Alert.alert(
+              'Please fill all details'
+          )
+          }
+        }
       }
       else
       {
-        this.refs.defaultToastBottom.ShowToastFunction('Please select an image');
+        Alert.alert(
+          'Please select image'
+       )
       }
  }
 
@@ -224,7 +359,7 @@ export default class UpdateProfile extends Component {
 
  selectdoc = () => {
   DocumentPicker.show({
-    filetype: [DocumentPickerUtil.images()],
+    filetype: [DocumentPickerUtil.allFiles()],
   },(error,res) => {
     
     // Android
@@ -235,24 +370,33 @@ export default class UpdateProfile extends Component {
        res.fileName,
        res.fileSize
     );
+    this.setState ({ document: res.fileName});
+    this.setState ({ file: res});
+  });
+ }
+
+ selectIDproof = () => {
+  DocumentPicker.show({
+    filetype: [DocumentPickerUtil.allFiles()],
+  },(error,res) => {
+    
+    // Android
+    console.log(
+      "response",
+       res.uri,
+       res.type, // mime type
+       res.fileName,
+       res.fileSize
+    );
+    this.setState ({ proof: res.fileName});
+    this.setState ({ fileID: res});
   });
  }
 
   render() {
-    // console.log(this.state.userResponse);
-  //   console.log(this.state.pickedImage);
-
-   
-  
       defaultImg = 'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg';
-    
-    
-  
-     const  ImagePicked =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
-     const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
-     
-
-    
+      const  ImagePicked =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
+      const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
     return (
   <SafeAreaView style={styles.MainContainerProfile}>
 	    <View style={styles.toolbar}>
@@ -265,6 +409,10 @@ export default class UpdateProfile extends Component {
         </TouchableOpacity>
       </View>
      <ScrollView>
+     <KeyboardAvoidingView
+      style={styles.container}
+      behavior="padding"
+    >
       <MyView style={styles.profileContainer} hide={this.state.imageExists}>
       { NewImage}
       </MyView>
@@ -330,7 +478,8 @@ export default class UpdateProfile extends Component {
             value={this.state.userType} editable={false}
           />
           </View>
-          <View style={{padding:10}}>
+          <MyView>
+          <MyView style={{padding:10}} hide={this.state.isFreelancer}>
               <Text >
                   Category
               </Text>
@@ -339,16 +488,49 @@ export default class UpdateProfile extends Component {
                   {this.state.category}
                   </Text>
               </View>
-      </View>
+          </MyView>
+          <MyView style={styles.CV} hide={this.state.isFreelancer}>
+              <Text >
+                  C.V
+              </Text>
+              <View  style={{flexDirection:'row'}}>
+                 <View style={styles.docWidth}>
+                 <View  style={styles.categoryTextProfile}>
+                  <Text style={styles.CVtext}>
+                  {this.state.document}
+                  </Text>
+                 </View>
+                 </View>
+                 <View style={styles.docWidth}>
+                   <Button title="Choose File" onPress={() => this.selectdoc()} style={styles.uploadButton}></Button>
+                 </View>
+              </View>
+        </MyView> 
+        <MyView style={styles.proof} hide={this.state.isFreelancer}>
+              <Text >
+                  Identity Proof
+              </Text>
+              <View  style={{flexDirection:'row'}}>
+                 <View style={styles.docWidth}>
+                 <View  style={styles.categoryTextProfile}>
+                  <Text style={styles.CVtext}>
+                  {this.state.proof}
+                  </Text>
+                 </View>
+                 </View>
+                 <View style={styles.docWidth}>
+                   <Button title="Choose File" onPress={() => this.selectIDproof()} ></Button>
+                 </View>
+              </View>
+        </MyView>
+        </MyView>
 
-      <View>
-
-      </View>
-      </ScrollView>
-      
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>
       </View>
+      </KeyboardAvoidingView>
+      </ScrollView>
+      
       <Loader
           loading={this.state.loading} />
        </SafeAreaView>
