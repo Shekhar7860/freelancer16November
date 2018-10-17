@@ -101,7 +101,10 @@ export default class UpdateProfile extends Component {
       }
       this.setState ({ document: this.state.userResponse.CV});
       this.setState ({ proof: this.state.userResponse.identityId});
-      this.setState ({ category: this.state.userResponse.categoryId});
+      if(this.state.userResponse.categoryId !== "null") 
+      {
+        this.setState ({ category: this.state.userResponse.categoryId});
+      }
 
     if (this.state.userResponse.usertype == "1")
    {
@@ -253,7 +256,7 @@ export default class UpdateProfile extends Component {
                 {
                     service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "freelancer").then((res) => {
                       console.log(res)
-                      if(res)
+                      if(res != undefined)
                       {
                       this.setState({loading: false})
                         if(res.status == "success")
@@ -267,6 +270,10 @@ export default class UpdateProfile extends Component {
                             }, 1000)
                         
                         }
+                      else
+                      {
+                        this.refs.defaultToastBottom.ShowToastFunction(res.error);
+                      }
                       }
                       else
                       {
@@ -294,6 +301,10 @@ export default class UpdateProfile extends Component {
                             }, 1000)
                         
                         }
+                        else
+                      {
+                        this.refs.defaultToastBottom.ShowToastFunction(res.error);
+                      }
                       }
                       else
                       {
@@ -478,9 +489,9 @@ export default class UpdateProfile extends Component {
             value={this.state.userType} editable={false}
           />
           </View>
-          <MyView>
+          
           <MyView style={{padding:10}} hide={this.state.isFreelancer}>
-              <Text >
+              <Text>
                   Category
               </Text>
               <View  style={styles.categoryTextProfile}>
@@ -489,41 +500,45 @@ export default class UpdateProfile extends Component {
                   </Text>
               </View>
           </MyView>
-          <MyView style={styles.CV} hide={this.state.isFreelancer}>
-              <Text >
-                  C.V
-              </Text>
-              <View  style={{flexDirection:'row'}}>
-                 <View style={styles.docWidth}>
-                 <View  style={styles.categoryTextProfile}>
-                  <Text style={styles.CVtext}>
-                  {this.state.document}
+          
+          {/* <MyView style={{padding:10}} hide={this.state.ifCV}> */}
+              <MyView style={styles.CV} hide={this.state.isFreelancer}>
+                  <Text >
+                      C.V
                   </Text>
-                 </View>
-                 </View>
-                 <View style={styles.docWidth}>
-                   <Button title="Choose File" onPress={() => this.selectdoc()} style={styles.uploadButton}></Button>
-                 </View>
-              </View>
-        </MyView> 
-        <MyView style={styles.proof} hide={this.state.isFreelancer}>
-              <Text >
-                  Identity Proof
-              </Text>
-              <View  style={{flexDirection:'row'}}>
-                 <View style={styles.docWidth}>
-                 <View  style={styles.categoryTextProfile}>
-                  <Text style={styles.CVtext}>
-                  {this.state.proof}
+                  <View  style={{flexDirection:'row'}}>
+                    <View style={styles.docWidth}>
+                    <View  style={styles.categoryTextProfile}>
+                      <Text style={styles.CVtext}>
+                      {this.state.document}
+                      </Text>
+                    </View>
+                    </View>
+                    <View style={styles.docWidth}>
+                      <Button title="Choose File" onPress={() => this.selectdoc()} style={styles.uploadButton}></Button>
+                    </View>
+                  </View>
+                </MyView> 
+            <MyView style={styles.proof} hide={this.state.isFreelancer}>
+                  <Text >
+                      Identity Proof
                   </Text>
-                 </View>
-                 </View>
-                 <View style={styles.docWidth}>
-                   <Button title="Choose File" onPress={() => this.selectIDproof()} ></Button>
-                 </View>
-              </View>
-        </MyView>
-        </MyView>
+                  <View  style={{flexDirection:'row'}}>
+                    <View style={styles.docWidth}>
+                    <View  style={styles.categoryTextProfile}>
+                      <Text style={styles.CVtext}>
+                      {this.state.proof}
+                      </Text>
+                    </View>
+                    </View>
+                    <View style={styles.docWidth}>
+                      <Button title="Choose File" onPress={() => this.selectIDproof()} ></Button>
+                    </View>
+                  </View>
+            </MyView>
+            {/* </MyView>  */}
+
+       
 
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>
