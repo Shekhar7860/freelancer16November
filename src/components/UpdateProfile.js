@@ -233,7 +233,12 @@ export default class UpdateProfile extends Component {
     else 
     {
       console.log("this one")
-          if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof")
+      //console.log(this.state.file.type)
+     // console.log(this.state.fileID.type)
+     if( this.state.file.type !== "video/mp4" && this.state.fileID.type !== "video/mp4" && this.state.file.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/zip" && this.state.file.type !== "application/zip"
+      && this.state.file.type !== "application/x-msdos-program" && this.state.fileID.type !== "application/x-msdos-program" &&  this.state.fileID.type !== "audio/mpeg" && this.state.file.type !== "audio/mpeg")
+     {
+        if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof")
           {
             if ( service.validateEmail(this.state.email)) 
             {
@@ -284,8 +289,6 @@ export default class UpdateProfile extends Component {
                 else
                 {
                   service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer").then((res) => {
-                    //console.log("data", this.state.email, this.state.username, this.state.about)
-                    //console.log(res)
                     if(res)
                       {
                       this.setState({loading: false})
@@ -329,6 +332,14 @@ export default class UpdateProfile extends Component {
               'Please fill all details'
           )
           }
+     }
+       else
+      {
+      Alert.alert(
+        'Please select valid file format'
+       )
+     }
+         
         }
       }
       else

@@ -14,7 +14,7 @@ export const colors  = {
   transparent:"#95a5a6",
   orange:'#d35400',
   carrot:'#e67e22',
-  themeColor:'#616b77'
+  themeColor:'#616c79'
 }
 export const padding = {
   sm: 10,

@@ -95,7 +95,6 @@ backButton:{
 toolbarTitle:{
     color:colors.white,
     textAlign:'center',
-    fontWeight:'bold',
     flex:1,
     marginTop: (Platform.OS === 'ios') ? 5 : 0,
     fontSize:20               //Step 3
@@ -360,10 +359,10 @@ cardContainerSignUp:{
      alignItems:align.center,
      },
     profilePic:{
-      marginTop:30,
-      width:80,
-     height:80,
-     borderRadius : 40
+      marginTop:10,
+      width:140,
+     height:140,
+     borderRadius : 70
     },
     freelancerprofilePic:{
       width:70,
@@ -517,7 +516,8 @@ cardContainerSignUp:{
     listTextFontSize:{
       fontSize:20,
       textAlign: "left",
-      display:'flex'
+      display:'flex',
+      color : colors.white
     },
     switch:{
       width:70
@@ -631,8 +631,7 @@ cardContainerSignUp:{
 		  backgroundColor:colors.themeColor
     },
     upperContainerSideMenu:{
-		  height:'30%',
-      backgroundColor:colors.themeColor,
+		  height:'30%'
     },
     lowerContainerSideMenu:{
       height:'70%',
@@ -779,7 +778,7 @@ cardContainerSignUp:{
       },
       listCard:{
         width:'90%',
-        backgroundColor:colors.white
+        backgroundColor:'#F0F0F0'
       },
       listCardFreelancer:{
         width:'100%',
@@ -787,7 +786,7 @@ cardContainerSignUp:{
       },
       spaceFromTop:{
         alignItems:'center',
-         marginTop:10
+         marginBottom:10
       },
       textColor:{
         color:'green',
@@ -796,28 +795,35 @@ cardContainerSignUp:{
          flexWrap: 'wrap'
       },
       textInRow:{
-        flexDirection:'row'
+        flexDirection:'row',
+        flex : 1
       },
       textWrap:{
-        flex:1,
         margin:10,
         fontSize:18,
-       flexWrap: 'wrap',
-       color:'#27ae60',
-       fontWeight: 'bold'
+      
+       color:'#FF8000',
+      
+       textTransform: 'uppercase'
+      },
+      textWrap2:{
+        marginTop :10,
+        fontSize:15,
+       color:'#C4C4C4',
+       
+       textTransform: 'uppercase'
       },
       priceText:{
         marginLeft:10,
         marginTop:5,
         fontSize:16,
-       color:'black',
-       fontWeight: 'bold'
+       color:'#B3B7BB'
       },
      date:{
         marginLeft:10,
         marginTop:5,
         fontSize:16,
-       color:'#95a5a6',
+       color:'#B3B7BB',
        fontWeight: 'bold'
       },
       email:{
@@ -928,18 +934,20 @@ cardContainerSignUp:{
       topInput:{
         width:'80%',
         color :'white',
-        fontSize :20
+        fontSize :15
       },
       searchContainer:{
         marginLeft:20,
-        borderWidth: 1,
-        borderColor:'white',
+        backgroundColor:'#F0F0F0',
+        color :'#F0F0F0',
         height :40,
-        width:'90%'
+        width:'90%',
+        
       },
       topSearchbar:{
         flexDirection:'row',
-        paddingTop :8
+        paddingTop :8,
+        marginLeft : 10 
       },
       listCardWidth : {
         width: '100%'
@@ -949,7 +957,7 @@ cardContainerSignUp:{
       },
       listCenter:{
         alignItems:align.center,
-        marginTop :10
+        marginTop :0
       },
       commontoolbar:{
         backgroundColor:colors.themeColor,
@@ -1013,7 +1021,8 @@ cardContainerSignUp:{
       },
       
       postprojectinput: {
-      margin: 10,
+      marginBottom:10,
+      marginLeft: 10,
       height: 40,
       borderColor: '#AEA9A8',
       borderWidth: 1,
@@ -1156,7 +1165,68 @@ cardContainerSignUp:{
         width:'100%',
         flexDirection:'row',
         flex: 1
+      },
+
+      // sideMenu
+      sideMenucontainer: {
+        flex: 1,
+        height:'100%',
+        backgroundColor : colors.themeColor
+      },
+      textFontSideMenuNew :{
+        fontSize:25,
+        paddingTop :20,
+        textTransform: 'capitalize'
+      },
+
+      //client projects screen
+      searchPadding :{
+        paddingTop :20
+      },
+      firstText:{
+        width :"30%"
+      },
+      secondText:{
+        width :"30%"
+      },
+      emptyText :{
+        width :"40%"
+      },
+      firstText2:{
+        width :"30%"
+      },
+      secondText2:{
+        width :"10%"
+      },
+      emptyText2 :{
+        width :"60%"
+      },
+      backIcon:{
+        width:25,
+        height:25,
+        marginTop:5,
+       marginLeft:25},
+
+       MainContainerProject :{
+        height:'100%'
+        },
+       projectInput:{
+         margin:10,
+         color : '#FF8000'
+       },
+       bottomViewRequest:{
+        margin: 10,
+      width: '95%', 
+      height: 50, 
+      backgroundColor: '#FF8000', 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      },
+      picker:{
+        width:'95%',
+        height:40
       }
+
 
     
   

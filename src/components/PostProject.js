@@ -6,8 +6,12 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView
+  ScrollView,
+  KeyboardAvoidingView,
+  Select,
+  Picker
 } from "react-native";
+
 
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -15,6 +19,8 @@ import CustomToast from './CustomToast';
 import Loader from './Loader';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import Moment from 'moment';
+
+
 
 export default class PostProject extends Component {
   constructor(props) {
@@ -37,9 +43,32 @@ export default class PostProject extends Component {
        isDateTimePickerVisible2: false,
        startDateText : 'Start Date',
        endDateText : 'End Date',
-       category :'Category'
+       category :'Category',
+       user: ''
       }
+
+      var options = [
+        {
+          label: 'News'
+        },
+        {
+          label: 'Design'
+        },
+        {
+          label: 'Sales'
+        },
+        {
+          label: 'Marketing'
+        },
+        {
+          label: 'Customer Success'
+        }
+      ];
   }
+
+   updateUser = (user) => {
+      this.setState({ user: user })
+   }
   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
@@ -145,17 +174,28 @@ this.props.navigation.navigate('Jobs')
 }, 1000)
 }
 
+
   render() {
+   
     return (
     
-      <SafeAreaView style = { styles.MainContainer }>
-         <View style={styles.toolbar}>
-            <Text style={styles.backButton} onPress={() => this.goBack()}>
-              <Image source={constants.backicon} style={styles.icon} />
-            </Text>
-            <Text style={styles.toolbarTitle}>Post a project</Text>
-          </View>
-          
+      <SafeAreaView style = { styles.MainContainerProject }>
+         <View style={styles.tabsToolbar}>
+        <TouchableOpacity onPress={() => this.openDrawer()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
+        </TouchableOpacity>
+         <Text style={styles.toolbarTitle}>  ADD PROJECT </Text>
+         <TouchableOpacity onPress={() => this.goToNotification()}>
+        </TouchableOpacity>
+         <TouchableOpacity>
+         <Image style={styles.searchIcon} />
+        </TouchableOpacity>
+        </View>
+
+        <ScrollView>
+         <Text style={styles.projectInput}>
+            Title
+        </Text>
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
@@ -166,50 +206,63 @@ this.props.navigation.navigate('Jobs')
             returnKeyType='done'
             value={this.state.title}
           />
+
+          <Text style={styles.projectInput}>
+            Country
+        </Text>
+        <Select
+            width={250}
+            ref="SELECT1"
+            optionListRef={this._getOptionList.bind(this)}
+            defaultValue="Select a Province in Canada ..."
+            onSelect={this._canada.bind(this)}>
+            <Option>Alberta</Option>
+            <Option>British Columbia</Option>
+            <Option>Manitoba</Option>
+            <Option>New Brunswick</Option>
+            <Option>Newfoundland and Labrador</Option>
+            <Option>Northwest Territories</Option>
+            <Option>Nova Scotia</Option>
+            <Option>Nunavut</Option>
+            <Option>Ontario</Option>
+            <Option>Prince Edward Island</Option>
+            <Option>Quebec</Option>
+            <Option>Saskatchewan</Option>
+            <Option>Yukon</Option>
+          </Select>
+            
+
+          <Text style={styles.projectInput}>
+            Job Type
+        </Text>
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Description"
-            onChangeText={(text)=>this.setState({ description:text})}
+            placeholder="ABC"
+            onChangeText={(text)=>this.setState({ title:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.description}
+            value={this.state.title}
           />
-          <TextInput
-            style={styles.postprojectinput}
-            underlineColorAndroid="transparent"
-            placeholder="Country"
-            onChangeText={(text)=>this.setState({ country:text})}
-            placeholderTextColor="#AEA9A8"
-            autoCapitalize="none"
-            returnKeyType='done'
-            value={this.state.country}
-          />
-          <View  style={styles.categoryText}>
-           <Text style={styles.dateTextColor} onPress={() => this.openCategory()}>
-           {this.state.category}
+
+           <Text style={styles.projectInput}>
+            Budget
           </Text>
-          </View>
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Job Type"
-            onChangeText={(text)=>this.setState({ jobType:text})}
+            placeholder="$120"
+            onChangeText={(text)=>this.setState({ title:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            value={this.state.title}
           />
-          <TextInput
-            style={styles.postprojectinput}
-            underlineColorAndroid="transparent"
-            placeholder="Budget"
-            onChangeText={(text)=>this.setState({ budget:text})}
-            placeholderTextColor="#AEA9A8"
-            autoCapitalize="none"
-            returnKeyType='done'
-            keyboardType='numeric'
-          />
+
+          <Text style={styles.projectInput}>
+            Start Date & End Date
+          </Text>
           <View style={{ flexDirection: "row", marginRight:'3%' }}>
             <View style={{ width: "49%" }}>
                   <TouchableOpacity onPress={this._showDateTimePicker} style={styles.postprojectinput}>
@@ -222,14 +275,33 @@ this.props.navigation.navigate('Jobs')
                 </TouchableOpacity>
             </View>
           </View>
+
+          <Text style={styles.projectInput}>
+            Skills
+          </Text>
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Add Skills"
-            onChangeText={(text)=>this.setState({ skills:text})}
+            placeholder="XYZ,ABC etc"
+            onChangeText={(text)=>this.setState({ title:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            value={this.state.title}
+          />
+          
+          <Text style={styles.projectInput}>
+            Description
+          </Text>
+          <TextInput
+            style={styles.postprojectinput}
+            underlineColorAndroid="transparent"
+            placeholder="XYZ,ABC etc"
+            onChangeText={(text)=>this.setState({ title:text})}
+            placeholderTextColor="#AEA9A8"
+            autoCapitalize="none"
+            returnKeyType='done'
+            value={this.state.title}
           />
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}
@@ -241,9 +313,10 @@ this.props.navigation.navigate('Jobs')
           onConfirm={this._handleDatePicked2}
           onCancel={this._hideDateTimePicker2}
         />
-      <TouchableOpacity style={ styles.bottomView} onPress={() => this.post_project()}>
-         <Text style={styles.textStyle}>Submit Job</Text>
+      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.post_project()}>
+         <Text style={styles.textStyle}>SUBMIT JOB</Text>
       </TouchableOpacity>
+      </ScrollView>
       <Loader
           loading={this.state.loading} />
        <CustomToast ref = "defaultToastBottom"/>    

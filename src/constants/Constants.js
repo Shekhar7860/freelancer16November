@@ -9,7 +9,7 @@ export default class Constants  {
   passwordIcon = require('../images/password.png');
   googleicon = require('../images/gmail.png');
   fbicon =  require('../images/fb.png');
-  backicon = require('../images/back.png');
+  backicon = require('../images/top_back.png');
   phoneIcon = require('../images/phone.png');
   loginbg = require('../images/bg03.png');
   menuicon = require('../images/menu.png');
@@ -29,19 +29,22 @@ export default class Constants  {
   cameraIcon=  require('../images/cemra.png');
   downIcon=  require('../images/down.png');
   upIcon=  require('../images/up.png');
-  messagesIcon=  require('../images/messages.png');
+  messagesIcon=  require('../images/message.png');
   paymentIcon=  require('../images/payment.png');
   searchFreelancerIcon=  require('../images/search2.png');
-  projectsIcon=  require('../images/projects.png');
-  accountIcon=  require('../images/account2.png');
+  projectsIcon=  require('../images/my_job.png');
+  accountIcon=  require('../images/account.png');
   aboutIcon=  require('../images/about.png');
-  settingsIcon =  require('../images/settings2.png');
+  settingsIcon =  require('../images/setting.png');
   feedbackIcon =  require('../images/feedback.png');
   notificationIcon = require('../images/notifications2.png');
-  balanceIcon=  require('../images/balance.png');
+  balanceIcon=  require('../images/my_balance.png');
   heartIcon=  require('../images/heart.png');
   heartIconfilled=  require('../images/heartfilled.png');
   clockIcon=  require('../images/clock.png');
   editIcon=  require('../images/edit2.png');
   closeIcon=  require('../images/close.png');
+  workIcon=  require('../images/find_work.png');
+  addIcon=  require('../images/add.png');
+  nextIcon=  require('../images/list_next.png');
 }

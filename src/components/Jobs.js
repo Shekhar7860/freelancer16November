@@ -121,28 +121,29 @@ export default class Jobs extends Component {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
         <View style={styles.topView}>
-      <MyView  hide={this.state.search} style={styles.searchContainer}>
-      <View style={styles.topSearchbar}>
-          <Image source={constants.searchicon} style={styles.newsearchIcon} />
-          <View style={styles.empty}>
-          </View>
-         <TextInput placeholder="Search job"  placeholderTextColor="white" style={styles.topInput}/>
-        <Text style={styles.closeButtton} onPress={() => this.hideSearch()}>X</Text>
-      </View>
-      </MyView>
-        <MyView style={styles.tabsToolbar} hide={!this.state.search}>
+        <MyView style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>My Projects</Text>
+         <Text style={styles.toolbarTitle}> PROJECT </Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
-         <TouchableOpacity onPress={() => this.searchPage()}>
-         <Image source={constants.searchicon} style={styles.searchIcon} />
+         <TouchableOpacity onPress={() => this.goToPostproject()}>
+         <Image source={constants.addIcon} style={styles.searchIcon} />
         </TouchableOpacity>
         </MyView>
-       
        </View>
+       <View style={styles.searchPadding}>
+       <MyView  style={styles.searchContainer}>
+          <View style={styles.topSearchbar}>
+              <Image source={constants.searchicon} style={styles.newsearchIcon} />
+              <View style={styles.empty}>
+              </View>
+            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
+            
+          </View>
+      </MyView>
+      </View>
        <ScrollView>
         <View style={styles.listCenter}>
         <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
@@ -154,22 +155,43 @@ export default class Jobs extends Component {
               renderItem={({ item, index }) => (
                 <View  style={styles.spaceFromTop}>
                     <TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>
-                        <View style={styles.textInRow}> 
-                        <Text style={styles.textWrap}> {item.title} 
-                        </Text>
-                        </View>
-                        <View style={styles.textInRow}> 
-                          <View >
-                              <Text style={styles.priceText}>Fixed Price</Text>
-                            </View>
-                            <View style={styles.contPadding}>
-                              <Text >-</Text>
-                            </View>
-                            <View >
-                              <Text style={styles.date}>{item.start_date} </Text>
-                            </View>
-                        </View>
-                        <View style={styles.paddingAbove}>
+                     <View style={styles.rowAlignSideMenuRequest}>
+                          <View style={styles.firstText}> 
+                          <Text style={styles.textWrap}> {item.title} 
+                          </Text>
+                          </View>
+                          <View style={styles.emptyText}> 
+                          </View>
+                          <View style={styles.secondText}> 
+                          <Text style={styles.textWrap2}> {item.start_date}
+                          </Text>
+                          </View>
+                         
+                      </View>
+                      <View style={styles.rowAlignSideMenuRequest}>
+                          <View style={styles.firstText2}> 
+                              <View style={styles.textInRow}> 
+                                <View >
+                                    <Text style={styles.priceText}>Fixed Price</Text>
+                                  </View>
+                                  <View style={styles.contPadding}>
+                                    <Text >-</Text>
+                                  </View>
+                                  <View >
+                                    <Text style={styles.date}> ${item.budget} </Text>
+                                  </View>
+                                </View>
+                              </View>
+                          <View style={styles.emptyText2}> 
+                          </View>
+                          <View style={styles.secondText2}> 
+                          <TouchableOpacity onPress={() => this.goToPostproject()}>
+                          <Image source={constants.nextIcon} style={styles.searchIcon} />
+                           </TouchableOpacity>
+                          </View>
+                      </View>
+                         
+                        {/* <View style={styles.paddingAbove}>
                             <View style={styles.textInRow2}> 
                               <View style={styles.skillWidth}>
                                   <Text style={styles.skillText}>Skill Level</Text>
@@ -193,7 +215,7 @@ export default class Jobs extends Component {
                                 <View style={styles.leftSpace}>
                                 </View>
                             </View>
-                        </View>
+                        </View> */}
                         </TouchableOpacity>
                 </View>
               )}
@@ -201,7 +223,7 @@ export default class Jobs extends Component {
         </View>
        </ScrollView>
      
-          <TouchableOpacity
+          {/* <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => this.goToPostproject()}
             style={styles.TouchableOpacityStyle}
@@ -213,7 +235,7 @@ export default class Jobs extends Component {
               }}
               style={styles.FloatingButtonStyle}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         
         <Loader
               loading={this.state.loading} />

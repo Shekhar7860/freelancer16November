@@ -85,8 +85,8 @@ componentWillReceiveProps(props) {
          names: [
           {
              id: 0,
-             name: 'Messages',
-             icon:constants.messagesIcon
+             name: 'About',
+             icon:constants.aboutIcon
           },
           {
              id: 1,
@@ -96,7 +96,7 @@ componentWillReceiveProps(props) {
           {
              id: 2,
              name: 'Find Works',
-             icon:constants.searchFreelancerIcon
+             icon:constants.workIcon
           },
           {
              id: 3,
@@ -105,8 +105,8 @@ componentWillReceiveProps(props) {
           },
           {
             id: 4,
-            name: 'Account',
-            icon:constants.accountIcon,
+            name: 'Messages',
+            icon:constants.messagesIcon,
          }
        ]  
       });
@@ -152,7 +152,7 @@ componentDidMount ()   {
           {
             id: 4,
             name: 'Account',
-            icon:constants.accountIcon,
+            icon:constants. accountIcon,
          }
        ]  
       });
@@ -188,7 +188,7 @@ componentDidMount ()   {
         {
            id: 2,
            name: 'Find Works',
-           icon:constants.searchFreelancerIcon
+           icon:constants.workIcon
         },
         {
            id: 3,
@@ -197,8 +197,8 @@ componentDidMount ()   {
         },
         {
           id: 4,
-          name: 'Account',
-          icon:constants.accountIcon,
+          name: 'Messages',
+          icon:constants.messageIcon,
        }
      ]  
     });
@@ -250,6 +250,11 @@ alertItemName = (item) => {
 goToSettingsPage = () => {
   this.props.navigation.closeDrawer();
   this.props.navigation.navigate("Settings");
+}
+
+goToAccountPage = () => {
+  this.props.navigation.closeDrawer();
+  this.props.navigation.navigate("Account");
 }
 
 goToAboutPage = () => {
@@ -315,13 +320,14 @@ goToFeedbackPage = () => {
     return (
       <SafeAreaView
       source={constants.loginbg}
-      style={styles.container}>
+      style={styles.sideMenucontainer}>
           <View style={styles.upperContainerSideMenu}>
             <View style={styles.sideMenuAlign}>
             <TouchableOpacity style={styles.arrowView} onPress = {() => this.goToProfile()}>
             <Image source={{uri: this.state.personData.image_path || defaultImg  }} style={styles.profilePic} />
-          </TouchableOpacity>
-            <View style={styles.rowAlignSideMenu}>
+            </TouchableOpacity>
+            <Text style={styles.textFontSideMenuNew}>{DefaultName}</Text>
+            {/* <View style={styles.rowAlignSideMenu}>
                   <View style={styles.name}>
                   </View>
                   <View style={styles.blank}>
@@ -341,7 +347,7 @@ goToFeedbackPage = () => {
                   <TouchableOpacity style={styles.arrowView}>
                   </TouchableOpacity>
              </View>
-             </View>
+             </View> */}
              </View>
           </View>
           <View style={styles.lowerContainerSideMenu}>
@@ -367,22 +373,22 @@ goToFeedbackPage = () => {
         <View
         style={styles.line}
         />
-        <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToSettingsPage()}>
+        <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToAccountPage()}>
+            <View style={styles.listIconsWidth} >
+               <Image source={constants.accountIcon} style={styles.listIcon}/>
+            </View>
+            <View style={styles.listItemsBlank}></View>
+              <View style={styles.listTextWidth}>
+              <Text style={styles.listTextFontSize}>Account</Text>
+              </View>
+          </TouchableOpacity>
+          <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToSettingsPage()}>
             <View style={styles.listIconsWidth} >
                <Image source={constants.settingsIcon} style={styles.listIcon}/>
             </View>
             <View style={styles.listItemsBlank}></View>
               <View style={styles.listTextWidth}>
               <Text style={styles.listTextFontSize}>Settings</Text>
-              </View>
-          </TouchableOpacity>
-          <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToAboutPage()}>
-            <View style={styles.listIconsWidth} >
-               <Image source={constants.aboutIcon} style={styles.listIcon}/>
-            </View>
-            <View style={styles.listItemsBlank}></View>
-              <View style={styles.listTextWidth}>
-              <Text style={styles.listTextFontSize}>About</Text>
               </View>
           </TouchableOpacity>
           <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToFeedbackPage()}>
