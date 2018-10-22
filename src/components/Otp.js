@@ -141,17 +141,17 @@ import CustomToast from './CustomToast';
    }
 
  
-   
-  render() {
+   render() {
     return (
-  <SafeAreaView style={{flex:1, alignItems:'center'}}>
+  <SafeAreaView style={{flex:1, alignItems:'center', backgroundColor:colors.white}}>
     <View style={{backgroundColor: colors.themeColor,width: dimensions.fullWidth ,height: dimensions.fullHeight/2,flexDirection: 'column',alignItems: 'flex-start'}}>
             <TouchableOpacity activeOpacity={0.5} onPress={this.backAction}>
               <View style = {{top:10,left:0, width: 60,height: 60,alignItems: 'center',backgroundColor: colors.themeColor,justifyContent:'center'}}>
               <Image style = {{ left:-10,width: 12,height: 15,alignItems: 'center'}}
               source = {constants.backIcon}/></View>
             </TouchableOpacity>
-            <View style = {{top:30,backgroundColor:colors.themeColor,width: dimensions.fullWidth,height:dimensions.fullHeight/2 - 80,alignItems:'center',}}><Text style = {{fontSize:25,fontWeight:'400' , top:15, color:colors.white}} >VERIFICATION CODE</Text>
+            <View style = {{top:30,backgroundColor:colors.themeColor,width: dimensions.fullWidth,height:dimensions.fullHeight/2 - 80,alignItems:'center',}}><Text style = 
+            {{fontSize:25,fontWeight:'400' , top:15, color:colors.theme_orange}} >VERIFICATION CODE</Text>
             <Text style = {{fontSize:16,fontWeight:'200' , top:30, color:colors.white}}>Enter the four digit code sent to you at</Text>
             <Text style = {{fontSize:16,fontWeight:'200' , top:40, color:colors.white}}> + 91 - {this.state.mobile}</Text>
             <View behavior = 'padding'
@@ -206,7 +206,7 @@ import CustomToast from './CustomToast';
     <TouchableOpacity style={styles.otpButton} onPress={() => this.resendOtp()}>
         <Text style={styles.accountButtonText}>Resend OTP</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.lookingButtonBackground} onPress={() => this.gotoSignIn()}>
+      <TouchableOpacity style={styles.changenumber_otp} onPress={() => this.gotoSignIn()}>
         <Text style={styles.accountButtonText}>Change Number </Text>
       </TouchableOpacity>
       <CustomToast style={{marginTop:50}} ref = "defaultToastBottom"/>

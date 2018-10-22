@@ -30,7 +30,7 @@ export default class Constants  {
   downIcon=  require('../images/down.png');
   upIcon=  require('../images/up.png');
   messagesIcon=  require('../images/message.png');
-  paymentIcon=  require('../images/payment.png');
+  paymentIcon=  require('../images/my_balance.png');
   searchFreelancerIcon=  require('../images/search2.png');
   projectsIcon=  require('../images/my_job.png');
   accountIcon=  require('../images/account.png');
@@ -47,4 +47,11 @@ export default class Constants  {
   workIcon=  require('../images/find_work.png');
   addIcon=  require('../images/add.png');
   nextIcon=  require('../images/list_next.png');
+  notifyIcon= require('../images/notification2.png');
+langIcon= require('../images/language.png');
+volumeIcon= require('../images/volume.png');
+settingIcon= require('../images/setting.png');
+fillrdrIcon= require('../images/filledr.png');
+unfilledrIcon= require('../images/unfilledr.png');
+notificationIcon= require('../images/notification.png');
 }

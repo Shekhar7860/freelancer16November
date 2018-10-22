@@ -175,7 +175,7 @@ this.props.navigation.navigate('Jobs')
 
 
   render() {
-   console.log(this.state.cities)
+  
     let data = [{
       value: 'Afif',
     }, {
@@ -266,14 +266,14 @@ this.props.navigation.navigate('Jobs')
 
 
 
-                {/* <Text style={styles.projectInput}>
+                <Text style={styles.projectInput}>
                     Category
                 </Text>
                 <TouchableOpacity  style={styles.dropDown2} onPress={() => this.openCategory()}>
                     <Text style={styles.dateTextColorProfile} >
                   {this.state.category}
                     </Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
             
            <Text style={styles.projectInput}>
             Budget
@@ -345,12 +345,13 @@ this.props.navigation.navigate('Jobs')
           onCancel={this._hideDateTimePicker2}
         />
       <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.post_project()}>
-         <Text style={styles.textStyle}>SUBMIT JOB</Text>
+         <Text style={styles.textStyle}>SUBMIT </Text>
       </TouchableOpacity>
       </ScrollView>
+      <CustomToast ref = "defaultToastBottom"/> 
       <Loader
           loading={this.state.loading} />
-       <CustomToast ref = "defaultToastBottom"/>    
+      
    </SafeAreaView>
     );
   }

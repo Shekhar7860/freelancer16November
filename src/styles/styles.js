@@ -611,7 +611,6 @@ cardContainerSignUp:{
 		  fontSize:15,
       color:colors.white,
       fontFamily: fonts.themeFont,
-      
 	  },
 	   accountText:{
 		  textAlign:align.center,
@@ -1060,7 +1059,8 @@ cardContainerSignUp:{
       },
       textStyle:{
       color: '#fff',
-      fontSize:22
+      fontSize:22,
+      alignItems:'center'
       },
         MainContainer:
        {
@@ -1076,6 +1076,15 @@ cardContainerSignUp:{
       alignItems: 'center',
       position: 'absolute',
       bottom: 160
+    },
+    bottomViewAbout:{
+      width: '95%', 
+      height: 50, 
+      backgroundColor:'#FF8D47', 
+      justifyContent: 'center', 
+      alignItems: 'center',
+      position: 'absolute',
+      bottom: 40
     },
     textStyle:{
       color: '#fff',
@@ -1305,8 +1314,179 @@ cardContainerSignUp:{
             width:20,
             height:20,
            marginRight:25,
-          marginTop:20}
+          marginTop:20},
+          /////////welcome 
+  welcomeContainer: {
+    flex: 1,
+    backgroundColor: colors.white
+  },
+  welcomeHeadline: {
+    flex: 1,
+    alignItems: align.center,
+    paddingTop: 200
+  },
 
+  headlineText: {
+    fontSize: 50,
+    color: colors.theme_orange,
+    fontFamily: "blackjack"
+  },
+
+  buttonBackground: {
+    marginTop: 200,
+    backgroundColor: colors.theme_orange,
+    width: "50%",
+    height: 40,
+    alignItems: align.center,
+    justifyContent: align.center
+  },
+
+
+  buttonText: {
+    textAlign: align.center,
+    fontSize: 15,
+    color: colors.white,
+    fontFamily: fonts.themeFont
+  },
+
+
+  accountText: {
+    textAlign: align.center,
+    fontSize: 15,
+    color: colors.theme_statusbar,
+    paddingTop: padding.sm,
+    fontFamily: fonts.themeFont
+  },
+
+  welcomeLoginText: {
+    color: colors.theme_orange,
+    fontWeight: "bold",
+    paddingTop: 10
+  },
+
+///////////////////welcome end
+
+//mobilesignin start
+upperContainer: {
+  height: "50%",
+  backgroundColor: colors.theme_light_dark
+  },
+  
+  lowerContainerSideMenu: {
+  height: "50%",
+  alignItems: align.center
+  },
+  
+  cardContainerSignIn: {
+  width: "85%",
+  padding: padding.md,
+  shadowColor: colors.theme_light_dark,
+  shadowOpacity: 1.0,
+  backgroundColor: colors.theme_light_white,
+  height: 220
+  },
+  centerAlignSignUp: {
+  alignItems: align.center,
+  marginTop: 0,
+  position: "absolute",
+  width: "100%",
+  top: -80
+  },
+  mobilesignsignUpText: {
+  textAlign: align.center,
+  fontSize: 20,
+  fontWeight: "300",
+  color: colors.theme_orange,
+  fontFamily: fonts.themeFontBold,
+  textDecorationLine: "underline"
+  },
+  
+  mobilesigninButton: {
+  marginTop: Platform.OS === "ios" ? 20 : 20,
+  backgroundColor: colors.theme_orange,
+  width: dimensions.fullWidth - 140,
+  height: 40,
+  alignItems: align.center,
+  justifyContent: align.center
+  },
+  
+  rowAlign: {
+  flexDirection: "row",
+  borderColor: colors.theme_statusbar,
+  borderWidth: 0.5,
+  marginLeft: 20,
+  height: 40,
+  width: dimensions.fullWidth - 140,
+  marginTop: Platform.OS === "ios" ? 30 : 30
+  },
+  
+  mobilesignloginContainerSignIn: {
+  alignItems: align.center
+  },
+  inputIcon: {
+  width: 15,
+  height: 20,
+  marginTop: 15,
+  marginLeft: 5,
+  bottom: Platform.OS === "ios" ? 5 : 0
+  },
+  mobilesigntextInputWidth: {
+  width: "100%",
+  height: 40,
+  padding: 5
+  },
+
+//mobilesignin end
+////////selectaccount styles
+
+hireButtonBackground: {
+  marginTop: 110,
+  backgroundColor: colors.theme_orange,
+  width: "65%",
+  height: 40,
+  alignItems: align.center,
+  justifyContent: align.center
+  },
+  
+  lookingButtonBackground: {
+  marginTop: 35,
+  backgroundColor: colors.theme_orange,
+  width: "65%",
+  height: 40,
+  alignItems: align.center,
+  justifyContent: align.center
+  },
+  
+  ////////selectaccount end
+  
+  ////////////otp
+  otpButton: {
+  marginTop: 50,
+  backgroundColor: colors.theme_orange,
+  width: "65%",
+  height: 40,
+  alignItems: align.center,
+  justifyContent: align.center
+  },
+  
+  changenumber_otp: {
+  marginTop: 35,
+  backgroundColor: colors.theme_orange,
+  width: "65%",
+  height: 40,
+  alignItems: align.center,
+  justifyContent: align.center
+  },
+  
+  ////end otp,
+  ProfileName:{
+    color :"#ffffff"
+  },
+ toast:
+  {
+  
+   alignItems: 'center'
+  }
       
           
 

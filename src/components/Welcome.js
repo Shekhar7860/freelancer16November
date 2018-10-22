@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,StatusBar, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity} from 'react-native';
 import styles from '../styles/styles';
 import Service from '../services/Service';
+import { colors } from '../styles/base';
+
 export default class Welcome extends Component {
   
   constructor(props){
@@ -52,7 +54,9 @@ componentDidMount ()   {
   render() {
     return (
        <ScrollView style={styles.welcomeContainer}>
-	     <View style={styles.welcomeHeadline}>
+
+       
+	     {/* <View style={styles.welcomeHeadline}>
 	       <Text style={styles.headlineText}>Freelancer</Text>
 		   <TouchableOpacity style={styles.buttonBackground} onPress={() => this.goToSelect()}>
 		     <Text style={styles.buttonText}>Create An Account</Text>
@@ -63,7 +67,32 @@ componentDidMount ()   {
         <Text onPress={() => this.goToLogin()} style={styles.welcomeLoginText}>Login</Text>
         </TouchableOpacity>
         </View>
+	     </View> */
+     
+       <View style={styles.welcomeContainer}>
+	     <View style={styles.welcomeHeadline}>
+	      
+         <Image
+            source={require("../images/logosmal.png")}
+            style={{ padding: 2 }}
+          />
+
+
+		   <TouchableOpacity style={styles.buttonBackground} onPress={() => this.goToSelect()}>
+		     <Text style={styles.buttonText}>Create An Account</Text>
+		   </TouchableOpacity>
+
+       <View style={styles.rowAlignSideMenu}>
+		    <Text style={styles.accountText}>Already have an account? </Text>
+        <TouchableOpacity>
+        <Text onPress={() => this.goToLogin()} style={styles.welcomeLoginText}>Login</Text>
+        </TouchableOpacity>
+        </View>
 	     </View>
+	   </View>
+       
+       
+       }
 	   </ScrollView>
 	   
     );

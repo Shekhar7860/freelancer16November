@@ -88,11 +88,14 @@ export default class Jobs extends Component {
   getFreelancersResponse = () => {
     service.jobs(this.state.userResponse.api_token).then(res => {
       console.log("reslocal", res);
-      if(res.Job == [])
+      if(res.Job.length ===  0)
       {
         this.setState ({ dummyText: "No Project Found"});
       }
+      else
+      {
       this.setState({ jobs: res.Job});
+      }
     });
   };
 
@@ -140,7 +143,6 @@ export default class Jobs extends Component {
               <View style={styles.empty}>
               </View>
             <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
-            
           </View>
       </MyView>
       </View>

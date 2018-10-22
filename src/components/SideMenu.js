@@ -13,11 +13,12 @@ class SideMenu extends Component {
     items : false,
     icon : constants.downIcon,
     personData: {},
+    userType : "(Freelancer)",
     names: [
      {
         id: 0,
-        name: 'Home',
-        icon:constants.homeIcon
+        name: 'About',
+        icon:constants.aboutIcon
      },
      {
        id: 1,
@@ -31,14 +32,10 @@ class SideMenu extends Component {
      },
      {
         id: 3,
-        name: 'My Projects',
+        name: 'My Project',
         icon:constants.projectsIcon,
-     },
-     {
-       id: 4,
-       name: 'Account',
-       icon:constants.accountIcon,
-    }
+     }
+     
   ]
   }; 
   constructor(props){
@@ -110,8 +107,10 @@ componentWillReceiveProps(props) {
          }
        ]  
       });
+      this.setState({ userType: " "});
     }
     this.setState({ personData: parsedData});
+   
     if(parsedData.username != null || parsedData.username != "null")
     {
     this.setState({ name: parsedData.username});
@@ -327,6 +326,7 @@ goToFeedbackPage = () => {
             <Image source={{uri: this.state.personData.image_path || defaultImg  }} style={styles.profilePic} />
             </TouchableOpacity>
             <Text style={styles.textFontSideMenuNew}>{DefaultName}</Text>
+            <Text style={styles.ProfileName}>{this.state.userType}</Text>
             {/* <View style={styles.rowAlignSideMenu}>
                   <View style={styles.name}>
                   </View>

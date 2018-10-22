@@ -59,7 +59,7 @@ export default class About extends Component {
       </View>
       </ScrollView>
               
-          <TouchableOpacity style={ styles.bottomView} onPress={() => this.goToProfile()}>
+          <TouchableOpacity style={ styles.bottomViewAbout} onPress={() => this.goToProfile()}>
               <Text style={styles.textStyle}>Go To Profile</Text>
             </TouchableOpacity>
             

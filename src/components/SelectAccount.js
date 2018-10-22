@@ -44,7 +44,10 @@ export default class SelectAccount extends Component {
   render() {
     return (
   <SafeAreaView>
-	    <View style={styles.toolbar}>
+	 
+
+
+       <View style={styles.toolbar}>
 			<Text style={styles.backButton} onPress={() => this.goToWelcome()}>
 			<Image source={constants.backicon} style={styles.icon}/>
 			</Text>
