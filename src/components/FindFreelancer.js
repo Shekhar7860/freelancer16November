@@ -94,26 +94,31 @@ export default class FindFreelancer extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-      <View style={styles.topView}>
-       <MyView  hide={this.state.search} style={styles.searchContainer}>
+       <View style={styles.topView}>
+        <MyView style={styles.tabsToolbar}>
+        <TouchableOpacity onPress={() => this.openDrawer()}>
+        <Image source={constants.menuicon} style={styles.hamburgerIcon} />
+        </TouchableOpacity>
+         <Text style={styles.toolbarTitle}>FIND FREELANCER</Text>
+         <TouchableOpacity>
+        </TouchableOpacity>
+         <TouchableOpacity >
+         <Image source={constants.HJJHIcon} style={styles.searchIcon} />
+        </TouchableOpacity>
+        </MyView>
+       </View>
+       <View style={styles.searchPadding}>
+       <MyView  style={styles.searchContainer}>
           <View style={styles.topSearchbar}>
               <Image source={constants.searchicon} style={styles.newsearchIcon} />
               <View style={styles.empty}>
               </View>
-            <TextInput  style={styles.searchContainer} placeholder="Search job"  placeholderTextColor="white" style={styles.topInput}/>
+            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
+            
           </View>
       </MyView>
-    <MyView style={styles.tabsToolbar} hide={!this.state.search}>
-        <TouchableOpacity onPress={() => this.openDrawer()}>
-        <Image source={constants.menuicon} style={styles.hamburgerIcon} />
-        </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Find Freelancer</Text>
-         <TouchableOpacity onPress={() => this.searchPage()}>
-        <Image source={constants.searchicon} style={styles.searchIcon} />
-        </TouchableOpacity>
-     </MyView>
-     </View>
-     <ScrollView>
+      </View>
+     
      <ScrollView>
      <View style={styles.listCenter}>
      <FlatList
@@ -122,15 +127,19 @@ export default class FindFreelancer extends Component {
         renderItem={({ item }) => (
            <View  style={styles.spaceFromTop}>
               <TouchableOpacity style={styles.listCardFreelancer} onPress={() => this.openFreelancerDetails(item)}>
-              <View style={styles.textInRow}> 
-                 <View >
+              <View style={styles.textInRowlist}> 
+                 <View style = {styles.imageFreelancerContainer}>
                  <Image source={{ uri: item.image_path || defaultImg  }}    style={styles.freelancerprofilePic} />
                   </View>
-                  <View style={styles.contPadding}>
-                     <Text >-</Text>
+                  <View style={styles.textFreelancerContainer}>
+                  <Text style={styles.email}>{item.email} <Text style={styles.freelancerProfileText}>{item.username}</Text> </Text>
                   </View>
-                  <View >
-                     <Text style={styles.email}>{item.email} </Text>
+                  <View style={styles.emptyFreelancerContainer}>
+                  </View>
+                  <View style={styles.iconFreelancerContainer}>
+                  <TouchableOpacity >
+                  <Image source={constants.nextIcon} style={styles.nextIcon} />
+                   </TouchableOpacity>
                   </View>
               </View>
               </TouchableOpacity>
@@ -141,7 +150,7 @@ export default class FindFreelancer extends Component {
      </ScrollView>
      <Loader
               loading={this.state.loading} />
-</ScrollView>
+
  </SafeAreaView>
       
      

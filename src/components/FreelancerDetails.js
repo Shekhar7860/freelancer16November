@@ -71,18 +71,66 @@ this.props.navigation.navigate('Jobs')
   render() {
     return (
   <SafeAreaView style = { styles.MainContainer }>
-	    <View style={styles.toolbar}>
-			<Text style={styles.backButton} onPress={() => this.goBack()}>
-			<Image source={constants.backicon} style={styles.icon}/>
-			</Text>
-            <Text style={styles.toolbarTitle}>Freelancer Details</Text>
-      </View>
-    <View style={styles.contentMargin}>
-         <Text>{this.state.freelancerDetails.email}</Text>
-         <Text>{this.state.freelancerDetails.username}</Text>
-         <Text>{this.state.freelancerDetails.short_bio}</Text>
-         <Text>{this.state.freelancerDetails.skills}</Text>
-   </View> 
+	     <View style={styles.commontoolbar}>
+        <TouchableOpacity onPress={() => this.goBack()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
+        </TouchableOpacity>
+          <Text style={styles.toolbarTitle}>FREELANCER DETAILS</Text>
+          <Text style={styles.commontoolbarButton}></Text>
+         </View>
+         <ScrollView style={styles.detailsContainer}>
+       <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Email
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.email}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Name
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.username}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Short Bio
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.short_bio}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Skills
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.skills}
+                  </Text>
+                  </View>
+         </View>
+         <Loader
+              loading={this.state.loading} /> 
+     </ScrollView>
+  
    <Loader
               loading={this.state.loading} /> 
      <MyView hide={this.state.isJobId}  style={ styles.bottomView}>

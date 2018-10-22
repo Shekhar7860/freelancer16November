@@ -410,6 +410,18 @@ response.json())
 console.error(error);
 });
 }
+
+cities = () => 
+{
+return fetch(constants.apiUrl + `/city-lists`,
+{
+method: "GET"
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
  
   
   

@@ -80,7 +80,7 @@ export default class JobDetails extends Component {
     }
    }
 
-  goBack = () => {
+   goToJobs = () => {
     this.props.navigation.navigate('Jobs');
    }
 
@@ -95,64 +95,116 @@ export default class JobDetails extends Component {
   render() {
       console.log(this.props.navigation.state.params.details)
     return (
-  <SafeAreaView style = { styles.MainContainer }>
-  <ScrollView>
+  <SafeAreaView style = { styles.MainContainerDetails }>
         <View style={styles.commontoolbar}>
-          <TouchableOpacity style={styles.commontoolbarButton} onPress={() => this.goBack()}>
-          <Image source={constants.backicon} style={styles.commonBackIcon}/>
-          </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>Job Details</Text>
+        <TouchableOpacity onPress={() => this.goToJobs()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
+        </TouchableOpacity>
+          <Text style={styles.toolbarTitle}>JOB DETAIL</Text>
           <Text style={styles.commontoolbarButton}></Text>
-        </View>
-	     <View style={styles.detailsContainer}>
-	       <Text style={styles.jobTitle}>{this.state.details.title}</Text>
-           <View style={styles.textInRowJob}>
-               <Text>Required Connects</Text>
-               <Text>-</Text>
-               <Text>2 (60 available)</Text>
-           </View>
-           <View style={styles.space}>
-                <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Image source={constants.clockIcon} style={styles.icon}/>
-                            </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Image source={constants.clockIcon} style={styles.icon}/>
-                            </View>
-                    </View>
-                    <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Text style={styles.jobTitle}>Hourly</Text>
-                            </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Text style={styles.jobTitle}>Expert</Text>
-                            </View>
-                    </View>
-                    <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Text style={styles.jobTitle}>More than 6 months</Text>
-                         </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Text style={styles.jobTitle}>Skill Level</Text>
-                            </View>
-                    </View>
-                    <View style={styles.space}>
-                    <Text style={styles.jobTitle}>Details</Text>
-                    <HTMLView value={this.state.details.description} style={styles.jobDescription}/>
-                    </View>
-            </View>
-	     </View>
+         </View>
+      <ScrollView style={styles.detailsContainer}>
+       <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Title
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.title}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Country
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.country}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Job Type
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.job_type}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Budget
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.budget}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Start & End Date
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.start_Date} to {this.state.details.end_Date}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Skills
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.skills}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Status
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.status}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Description
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.description}
+                  </Text>
+                  </View>
+         </View>
          <Loader
               loading={this.state.loading} /> 
      </ScrollView>
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
-     <TouchableOpacity style={ styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
+     <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
          <Text style={styles.textStyle}>{this.state.hireText}</Text>
       </TouchableOpacity>
       </MyView>

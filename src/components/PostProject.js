@@ -11,7 +11,7 @@ import {
   Select,
   Picker
 } from "react-native";
-
+import { Dropdown } from 'react-native-material-dropdown';
 
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
@@ -44,26 +44,12 @@ export default class PostProject extends Component {
        startDateText : 'Start Date',
        endDateText : 'End Date',
        category :'Category',
-       user: ''
+       user: '',
+       cities : '',
+       selectedCity : ' '
       }
 
-      var options = [
-        {
-          label: 'News'
-        },
-        {
-          label: 'Design'
-        },
-        {
-          label: 'Sales'
-        },
-        {
-          label: 'Marketing'
-        },
-        {
-          label: 'Customer Success'
-        }
-      ];
+      
   }
 
    updateUser = (user) => {
@@ -110,7 +96,20 @@ export default class PostProject extends Component {
           console.log(error); //Display error
         }
       );
+      service.cities().then(
+        keyValue => {
+          console.log("local", keyValue);
+          this.setState({ cities: keyValue.city });
+        },
+        error => {
+          console.log(error); //Display error
+        }
+      );
       
+    }
+
+    onChangeTextPress = ( value) => {
+      this.setState({ selectedCity : value })
     }
     
     openCategory = () => {
@@ -123,8 +122,8 @@ export default class PostProject extends Component {
       this.props.navigation.navigate("Cat",  { page: projectData });
     }
 
-  goToproject = () => {
-    this.props.navigation.navigate("Projects");
+  goToJobs = () => {
+    this.props.navigation.navigate("Jobs");
   };
 
   goBack = () =>{
@@ -139,7 +138,7 @@ export default class PostProject extends Component {
       setTimeout(() => 
       {
       this.setState({loading: false})
-      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.country, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, this.state.skills).then((res) => {
+      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, this.state.skills).then((res) => {
       console.log(this.state.startDateText);
       console.log(this.state.endDateText);
       if(res)
@@ -176,12 +175,41 @@ this.props.navigation.navigate('Jobs')
 
 
   render() {
-   
+   console.log(this.state.cities)
+    let data = [{
+      value: 'Afif',
+    }, {
+      value: 'Abha',
+    }, {
+      value: 'Abqaiq',
+    },
+    {
+      value: 'Ad Darb',
+    },
+    {
+      value: 'Ad Dawadimi',
+    },
+    {
+      value: 'Ad Dilam',
+    },
+    {
+      value: 'Al Artawiyah',
+    },
+    {
+      value: '"Al Battaliyah',
+    },
+    {
+      value: 'Al Hufuf',
+    },
+    {
+      value: 'Al Jumum',
+    }];
+
     return (
     
       <SafeAreaView style = { styles.MainContainerProject }>
          <View style={styles.tabsToolbar}>
-        <TouchableOpacity onPress={() => this.openDrawer()}>
+        <TouchableOpacity onPress={() => this.goToJobs()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
          <Text style={styles.toolbarTitle}>  ADD PROJECT </Text>
@@ -209,43 +237,44 @@ this.props.navigation.navigate('Jobs')
 
           <Text style={styles.projectInput}>
             Country
-        </Text>
-        <Select
-            width={250}
-            ref="SELECT1"
-            optionListRef={this._getOptionList.bind(this)}
-            defaultValue="Select a Province in Canada ..."
-            onSelect={this._canada.bind(this)}>
-            <Option>Alberta</Option>
-            <Option>British Columbia</Option>
-            <Option>Manitoba</Option>
-            <Option>New Brunswick</Option>
-            <Option>Newfoundland and Labrador</Option>
-            <Option>Northwest Territories</Option>
-            <Option>Nova Scotia</Option>
-            <Option>Nunavut</Option>
-            <Option>Ontario</Option>
-            <Option>Prince Edward Island</Option>
-            <Option>Quebec</Option>
-            <Option>Saskatchewan</Option>
-            <Option>Yukon</Option>
-          </Select>
+         </Text>
+         <View style={styles.dropDown}
+        >
+         <Dropdown
+        label=''
+        data={data}
+        valueExtractor={({value})=> value}
+        onChangeText={(value)=>{this.onChangeTextPress( value)}}
+      />
+      </View>
+        
             
 
-          <Text style={styles.projectInput}>
+          <Text style={styles.projectInputJob}>
             Job Type
-        </Text>
+           </Text>
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
             placeholder="ABC"
-            onChangeText={(text)=>this.setState({ title:text})}
+            onChangeText={(text)=>this.setState({ jobType:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.title}
+            value={this.state.jobType}
           />
 
+
+
+                {/* <Text style={styles.projectInput}>
+                    Category
+                </Text>
+                <TouchableOpacity  style={styles.dropDown2} onPress={() => this.openCategory()}>
+                    <Text style={styles.dateTextColorProfile} >
+                  {this.state.category}
+                    </Text>
+                </TouchableOpacity> */}
+            
            <Text style={styles.projectInput}>
             Budget
           </Text>
@@ -253,11 +282,11 @@ this.props.navigation.navigate('Jobs')
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
             placeholder="$120"
-            onChangeText={(text)=>this.setState({ title:text})}
+            onChangeText={(text)=>this.setState({ budget:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.title}
+            value={this.state.budget}
           />
 
           <Text style={styles.projectInput}>
@@ -283,25 +312,27 @@ this.props.navigation.navigate('Jobs')
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
             placeholder="XYZ,ABC etc"
-            onChangeText={(text)=>this.setState({ title:text})}
+            onChangeText={(text)=>this.setState({ skills:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.title}
+            value={this.state.skills}
           />
           
           <Text style={styles.projectInput}>
             Description
           </Text>
           <TextInput
-            style={styles.postprojectinput}
+            style={styles.textArea}
             underlineColorAndroid="transparent"
-            placeholder="XYZ,ABC etc"
-            onChangeText={(text)=>this.setState({ title:text})}
+            placeholder="Description"
+            onChangeText={(text)=>this.setState({ description:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-            value={this.state.title}
+            multiline={true}
+           numberOfLines={4}
+            value={this.state.description}
           />
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}

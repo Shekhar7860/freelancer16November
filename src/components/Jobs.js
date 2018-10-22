@@ -166,7 +166,6 @@ export default class Jobs extends Component {
                           <Text style={styles.textWrap2}> {item.start_date}
                           </Text>
                           </View>
-                         
                       </View>
                       <View style={styles.rowAlignSideMenuRequest}>
                           <View style={styles.firstText2}> 

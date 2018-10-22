@@ -69,7 +69,7 @@ export const Menu = DrawerNavigator({
 // routing 
 const AppNavigator = createStackNavigator(
   {
-    Welcome: { screen: PostProject},
+    Welcome: { screen: Welcome},
     Select: { screen: SelectAccount },
     Login: { screen: MobileSignin },
     Login2: { screen: MobileSignin2 },

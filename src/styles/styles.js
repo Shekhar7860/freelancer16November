@@ -365,8 +365,9 @@ cardContainerSignUp:{
      borderRadius : 70
     },
     freelancerprofilePic:{
-      width:70,
-     height:70,
+      width:50,
+     height:50,
+     borderRadius:25
     },
     userName:{
       paddingTop:padding.sm,
@@ -801,9 +802,7 @@ cardContainerSignUp:{
       textWrap:{
         margin:10,
         fontSize:18,
-      
        color:'#FF8000',
-      
        textTransform: 'uppercase'
       },
       textWrap2:{
@@ -830,7 +829,7 @@ cardContainerSignUp:{
         marginLeft:10,
         marginTop:5,
         fontSize:14,
-       color:'#95a5a6',
+       color:'#FF8D47',
        fontWeight: 'bold'
       },
       Listcontainer: {
@@ -883,7 +882,10 @@ cardContainerSignUp:{
         margin: 10
       },
       detailsContainer :{
-        margin:10
+        margin:10,
+        backgroundColor:'#F0F0F0',
+        width:'95%',
+        height:150
       },
       jobTitle :{
         fontSize:20, 
@@ -954,10 +956,11 @@ cardContainerSignUp:{
       },
       freelancerlistCardWidth : {
         width: '90%',
+        height:100
       },
       listCenter:{
         alignItems:align.center,
-        marginTop :0
+        marginTop :20
       },
       commontoolbar:{
         backgroundColor:colors.themeColor,
@@ -1029,12 +1032,27 @@ cardContainerSignUp:{
       padding:5,
       width:'95%'
       },
+       dropDown: {
+        marginTop:-40,
+        marginLeft: 10,
+        height: 40,
+        padding:5,
+        width:'95%'
+        },
+        dropDown2: {
+          marginLeft: 10,
+          height: 40,
+          padding:5,
+          width:'95%',
+          borderColor: '#AEA9A8',
+          borderWidth: 1
+          },
       
       bottomView:{
         margin: 10,
       width: '95%', 
       height: 50, 
-      backgroundColor: '#FF9800', 
+      backgroundColor: '#FF8D47', 
       justifyContent: 'center', 
       alignItems: 'center',
       position:'absolute',
@@ -1053,11 +1071,11 @@ cardContainerSignUp:{
     bottomView:{
       width: '95%', 
       height: 50, 
-      backgroundColor:colors.themeColor, 
+      backgroundColor:'#FF8D47', 
       justifyContent: 'center', 
       alignItems: 'center',
       position: 'absolute',
-      bottom: 10
+      bottom: 160
     },
     textStyle:{
       color: '#fff',
@@ -1214,6 +1232,11 @@ cardContainerSignUp:{
          margin:10,
          color : '#FF8000'
        },
+       projectInputJob:{
+        margin:10,
+        paddingTop :40,
+        color : '#FF8000'
+      },
        bottomViewRequest:{
         margin: 10,
       width: '95%', 
@@ -1225,7 +1248,67 @@ cardContainerSignUp:{
       picker:{
         width:'95%',
         height:40
-      }
+      },
+      textArea: {
+        marginBottom:10,
+        marginLeft: 10,
+        height: 100,
+        borderColor: '#AEA9A8',
+        borderWidth: 1,
+        padding:5,
+        width:'95%'
+        },
+        // jobDetails
+        MainContainerDetails: {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor : '#ffffff'
+          },
+          textWrapDetails:{
+            margin:10,
+            fontSize:18,
+           color:'#FF8000',
+           textTransform: 'capitalize'
+          },
+          colon:{
+            marginTop :10
+          },
+          textWrap2Details:{
+            margin :10,
+            fontSize:15,
+           color:'#C4C4C4',
+           textTransform: 'capitalize'
+          },
+          
+          //Freelancer Page
+          textInRowlist:{
+            flexDirection:'row',
+            margin :10
+          },
+          imageFreelancerContainer:{
+            width:'20%'
+          },
+          textFreelancerContainer:{
+            width:'50%'
+          },
+          emptyFreelancerContainer:{
+            width:'20%'
+          },
+          iconFreelancerContainer:{
+            width:'10%'
+          },
+          freelancerProfileText:{
+            color :'#8C959D'
+          },
+          nextIcon:{
+            width:20,
+            height:20,
+           marginRight:25,
+          marginTop:20}
+
+      
+          
 
 
     
