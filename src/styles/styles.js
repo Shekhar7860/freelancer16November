@@ -1237,7 +1237,8 @@ cardContainerSignUp:{
        marginLeft:25},
 
        MainContainerProject :{
-        height:'100%'
+        height:'100%',
+        flex:1
         },
        projectInput:{
          margin:10,
@@ -1625,6 +1626,10 @@ createmilestoneinput: {
     alignItems:'center',
      justifyContent: 'center',
       flex :1
+  },
+  toastMiddle2 :{
+    alignItems:'center',
+     justifyContent: 'center',
   }
   
   ///end createmilestone

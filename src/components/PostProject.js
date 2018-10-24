@@ -163,7 +163,7 @@ export default class PostProject extends Component {
   }
   else
   {
-    this.refs.defaultToastBottom.ShowToastFunction('End Date should not be lesser than start date');
+    this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
   }
 }
 
@@ -536,6 +536,9 @@ this.props.navigation.navigate('Jobs')
             numberOfLines={4}
             value={this.state.description}
           />
+          
+       <CustomToast ref = "defaultToastBottom"/>
+      
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
@@ -550,7 +553,6 @@ this.props.navigation.navigate('Jobs')
          <Text style={styles.textStyle}>SUBMIT </Text>
       </TouchableOpacity>
       </ScrollView>
-      <CustomToast ref = "defaultToastBottom"/> 
       <Loader
           loading={this.state.loading} />
       

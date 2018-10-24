@@ -41,7 +41,7 @@ export default class JobDetails extends Component {
       }
       else if(this.props.navigation.state.params.details.details.request_status == "Hired")
       {
-        this.setState({ hired: true})
+        this.setState({ hireText: "Go To Projects"})
       }
     this.setState({ details: this.props.navigation.state.params.details.details})
      }    
@@ -57,6 +57,10 @@ export default class JobDetails extends Component {
     if (status == "Find Freelancer")
     {
     this.props.navigation.navigate('FindFreelancer', { client_Details: clientDetails })
+    }
+    else if ( status == "Go To Projects")
+    {
+    this.props.navigation.navigate('OpenProjects', { client_Details:  this.state.details.jobid })
     }
     else
     {
@@ -208,12 +212,15 @@ export default class JobDetails extends Component {
          <Loader
               loading={this.state.loading} /> 
      </ScrollView>
+     <TouchableOpacity style={styles.toastMiddle}>
+       <CustomToast ref = "defaultToastBottom"/>
+       </TouchableOpacity>
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
       <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
          <Text style={styles.textStyle}>{this.state.hireText}</Text>
       </TouchableOpacity>
       </MyView>
-      <CustomToast ref = "defaultToastBottom"/>   
+      
    </SafeAreaView>
 	   
     );

@@ -45,6 +45,7 @@ import SubCategory from './components/SubCategory';
 import Create_milestone from './components/Create_milestone'
 import  MilestoneList from './components/MilestoneList'
 import  CreateProject from './components/CreateProject'
+import  ProjectsList from './components/ProjectsList'
 export const Menu = DrawerNavigator({
   Home: { screen: Home},
   Messages: { screen: Messages},
@@ -66,7 +67,8 @@ export const Menu = DrawerNavigator({
   Cat: { screen: CATEGORY},
   Create: { screen:  Create_milestone},
   MilestoneList : {screen :  MilestoneList},
-  createProject : {screen :  CreateProject}
+  createProject : {screen :  CreateProject},
+  OpenProjects : {screen :  ProjectsList}
 }, {
   contentComponent: SideMenu,
   drawerWidth: 300

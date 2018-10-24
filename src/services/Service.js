@@ -486,6 +486,18 @@ getMilestoneList = (token, id) =>
      console.error(error);
    });
 }
+
+getprojectList = (token, id) => 
+{
+ return  fetch(constants.apiUrl + `/view-project?&api_token=${token}&job_id=${id}`,
+    {
+      method: "GET"
+   }).then((response) => 
+   response.json())
+   .catch((error) => {
+     console.error(error);
+   });
+}
  
   
   
