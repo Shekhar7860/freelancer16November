@@ -93,12 +93,18 @@ setTimeout(() => {
 this.props.navigation.navigate('Home')
 }, 1000)
 }
+
+createMilestone()
+{
+setTimeout(() => {
+this.props.navigation.navigate('Create')
+}, 1000)
+}
   
   render() {
       console.log(this.state.details)
     return (
   <SafeAreaView style = { styles.MainContainerRequest }>
-  <ScrollView>
         <View style={styles.commontoolbar}>
           <TouchableOpacity style={styles.commontoolbarButton} onPress={() => this.goBack()}>
           <Image source={constants.backicon} style={styles.commonBackIcon}/>
@@ -106,53 +112,106 @@ this.props.navigation.navigate('Home')
           <Text style={styles.toolbarTitle}>Job Details</Text>
           <Text style={styles.commontoolbarButton}></Text>
         </View>
-	     <View style={styles.detailsContainer}>
-	       <Text style={styles.jobTitle}>{this.state.details.title}</Text>
-           <View style={styles.textInRowJob}>
-               <Text>Required Connects</Text>
-               <Text>-</Text>
-               <Text>2 (60 available)</Text>
-           </View>
-           <View style={styles.space}>
-                <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Image source={constants.clockIcon} style={styles.icon}/>
-                            </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Image source={constants.clockIcon} style={styles.icon}/>
-                            </View>
-                    </View>
-                    <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Text style={styles.jobTitle}>Hourly</Text>
-                            </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Text style={styles.jobTitle}>Expert</Text>
-                            </View>
-                    </View>
-                    <View style={styles.textInRow2}> 
-                        <View style={styles.skillWidth}>
-                        <Text style={styles.jobTitle}>More than 6 months</Text>
-                         </View>
-                            <View style={styles.budgetWidth}>
-                            </View>
-                            <View style={styles.leftSpace}>
-                            <Text style={styles.jobTitle}>Skill Level</Text>
-                            </View>
-                    </View>
-                    <View style={styles.space}>
-                    <Text style={styles.jobTitle}>Details</Text>
-                    <View style={styles.jobTitle}>
-                    <HTMLView value={this.state.details.description} />
-                    </View>
-                    </View>
-            </View>
-	     </View>
-     </ScrollView> 
+        <ScrollView style={styles.detailsContainer}>
+       <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Title
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.title}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Country
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.country}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Job Type
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.job_type}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Budget
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.budget}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Start & End Date
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.start_Date} to {this.state.details.end_date}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Skills
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.skills}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Status
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.status}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Description
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.description}
+                  </Text>
+                  </View>
+         </View>
+         <Loader
+              loading={this.state.loading} /> 
+     </ScrollView>
      <Loader
               loading={this.state.loading} />
     <MyView style={styles.footer} hide={this.state.accepted}>
@@ -160,17 +219,15 @@ this.props.navigation.navigate('Home')
               <View style={styles.emptySpaceRequest}>
               </View>
               <View style={styles.buttonWidthRequest}>
-                <Button  color='white'  title="Accept" onPress={() => this.requestAcceptReject('a')}></Button>
+                <Button  style={styles.buttonColor} title="Accept" onPress={() => this.requestAcceptReject('a')}></Button>
               </View>
               <View style={styles.emptySpaceRequest}>
               </View>
               <View style={styles.buttonWidthRequest}>
-                <Button  color='white' title="Reject" onPress={() => this.requestAcceptReject('r')}></Button>
+                <Button  style={styles.buttonColor} title="Reject" onPress={() => this.requestAcceptReject('r')}></Button>
               </View>
                 <View style={styles.emptySpaceRequest}>
               </View>
-              </View> 
-              <View style={styles.emptySpaceRequest}>
               </View> 
       </MyView> 
       <CustomToast ref = "defaultToastBottom"/>  

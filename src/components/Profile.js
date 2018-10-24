@@ -97,26 +97,51 @@ goToHome = () => {
         <Text style={styles.backButton} onPress={() => this.goToHome()}>
         <Image source={constants.backicon} style={styles.icon}/>
         </Text>
-          <Text style={styles.toolbarTitle}>Profile</Text>
+          <Text style={styles.toolbarTitle}>PROFILE</Text>
           <TouchableOpacity onPress={() => this.goToUpdateProfile()}>
           <Image source={constants.editIcon} style={styles.searchIcon} />
           </TouchableOpacity>
         </View>
         <ScrollView>
-        <View style={styles.profileContainer}>
-        <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic} />
+        <View style = {styles.profileTopView}>
+            <View style={styles.imageWidthContainer}>
+            <Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.pic} />
+            </View>
+            <View style={styles.textContainer}>
+                <Text style={styles.nameProfile}>
+                {this.state.name}
+                </Text>
+                <Text style={styles.nameProfile} >
+                        {this.state.email}
+                </Text>
+                <Text style={styles.dateTextColorProfile} >
+                        {this.state.about}
+                </Text>
+            </View>
+            <View style={styles.emptyprofileContainer}>
+            </View>
+            <View style={styles.ratingContainer}>
+              <View style={styles.rowAlignSideMenu}>
+                <Image source={constants.starIcon} style={styles.starIcon} />
+                <Image source={constants.starIcon} style={styles.starIcon} />
+                <Image source={constants.starIcon} style={styles.starIcon} />
+                <Image source={constants.starIcon} style={styles.starIcon} />
+                <Image source={constants.starUnfilledIcon} style={styles.starIcon} />
+              </View>
+              <Text style={styles.startextColor}>4.5 (rating)</Text>
+            </View>
         </View>
-        <View style={{padding:10}}>
-        <Text>
-            Name
+        {/* <View style={{padding:10}}>
+        <Text style={styles.summary}>
+            Summary
         </Text>
-        <View  style={styles.categoryTextProfile}>
+        <View  >
             <Text style={styles.dateTextColorProfile}>
-          {this.state.name}
+          Have more than 15 years of experience in website development
             </Text>
         </View>
-            </View>
-            <View style={{padding:10}}>
+            </View> */}
+            {/* <View style={{padding:10}}>
             <Text >
                 Email
             </Text>
@@ -125,8 +150,8 @@ goToHome = () => {
                     {this.state.email}
                     </Text>
                 </View>
-              </View>
-            <View style={{padding:10}}>
+              </View> */}
+            {/* <View style={{padding:10}}>
               <Text >
                   About Me
               </Text>
@@ -145,9 +170,9 @@ goToHome = () => {
                     {this.state.userType}
                     </Text>
                 </View>
-            </View>
+            </View> */}
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
-                <Text >
+                <Text style={styles.themetextColor}>
                     Category
                 </Text>
                 <View  style={styles.categoryTextProfile}>
@@ -157,7 +182,7 @@ goToHome = () => {
                 </View>
             </MyView>
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
-                <Text >
+                <Text style={styles.themetextColor}>
                     C.V
                 </Text>
                 <View  style={styles.categoryTextProfile}>
@@ -167,7 +192,7 @@ goToHome = () => {
                 </View>
             </MyView>
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
-                <Text >
+                <Text style={styles.themetextColor}>
                     I.D Proof
                 </Text>
                 <View  style={styles.categoryTextProfile}>

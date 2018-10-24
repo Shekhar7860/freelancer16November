@@ -128,7 +128,7 @@ export default class Jobs extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> PROJECT </Text>
+         <Text style={styles.toolbarTitle}> JOBS </Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity onPress={() => this.goToPostproject()}>
@@ -179,7 +179,7 @@ export default class Jobs extends Component {
                                     <Text >-</Text>
                                   </View>
                                   <View >
-                                    <Text style={styles.date}> ${item.budget} </Text>
+                                    <Text style={styles.date}> {item.budget} </Text>
                                   </View>
                                 </View>
                               </View>

@@ -65,10 +65,15 @@ export default class JobDetails extends Component {
         this.setState ({ loading: false});
         service.requestResponse(this.state.userResponse.api_token, "Hired", this.props.navigation.state.params.details.details.jobid).then((res) => {
           console.log("checkres", res);
+          console.log("projectID", this.props.navigation.state.params.details.details.jobid);
           if(res.status == "success")
           {
-            this.refs.defaultToastBottom.ShowToastFunction('Hired Successfully');
-             this.goToHome();
+             this.refs.defaultToastBottom.ShowToastFunction('Hired Successfully');
+             var projectDetails = {
+               freelancerId : res.freelancer_id,
+               jobId : this.props.navigation.state.params.details.details.jobid
+             }
+             this.goTocreateProject(projectDetails);
           }
           else 
           {
@@ -84,16 +89,16 @@ export default class JobDetails extends Component {
     this.props.navigation.navigate('Jobs');
    }
 
-   goToHome()
+   goTocreateProject(projectId)
    {
    setTimeout(() => {
-   this.props.navigation.navigate('Jobs')
+   this.props.navigation.navigate('createProject', { projectDetails: projectId })
    }, 1000)
    }
    
   
   render() {
-      console.log(this.props.navigation.state.params.details)
+    console.log(this.props.navigation.state.params.details)
     return (
   <SafeAreaView style = { styles.MainContainerDetails }>
         <View style={styles.commontoolbar}>
@@ -204,7 +209,7 @@ export default class JobDetails extends Component {
               loading={this.state.loading} /> 
      </ScrollView>
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
-     <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
+      <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
          <Text style={styles.textStyle}>{this.state.hireText}</Text>
       </TouchableOpacity>
       </MyView>

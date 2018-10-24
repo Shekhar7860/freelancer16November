@@ -42,6 +42,9 @@ import PostProject from './components/PostProject';
 import JobDetails from './components/JobDetails';
 import CATEGORY from './components/Category';
 import SubCategory from './components/SubCategory';
+import Create_milestone from './components/Create_milestone'
+import  MilestoneList from './components/MilestoneList'
+import  CreateProject from './components/CreateProject'
 export const Menu = DrawerNavigator({
   Home: { screen: Home},
   Messages: { screen: Messages},
@@ -60,7 +63,10 @@ export const Menu = DrawerNavigator({
   PostProject :{screen :PostProject},
   JobDetails :{screen : JobDetails},
   Sub: { screen: SubCategory},
-  Cat: { screen: CATEGORY}
+  Cat: { screen: CATEGORY},
+  Create: { screen:  Create_milestone},
+  MilestoneList : {screen :  MilestoneList},
+  createProject : {screen :  CreateProject}
 }, {
   contentComponent: SideMenu,
   drawerWidth: 300
@@ -69,7 +75,7 @@ export const Menu = DrawerNavigator({
 // routing 
 const AppNavigator = createStackNavigator(
   {
-    Welcome: { screen: MobileSignin},
+    Welcome: { screen: Welcome},
     Select: { screen: SelectAccount },
     Login: { screen: MobileSignin },
     Login2: { screen: MobileSignin2 },

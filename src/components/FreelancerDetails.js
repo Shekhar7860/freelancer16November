@@ -40,7 +40,7 @@ export default class FreelancerDetails extends Component {
   submitProposal = () => {
     this.setState ({ loading: true});
   setTimeout(() => {
-    service.sendProposal(this.props.navigation.state.params.freelancerdetails.clt_Details.apiToken, this.state.freelancerDetails.id,  this.props.navigation.state.params.freelancerdetails.clt_Details.jobId).then((res) => {
+    service.sendProposal(this.props.navigation.state.params.freelancerdetails.clt_Details.client_Details.apiToken, this.state.freelancerDetails.id,  this.props.navigation.state.params.freelancerdetails.clt_Details.client_Details.jobId).then((res) => {
       console.log("checkres", res);
       if(res.status == "success")
       {

@@ -33,7 +33,8 @@ export default class UpdateProfile extends Component {
         proof : 'ID proof',
         file : "",
         fileID : "",
-        ifCV : false
+        ifCV : false,
+        image_path:'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg'
       }
   }
  
@@ -78,6 +79,10 @@ export default class UpdateProfile extends Component {
       if(this.state.userResponse.username !== null)
       {
       this.setState ({ name: this.state.userResponse.username});
+      }
+      if(this.state.userResponse.image_path !== null)
+      {
+      this.setState ({ image_path : this.state.userResponse.image_path});
       }
       if(this.state.userResponse.email !== null)
       {
@@ -147,8 +152,8 @@ export default class UpdateProfile extends Component {
       }
  
  updateProfile = () => {
-  if(this.state.pickedImage || this.state.userResponse.image_path )
-   {
+ // if(this.state.pickedImage || this.state.userResponse.image_path )
+  // {
      if(this.state.userResponse.usertype == "1")
      {
           if(this.state.name && this.state.email && this.state.about)
@@ -187,7 +192,7 @@ export default class UpdateProfile extends Component {
                 }
                 else
                 {
-                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
                     //console.log("data", this.state.email, this.state.username, this.state.about)
                     //console.log(res)
                     if(res)
@@ -233,12 +238,13 @@ export default class UpdateProfile extends Component {
     else 
     {
       console.log("this one")
-      //console.log(this.state.file.type)
-     // console.log(this.state.fileID.type)
+     
      if( this.state.file.type !== "video/mp4" && this.state.fileID.type !== "video/mp4" && this.state.file.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/zip" && this.state.file.type !== "application/zip"
       && this.state.file.type !== "application/x-msdos-program" && this.state.fileID.type !== "application/x-msdos-program" &&  this.state.fileID.type !== "audio/mpeg" && this.state.file.type !== "audio/mpeg")
      {
-        if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof")
+       console.log("doc", this.state.document)
+       console.log("proof", this.state.proof)
+        if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof" && this.state.proof !== undefined && this.state.document !== undefined)
           {
             if ( service.validateEmail(this.state.email)) 
             {
@@ -288,7 +294,7 @@ export default class UpdateProfile extends Component {
                 }
                 else
                 {
-                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.userResponse.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer").then((res) => {
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer").then((res) => {
                     if(res)
                       {
                       this.setState({loading: false})
@@ -341,13 +347,13 @@ export default class UpdateProfile extends Component {
      }
          
         }
-      }
-      else
-      {
-        Alert.alert(
-          'Please select image'
-       )
-      }
+      // }
+      // else
+      // {
+      //   Alert.alert(
+      //     'Please select image'
+      //  )
+      // }
  }
 
  goToHome = (user) => {
@@ -417,23 +423,24 @@ export default class UpdateProfile extends Component {
 
   render() {
       defaultImg = 'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg';
-      const  ImagePicked =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
-      const  NewImage =   <TouchableOpacity onPress={() => this.UpdateProfileImage()}><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
+      const  ImagePicked =   <TouchableOpacity ><Image source={this.state.pickedImage} style={styles.profilePic}/></TouchableOpacity>
+      const  NewImage =   <TouchableOpacity ><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
     return (
   <SafeAreaView style={styles.MainContainerProfile}>
 	    <View style={styles.toolbar}>
-			<Text style={styles.backButton} onPress={() => this.goBack()}>
-			<Image source={constants.backicon} style={styles.icon}/>
-			</Text>
-         <Text style={styles.toolbarTitle}>Update Profile</Text>
+			<TouchableOpacity  onPress={() => this.goBack()}>
+			<Image source={constants.backicon} style={styles.hamburgerIcon}/>
+			</TouchableOpacity>
+         <Text style={styles.toolbarTitle}>UPDATE PROFILE</Text>
          <TouchableOpacity onPress={() => this.updateProfile()}>
          <Text style={styles.updateText}>DONE</Text>
         </TouchableOpacity>
       </View>
+     
      <ScrollView>
      <KeyboardAvoidingView
       style={styles.container}
-      behavior="padding"
+      behavior="padding"  
     >
       <MyView style={styles.profileContainer} hide={this.state.imageExists}>
       { NewImage}
@@ -441,9 +448,12 @@ export default class UpdateProfile extends Component {
       <MyView style={styles.profileContainer} hide={!this.state.imageExists}>
       { ImagePicked}
       </MyView>
+      <TouchableOpacity style={styles.camera} onPress={() => this.UpdateProfileImage()}>
+         <Image source={constants.cameraIcon} style={styles.cameraIcon} />
+        </TouchableOpacity>
       <View style={{padding:10}}>
-      <Text >
-           Name
+      <Text style={styles.themetextColor}>
+           User Name
       </Text>
       <TextInput
             style={styles.postprojectinputprofile}
@@ -457,8 +467,8 @@ export default class UpdateProfile extends Component {
           />
           </View>
           <View style={{padding:10}}>
-      <Text >
-           Email
+      <Text style={styles.themetextColor}>
+           Email Address
       </Text>
       <TextInput
             style={styles.postprojectinputprofile}
@@ -472,11 +482,11 @@ export default class UpdateProfile extends Component {
           />
           </View>
           <View style={{padding:10}}>
-      <Text >
+      <Text style={styles.themetextColor}>
           About Me
       </Text>
       <TextInput
-            style={styles.postprojectinputprofile}
+            style={styles.about}
             underlineColorAndroid="transparent"
             placeholder="About Me"
             onChangeText={(text)=>this.setState({ about:text})}
@@ -484,10 +494,12 @@ export default class UpdateProfile extends Component {
             autoCapitalize="none"
             returnKeyType='done'
             value={this.state.about}
+            multiline={true}
+            numberOfLines={4}
           />
           </View>
           <View style={{padding:10}}>
-      <Text >
+      <Text style={styles.themetextColor}>
            User Type
       </Text>
       <TextInput
@@ -502,7 +514,7 @@ export default class UpdateProfile extends Component {
           </View>
           
           <MyView style={{padding:10}} hide={this.state.isFreelancer}>
-              <Text>
+              <Text style={styles.themetextColor}>
                   Category
               </Text>
               <View  style={styles.categoryTextProfile}>
@@ -514,49 +526,49 @@ export default class UpdateProfile extends Component {
           
           {/* <MyView style={{padding:10}} hide={this.state.ifCV}> */}
               <MyView style={styles.CV} hide={this.state.isFreelancer}>
-                  <Text >
+                  <Text style={styles.themetextColor}>
                       C.V
                   </Text>
-                  <View  style={{flexDirection:'row'}}>
-                    <View style={styles.docWidth}>
-                    <View  style={styles.categoryTextProfile}>
+                  <View  style={{flexDirection:'row', width:'95%'}}>
+                    <View style={styles.inputWidth}>
+                    <View  style={styles.docBorder}>
                       <Text style={styles.CVtext}>
                       {this.state.document}
                       </Text>
                     </View>
                     </View>
-                    <View style={styles.docWidth}>
-                      <Button title="Choose File" onPress={() => this.selectdoc()} style={styles.uploadButton}></Button>
+                    <View style={styles.attachinputWidth}>
+                    <TouchableOpacity  style={styles.attachBackground} onPress={() => this.selectdoc()}>
+                    <Image style={styles.attachiconWidth} source={constants.attachIcon} />
+                    </TouchableOpacity>
                     </View>
                   </View>
                 </MyView> 
-            <MyView style={styles.proof} hide={this.state.isFreelancer}>
-                  <Text >
+               <MyView style={styles.proof} hide={this.state.isFreelancer}>
+                  <Text style={styles.themetextColor}>
                       Identity Proof
                   </Text>
-                  <View  style={{flexDirection:'row'}}>
-                    <View style={styles.docWidth}>
-                    <View  style={styles.categoryTextProfile}>
-                      <Text style={styles.CVtext}>
-                      {this.state.proof}
-                      </Text>
+                  <View  style={{flexDirection:'row',  width:'95%'}}>
+                    <View style={styles.inputWidth}>
+                      <View  style={styles.docBorder}>
+                        <Text style={styles.CVtext}>
+                        {this.state.proof}
+                        </Text>
+                      </View>
                     </View>
-                    </View>
-                    <View style={styles.docWidth}>
-                      <Button title="Choose File" onPress={() => this.selectIDproof()} ></Button>
+                    <View style={styles.attachinputWidth}>
+                      <TouchableOpacity  style={styles.attachBackground} onPress={() => this.selectIDproof()}>
+                      <Image style={styles.attachiconWidth} source={constants.attachIcon} />
+                      </TouchableOpacity>
                     </View>
                   </View>
             </MyView>
             {/* </MyView>  */}
-
-       
-
+      </KeyboardAvoidingView>
+      </ScrollView>
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>
       </View>
-      </KeyboardAvoidingView>
-      </ScrollView>
-      
       <Loader
           loading={this.state.loading} />
        </SafeAreaView>

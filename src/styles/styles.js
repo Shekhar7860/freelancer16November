@@ -954,8 +954,8 @@ cardContainerSignUp:{
         width: '100%'
       },
       freelancerlistCardWidth : {
-        width: '90%',
-        height:100
+        width: '90%'
+        
       },
       listCenter:{
         alignItems:align.center,
@@ -1120,9 +1120,11 @@ cardContainerSignUp:{
     width:'10%'
   },
   buttonWidthRequest :{
-    width:'35%',
-    backgroundColor: colors.themeColor,
-    color:'#fff'
+    width:'35%'
+    
+  },
+  buttonColor:{
+    backgroundColor: colors.theme_orange
   },
   requestButton :{
     width:0,
@@ -1211,13 +1213,13 @@ cardContainerSignUp:{
         paddingTop :20
       },
       firstText:{
-        width :"30%"
+        width :"70%"
       },
       secondText:{
         width :"30%"
       },
       emptyText :{
-        width :"40%"
+        width :"0%"
       },
       firstText2:{
         width :"30%"
@@ -1428,7 +1430,7 @@ upperContainer: {
   height: 20,
   marginTop: 15,
   marginLeft: 5,
-  bottom: Platform.OS === "ios" ? 5 : 0
+  bottom: Platform.OS === "ios" ? 5 : 5
   },
   mobilesigntextInputWidth: {
   width: "100%",
@@ -1484,9 +1486,149 @@ hireButtonBackground: {
   },
  toast:
   {
-  
    alignItems: 'center'
+  },
+  //profile
+  profileTopView:{
+    flexDirection :'row'
+  },
+  imageWidthContainer:{
+    width:'30%'
+  },
+  textContainer:{
+    width:'40%'
+  },
+  ratingContainer:{
+    paddingTop:10,
+    width:'30%'
+  },
+  emptyprofileContainer:{
+    width:'0%'
+  },
+ pic:{
+    width:90,
+   height:90,
+   borderRadius:45,
+   margin: 10
+  },
+  nameProfile :{
+    padding :8,
+    color:colors.theme_orange
+  },
+  starIcon: {
+    paddingTop:5,
+    margin:2,
+    width:15,
+    height:15
+},
+startextColor:{
+  color:colors.themeColor,
+  marginLeft:2
+},
+summary:{
+  color:colors.theme_orange,
+  fontSize:20
+},
+//Update Profile
+camera:{
+  position:'absolute',
+  left:230,
+  top:100
+},
+cameraIcon:{
+  width:35,
+  height:35,
+ marginRight:25},
+ about: {
+  height: 80,
+  borderColor: '#AEA9A8',
+  borderWidth: 1,
+  padding:5,
+  width:'95%',
+  marginTop :5 
+  },
+  bottomViewProfile:{
+    width: '95%', 
+    height: 50, 
+    backgroundColor:'#FF8D47', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10
+  },
+  attachBackground:{
+    backgroundColor:colors.theme_orange,
+    width:40,
+    height:45,
+  marginTop:3
+  },
+  inputWidth:{
+    paddingTop: ( Platform.OS === 'ios' ) ? 0 : 10,
+    width:'85%'
+  },
+  attachinputWidth:{
+    paddingTop: ( Platform.OS === 'ios' ) ? 0 : 10,
+    width:'15%'
+  },
+ docBorder:{
+    color : '#AEA9A8',
+    textAlign: 'left',
+    borderColor: '#AEA9A8',
+    borderWidth: 1,
+    height:40,
+    marginTop :8
+  },
+  attachiconWidth:{
+    width:30,
+    height:30,
+    margin:7,
+    paddingTop:5
+  },
+  themetextColor:{
+    color:colors.theme_orange
+  },
+  ////create milestone
+
+createmilestoneinput: {
+  height: 40,
+  borderColor: "#AEA9A8",
+  borderWidth: 1,
+  padding: 5,
+  width: "95%",
+  marginTop: 5
+  },
+  
+  
+  
+  createmilestoneinputdiscrpation: {
+  marginBottom: 10,
+  marginLeft: 10,
+  height: 100,
+  textAlign: 'left',
+  borderColor: "#AEA9A8",
+  borderWidth: 1,
+  padding: 5,
+  color:colors.black,
+  width: "95%"
+  },
+  Createmilestoneinput: {
+  marginBottom: 10,
+  marginLeft: 10,
+  marginTop: 15,
+  height: 40,
+  borderColor: "#AEA9A8",
+  borderWidth: 1,
+  padding: 5,
+  width: "95%"
+  },
+  toastMiddle :{
+    alignItems:'center',
+     justifyContent: 'center',
+      flex :1
   }
+  
+  ///end createmilestone
+  
       
           
 

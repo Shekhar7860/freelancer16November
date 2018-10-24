@@ -143,9 +143,10 @@ export default class PostProject extends Component {
       console.log(this.state.endDateText);
       if(res)
      {
+       console.log("project posted", res)
         if(res.status == "success")
         {
-          this.refs.defaultToastBottom.ShowToastFunction('Project Posted Successfully');
+          this.refs.defaultToastBottom.ShowToastFunction('Job Added Successfully');
           this.openProject();
         }
         else
@@ -203,6 +204,207 @@ this.props.navigation.navigate('Jobs')
     },
     {
       value: 'Al Jumum',
+    },
+    {
+      value: 'Al Khafji',
+    },
+    {
+      value: 'Al Majaridah',
+    },
+    {
+      value: 'Al Markaz',
+    },
+    {
+      value: 'Al Mindak',
+    },
+    {
+      value: 'Al Mithnab',
+    },
+    {
+      value: 'Al Mubarraz',
+    },
+    {
+      value: 'Al Munayzilah',
+    },
+    {
+      value: 'Al Mutayrifi',
+    },
+    {
+      value: 'Al Qarah',
+    },
+    {
+      value: 'Al Qatif',
+    },
+    {
+      value: 'Al Qurayn',
+    },
+    {
+      value: 'Al Wajh',
+    },
+    {
+      value: 'Al Ula',
+    },
+    {
+      value: 'Al Nimas',
+    },
+    {
+      value: 'Ar Rass',
+    },
+    {
+      value: 'Arar',
+    },
+    {
+      value: 'As Saffaniyah',
+    },
+    {
+      value: 'Ash Shafa',
+    },
+    {
+      value: 'At Taraf',
+    },
+    {
+      value: 'At Tubi',
+    },
+    {
+      value: 'At Zulfi',
+    },
+    {
+      value: 'Badr Hunayn',
+    },
+    {
+      value: 'Buraydah',
+    },
+    {
+      value: 'Dammam',
+    },
+    {
+      value: 'Dhahran',
+    },
+    {
+      value: 'Duba',
+    },
+    {
+      value: 'Farasan',
+    },
+    {
+      value: 'Ha il',
+    },
+    {
+      value: 'Hafar Al-Batin',
+    },
+    {
+      value: 'Jeddah',
+    },
+    {
+      value: 'Jizan',
+    },
+    {
+      value: 'Julayjilah',
+    },
+    {
+      value: 'Khamis Mushait',
+    },
+    {
+      value: 'Khobar',
+    },
+    {
+      value: 'Marat',
+    },
+    {
+      value: 'Mecca',
+    },
+    {
+      value: 'Medina',
+    },
+    {
+      value: 'Misliyah',
+    },
+    {
+      value: 'Mizhirah',
+    },
+    {
+      value: 'Mulayjah',
+    },
+    {
+      value: 'Najran',
+    },
+    {
+      value: 'Qaisumah',
+    },
+    {
+      value: 'Qal at Bishah',
+    },
+    {
+      value: 'Qurayyat',
+    },
+    {
+      value: 'Rabigh',
+    },
+    {
+      value: 'Rahimah',
+    },
+    {
+      value: 'Riyadh',
+    },
+    {
+      value: 'Sabya',
+    },
+    {
+      value: 'Safwa',
+    },
+    {
+      value: 'Sajir',
+    },
+    {
+      value: 'Sakakah',
+    },
+    {
+      value: 'Samitah',
+    },
+    {
+      value: 'Sayhat',
+    },
+    {
+      value: 'Suwayr',
+    },
+    {
+      value: 'Ta if',
+    },
+    {
+      value: 'Tabalah',
+    },
+    {
+      value: 'Tabuk',
+    },
+    {
+      value: 'Tanumah',
+    },
+    {
+      value: 'Tarut',
+    },
+    {
+      value: 'Tubarjal',
+    },
+    {
+      value: 'Tumayr',
+    },
+    {
+      value: 'Turabah',
+    },
+    {
+      value: 'Turaif',
+    },
+    {
+      value: 'Unm as Sahik',
+    },
+    {
+      value: 'Unm Lajj',
+    },
+    {
+      value: 'Unaizah',
+    },
+    {
+      value: 'Yanbu',
     }];
 
     return (
@@ -212,7 +414,7 @@ this.props.navigation.navigate('Jobs')
         <TouchableOpacity onPress={() => this.goToJobs()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>  ADD PROJECT </Text>
+         <Text style={styles.toolbarTitle}>  ADD JOB </Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity>
@@ -331,7 +533,7 @@ this.props.navigation.navigate('Jobs')
             autoCapitalize="none"
             returnKeyType='done'
             multiline={true}
-           numberOfLines={4}
+            numberOfLines={4}
             value={this.state.description}
           />
         <DateTimePicker

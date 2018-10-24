@@ -54,4 +54,8 @@ settingIcon= require('../images/setting.png');
 fillrdrIcon= require('../images/filledr.png');
 unfilledrIcon= require('../images/unfilledr.png');
 notificationIcon= require('../images/notification.png');
+starIcon= require('../images/filled_star.png');
+starUnfilledIcon= require('../images/stroke_star.png');
+cameraIcon= require('../images/camera.png');
+attachIcon= require('../images/attach.png');
 }

@@ -133,6 +133,7 @@ verifyOtp = (mobile, otp, type) =>
 
 getFeedList = (token) => 
 {
+  console.log(constants.apiUrl + `/user/recommneded/active-jobs?&api_token=${token}`)
  return  fetch(constants.apiUrl + `/user/recommneded/active-jobs?&api_token=${token}`,
     {
       method: "GET"
@@ -206,7 +207,7 @@ getFavJobList = (token) =>
 profile_update = (api_token,username,email,about_me, imageUri, category, file, ID, user) => 
 {
 console.log("id", ID + "file", file)
-// console.log("newimage", imageUri);
+ console.log("newimage", imageUri);
 if(imageUri.uri != undefined)
 {
 var photo = {
@@ -421,6 +422,69 @@ response.json())
 .catch((error) => {
 console.error(error);
 });
+}
+
+
+create_milestone = (api_token,project_id, amount, end_date,description) => 
+{
+var data = {
+api_token: api_token,
+project_id : project_id,
+amount : amount,
+end_date : end_date,
+description : description,
+}
+console.log(data)
+return fetch(constants.apiUrl + '/create-milestone',
+{
+method: "POST",
+headers: {
+"Accept": "application/json",
+"Content-Type": "application/json"
+},
+body: JSON.stringify(data)
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
+
+createProject = (apiToken,jobId, freelancerId, amount , description) => 
+{
+var data = {
+api_token: apiToken,
+job_id : jobId ,
+freelancer_id : freelancerId,
+amount : amount,
+description : description,
+}
+console.log(data)
+return fetch(constants.apiUrl + '/create-project',
+{
+method: "POST",
+headers: {
+"Accept": "application/json",
+"Content-Type": "application/json"
+},
+body: JSON.stringify(data)
+}).then((response) => 
+response.json())
+.catch((error) => {
+console.error(error);
+});
+}
+
+getMilestoneList = (token, id) => 
+{
+ return  fetch(constants.apiUrl + `/view-milestone?&api_token=${token}&project_id=${id}`,
+    {
+      method: "GET"
+   }).then((response) => 
+   response.json())
+   .catch((error) => {
+     console.error(error);
+   });
 }
  
   
