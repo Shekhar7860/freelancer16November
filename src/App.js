@@ -68,7 +68,9 @@ export const Menu = DrawerNavigator({
   Create: { screen:  Create_milestone},
   MilestoneList : {screen :  MilestoneList},
   createProject : {screen :  CreateProject},
-  OpenProjects : {screen :  ProjectsList}
+  OpenProjects : {screen :  ProjectsList},
+  Profile : { screen: UpdateProfile},
+  UpdateProfile : {screen : UpdateProfile}
 }, {
   contentComponent: SideMenu,
   drawerWidth: 300
@@ -85,9 +87,7 @@ const AppNavigator = createStackNavigator(
     Forgot: { screen: ForgotPassword },
     Home2: { screen: Menu },
     Otp : { screen: Otp},
-    Profile : { screen: Profile},
     Details : {screen : Details},
-    UpdateProfile : {screen : UpdateProfile}
   },
   { headerMode: 'none' }
 );
@@ -104,6 +104,11 @@ export default class App extends Component {
     console.reportErrorsAsExceptions = false;
   }
   componentDidMount() {
+    var firstTimeData = {
+      client : 0 ,
+      freeLancer : 0
+    }
+    service.saveUserData('count', firstTimeData);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     SplashScreen.hide()
     

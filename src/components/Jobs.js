@@ -75,8 +75,7 @@ export default class Jobs extends Component {
         console.log(error); //Display error
       }
     );
-    service.saveUserData('count', 1);
-  
+   // service.saveUserData('count', '1');
     }, 3000)
   }
 
@@ -142,7 +141,7 @@ export default class Jobs extends Component {
               <Image source={constants.searchicon} style={styles.newsearchIcon} />
               <View style={styles.empty}>
               </View>
-            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
+            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.otpInput}/>
           </View>
       </MyView>
       </View>

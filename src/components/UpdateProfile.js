@@ -34,6 +34,7 @@ export default class UpdateProfile extends Component {
         file : "",
         fileID : "",
         ifCV : false,
+        skills: '',
         image_path:'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg'
       }
   }
@@ -110,6 +111,11 @@ export default class UpdateProfile extends Component {
       {
         this.setState ({ category: this.state.userResponse.categoryId});
       }
+      if(this.state.userResponse.skills !== "null") 
+      {
+        this.setState ({ skills: this.state.userResponse.skills});
+      }
+
 
     if (this.state.userResponse.usertype == "1")
    {
@@ -167,7 +173,7 @@ export default class UpdateProfile extends Component {
                   console.log(this.state.userResponse.api_token);
                 if(this.state.pickedImage !== null)
                 {
-                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
+                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "client", " ").then((res) => {
                       console.log(res)
                       if(res)
                       {
@@ -192,7 +198,7 @@ export default class UpdateProfile extends Component {
                 }
                 else
                 {
-                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID, "client").then((res) => {
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID, "client", " ").then((res) => {
                     //console.log("data", this.state.email, this.state.username, this.state.about)
                     //console.log(res)
                     if(res)
@@ -242,9 +248,7 @@ export default class UpdateProfile extends Component {
      if( this.state.file.type !== "video/mp4" && this.state.fileID.type !== "video/mp4" && this.state.file.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/vnd.android.package-archive" && this.state.fileID.type !== "application/zip" && this.state.file.type !== "application/zip"
       && this.state.file.type !== "application/x-msdos-program" && this.state.fileID.type !== "application/x-msdos-program" &&  this.state.fileID.type !== "audio/mpeg" && this.state.file.type !== "audio/mpeg")
      {
-       console.log("doc", this.state.document)
-       console.log("proof", this.state.proof)
-        if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof" && this.state.proof !== undefined && this.state.document !== undefined)
+        if(this.state.name && this.state.email && this.state.about && this.state.category !== "Category" && this.state.document !== "CV" && this.state.proof !== "IDproof" && this.state.proof !== undefined && this.state.document !== undefined && this.state.skills)
           {
             if ( service.validateEmail(this.state.email)) 
             {
@@ -265,7 +269,7 @@ export default class UpdateProfile extends Component {
                 console.log("fileId", this.state.fileID)
                 if(this.state.pickedImage !== null)
                 {
-                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "freelancer").then((res) => {
+                    service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.pickedImage, this.state.category, this.state.file, this.state.fileID, "freelancer", this.state.skills).then((res) => {
                       console.log(res)
                       if(res != undefined)
                       {
@@ -294,7 +298,7 @@ export default class UpdateProfile extends Component {
                 }
                 else
                 {
-                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer").then((res) => {
+                  service.profile_update(this.state.userResponse.api_token,this.state.name, this.state.email,this.state.about, this.state.image_path, this.state.category, this.state.file, this.state.fileID,  "freelancer", this.state.skills).then((res) => {
                     if(res)
                       {
                       this.setState({loading: false})
@@ -381,9 +385,17 @@ export default class UpdateProfile extends Component {
   this.props.navigation.navigate("Cat",  { page: projectData });
 }
 
- goBack = () =>{
-  this.props.navigation.navigate('Profile')
- }
+ 
+ goBack = () => {
+  if(this.state.userResponse.usertype == 1 )
+  {
+  this.props.navigation.navigate('Jobs')
+  }
+  else
+  {
+    this.props.navigation.navigate('Home') 
+  }
+}
 
  selectdoc = () => {
   DocumentPicker.show({
@@ -431,7 +443,7 @@ export default class UpdateProfile extends Component {
 			<TouchableOpacity  onPress={() => this.goBack()}>
 			<Image source={constants.backicon} style={styles.hamburgerIcon}/>
 			</TouchableOpacity>
-         <Text style={styles.toolbarTitle}>UPDATE PROFILE</Text>
+         <Text style={styles.toolbarTitle}> PROFILE</Text>
          <TouchableOpacity onPress={() => this.updateProfile()}>
          <Text style={styles.updateText}>DONE</Text>
         </TouchableOpacity>
@@ -522,6 +534,21 @@ export default class UpdateProfile extends Component {
                   {this.state.category}
                   </Text>
               </View>
+          </MyView>
+          <MyView style={{padding:10}} hide={this.state.isFreelancer}>
+          <Text style={styles.themetextColor}>
+              Skills
+          </Text>
+          <TextInput
+                style={styles.postprojectinputprofile}
+                underlineColorAndroid="transparent"
+                placeholder="ABC, XYZ "
+                onChangeText={(text)=>this.setState({ skills:text})}
+                placeholderTextColor="#AEA9A8"
+                autoCapitalize="none"
+                returnKeyType='done'
+                value={this.state.skills}
+              />
           </MyView>
           
           {/* <MyView style={{padding:10}} hide={this.state.ifCV}> */}

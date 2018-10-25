@@ -126,13 +126,19 @@ goToMilestone(value)
   }, 1000)
 }
 
+goback()
+{
+this.props.navigation.navigate('JobDetails')
+}
+
+
 
 
   render() {
     return (
       <SafeAreaView style = { styles.MainContainerProject }>
          <View style={styles.tabsToolbar}>
-        <TouchableOpacity onPress={() => this.openDrawer()}>
+        <TouchableOpacity onPress={() => this.goback()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
          <Text style={styles.toolbarTitle}> CREATE PROJECT </Text>

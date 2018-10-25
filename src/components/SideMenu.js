@@ -219,6 +219,7 @@ exit = () => {
 }
  
 goToProfile = () => {
+  this.props.navigation.closeDrawer();
   this.props.navigation.navigate('Profile')
 }
 
@@ -228,8 +229,8 @@ alertItemName = (item) => {
     case 'My Payment':
      this.props.navigation.navigate("Payment");
      break;
-     case 'My Projects':
-     this.props.navigation.navigate("Projects");
+     case 'My Project':
+     this.props.navigation.navigate("Home");
      break;
      case 'My Jobs':
      this.props.navigation.navigate("Jobs");
@@ -373,7 +374,7 @@ goToFeedbackPage = () => {
         <View
         style={styles.line}
         />
-        <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToAccountPage()}>
+          {/* <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToAccountPage()}>
             <View style={styles.listIconsWidth} >
                <Image source={constants.accountIcon} style={styles.listIcon}/>
             </View>
@@ -381,7 +382,7 @@ goToFeedbackPage = () => {
               <View style={styles.listTextWidth}>
               <Text style={styles.listTextFontSize}>Account</Text>
               </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToSettingsPage()}>
             <View style={styles.listIconsWidth} >
                <Image source={constants.settingsIcon} style={styles.listIcon}/>
@@ -391,7 +392,7 @@ goToFeedbackPage = () => {
               <Text style={styles.listTextFontSize}>Settings</Text>
               </View>
           </TouchableOpacity>
-          <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToFeedbackPage()}>
+           <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToFeedbackPage()}>
             <View style={styles.listIconsWidth} >
                <Image source={constants.feedbackIcon} style={styles.listIcon}/>
             </View>
@@ -399,11 +400,11 @@ goToFeedbackPage = () => {
               <View style={styles.listTextWidth}>
               <Text style={styles.listTextFontSize}>Feedback</Text>
               </View>
-          </TouchableOpacity>
+          </TouchableOpacity> 
          </MyView>
           
-         <TouchableOpacity onPress={() => this.logOut()}>
-         <MyView hide={this.state.logOut} style={styles.rowAlignSideMenu2} >
+         { <TouchableOpacity onPress={() => this.logOut()}>
+         <MyView  style={styles.rowAlignSideMenu2} >
          <TouchableOpacity style={styles.listIconsWidth} >
                <Image source={constants.logoutIcon} style={styles.listIcon}/>
           </TouchableOpacity>
@@ -412,7 +413,7 @@ goToFeedbackPage = () => {
               <Text style={styles.listTextFontSize}>Log Out</Text>
           </View>
           </MyView>
-          </TouchableOpacity>
+          </TouchableOpacity> }
           </View>
         <View style={styles.sideMenu}>
         </View>

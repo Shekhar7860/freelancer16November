@@ -120,7 +120,7 @@ logOut = () =>{
                 onValueChange = {this.toggleSwitch1}
                 value = {this.state.switch1Value1}/>
             </View></View>
-            <View style={{backgroundColor: "#f0f0f0",alignItems: 'flex-start',width: dimensions.fullWidth - 20,marginLeft: 10,marginTop: 30,height: 50,justifyContent: 'flex-start',flexDirection: 'row',alignItems: 'center'}}>
+            {/* <View style={{backgroundColor: "#f0f0f0",alignItems: 'flex-start',width: dimensions.fullWidth - 20,marginLeft: 10,marginTop: 30,height: 50,justifyContent: 'flex-start',flexDirection: 'row',alignItems: 'center'}}>
               <Image source={constants.volumeIcon} style={{marginLeft: 12,width: 25,height: 25}}/>
               <Text style={{marginLeft: 12}}>Volume        </Text>
               <View style={{marginLeft:dimensions.fullWidth/2 - 30 ,backgroundColor: "clear"}}>
@@ -128,7 +128,7 @@ logOut = () =>{
                   onValueChange = {this.toggleSwitch2}
                   value = {this.state.switch1Value2}/>
               </View>
-            </View>
+            </View> */}
             <View style={{backgroundColor: "#f0f0f0",alignItems: 'flex-start',width: dimensions.fullWidth - 20,marginLeft: 10,marginTop: 30,height: 50,justifyContent: 'flex-start',flexDirection: 'row',alignItems: 'center'}}>
               <Image source={constants.langIcon} style={{marginLeft: 12,width: 25,height: 25}}/>
               <Text style={{marginLeft: 12}}>Language     </Text>
@@ -149,12 +149,12 @@ logOut = () =>{
               </View>
             </View>
 
-<View style = { styles.MainContainer } >
+{/* <View style = { styles.MainContainer } >
 
             <TouchableOpacity style={styles.bottomView} onPress={() => this.logOut()}>
          <Text style={styles.textStyle}>Log Out</Text>
       </TouchableOpacity>
-      </View>
+      </View> */}
  </SafeAreaView>
       
      

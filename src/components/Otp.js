@@ -94,21 +94,44 @@ import CustomToast from './CustomToast';
    goToHome = (res) => {
      
     service.getUserData('count').then((keyValue) => {
-      if(keyValue === "none")
-      {
-        this.props.navigation.navigate('About')
-      }
-      else
-      {
-        if(res.user.usertype == 1 )
+        console.log(res.user.usertype);
+        var parsedData = JSON.parse(keyValue);
+        if(res.user.usertype == 1)
         {
-        this.props.navigation.navigate('Jobs')
+            if(res.user.usertype == 1 && parsedData.client == 0 )
+            {
+              //alert("working")
+              var firstTimeData = {
+                client : 1 ,
+                freeLancer : 0
+              }
+            this.props.navigation.navigate('About')
+            service.saveUserData('count', firstTimeData);
+            }
+            else
+            {
+             // alert("not working")
+              this.props.navigation.navigate('Jobs') 
+            }
         }
         else
         {
-          this.props.navigation.navigate('Home') 
+         
+            if(res.user.usertype == 2 && parsedData.freeLancer == 0  )
+            {
+              var firstTimeData = {
+                client : 0,
+                freeLancer : 1
+              }
+            this.props.navigation.navigate('About')
+            service.saveUserData('count', firstTimeData);
+            }
+            else
+            {
+              this.props.navigation.navigate('Home') 
+            }
         }
-      }
+      
    }, (error) => {
       console.log(error) //Display error
     });

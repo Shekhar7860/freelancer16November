@@ -28,14 +28,20 @@ export default class ProjectsList extends Component {
     constants = new Constants();
     this.state = {
       userResponse: {},
-      jobs: [],
+      jobs: {amount : " ", description : " ", freelancer_name : " "}, 
+      jobs: {description : " "}, 
       failed: false,
       search : true,
       loading:false,
       dummyText : "",
       projectId : "", 
       jobId: " ",
-      loading : "false"
+      loading : "false",
+      userResponse: {},
+      freeLancerName : "", 
+      amount : " ", 
+      description : " "
+      
     };
    
     
@@ -61,7 +67,10 @@ export default class ProjectsList extends Component {
         var parsedData = JSON.parse(keyValue);
         console.log("json", parsedData);
         this.setState({ userResponse: parsedData });
+        if(this.state.jobId)
+        {
          this.getMilestoneList();
+        }
       },
       error => {
         console.log(error); //Display error
@@ -91,8 +100,23 @@ export default class ProjectsList extends Component {
         else
         {
         this.setState({ jobs: res.project});
+        if (this.state.jobs)
+        {
+        if(this.state.jobs.freelancer_name !== undefined)
+        {
+          this.state.freeLancerName = this.state.jobs.freelancer_name
+        }
+        if(this.state.jobs.amount !== undefined)
+        {
+          this.state.amount = this.state.jobs.amount
+        }
+        if(this.state.jobs.description !== undefined)
+        {
+          this.state.description = this.state.jobs.description 
+        }
         this.setState({ projectId: res.project.id});
         }
+      }
     }
     });
   }, 3000)
@@ -120,6 +144,7 @@ export default class ProjectsList extends Component {
   }
 
   render() {
+   
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
         <View style={styles.topView}>
@@ -159,11 +184,11 @@ export default class ProjectsList extends Component {
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.jobs.amount}
+                  <Text style={styles.textWrap2Details}> {this.state.amount }
                   </Text>
                   </View>
                   </View>
-                  <View style={styles.rowAlignSideMenuRequest}>
+                  {/* <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Due Date
                   </Text>
@@ -174,7 +199,7 @@ export default class ProjectsList extends Component {
                   <Text style={styles.textWrap2Details}> {this.state.jobs.end_date}
                   </Text>
                   </View>
-                  </View>
+                  </View> */}
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Description
@@ -183,7 +208,7 @@ export default class ProjectsList extends Component {
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.jobs.description}
+                  <Text style={styles.textWrap2Details}> {this.state.description}
                   </Text>
                   </View>
                   </View>
@@ -195,7 +220,7 @@ export default class ProjectsList extends Component {
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.jobs.freelancer_name}
+                  <Text style={styles.textWrap2Details}> {this.state.freeLancerName}
                   </Text>
                   </View>
                   </View>

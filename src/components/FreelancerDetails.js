@@ -26,7 +26,7 @@ export default class FreelancerDetails extends Component {
       this.setState ({ loading: false});
       if(this.props.navigation.state.params)
   {
-    console.log(this.props.navigation.state.params.freelancerdetails.clt_Details);
+    console.log(this.props.navigation.state.params.freelancerdetails);
    if (this.props.navigation.state.params.freelancerdetails.clt_Details !== undefined)
    {
     this.setState({ isJobId : false })
@@ -112,6 +112,18 @@ this.props.navigation.navigate('Jobs')
                   </View>
                   <View > 
                   <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.short_bio}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
+                  <Text style={styles.textWrapDetails}> Category
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.freelancerDetails.categoryId}
                   </Text>
                   </View>
          </View>

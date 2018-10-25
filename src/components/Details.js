@@ -137,7 +137,7 @@ this.props.navigation.navigate('Create')
                   </Text>
                   </View>
          </View>
-         <View style={styles.rowAlignSideMenuRequest}>
+         {/* <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Job Type
                   </Text>
@@ -148,7 +148,7 @@ this.props.navigation.navigate('Create')
                   <Text style={styles.textWrap2Details}> {this.state.details.job_type}
                   </Text>
                   </View>
-         </View>
+         </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Budget
@@ -163,17 +163,17 @@ this.props.navigation.navigate('Create')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Start & End Date
+                  <Text style={styles.textWrapDetails}>  Date
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.start_Date} to {this.state.details.end_date}
+                  <Text style={styles.textWrap2Details}> {this.state.details.end_date}
                   </Text>
                   </View>
          </View>
-         <View style={styles.rowAlignSideMenuRequest}>
+         {/* <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Skills
                   </Text>
@@ -184,7 +184,7 @@ this.props.navigation.navigate('Create')
                   <Text style={styles.textWrap2Details}> {this.state.details.skills}
                   </Text>
                   </View>
-         </View>
+         </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Status
@@ -193,7 +193,7 @@ this.props.navigation.navigate('Create')
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.status}
+                  <Text style={styles.textWrap2Details}> {this.state.details.request_status}
                   </Text>
                   </View>
          </View>

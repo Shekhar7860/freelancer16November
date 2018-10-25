@@ -1630,9 +1630,17 @@ createmilestoneinput: {
   toastMiddle2 :{
     alignItems:'center',
      justifyContent: 'center',
-  }
+  },
   
   ///end createmilestone
+ otpInput:{
+    width:'80%',
+    fontSize :15
+  },
+  defaultTextFreelancer:{
+    alignItems:align.center,
+    paddingTop :15
+  }
   
       
           

@@ -75,7 +75,7 @@ componentDidMount ()   {
   }, (error) => {
      console.log(error) //Display error
    });
-   service.saveUserData('count', 1);
+ //  service.saveUserData('count', '1');
    }, 3000)
 }
 
@@ -223,11 +223,11 @@ hideTab = () => {
                               <Text >-</Text>
                             </View>
                             <View >
-                              <Text style={styles.date}>{item.start_date} </Text>
+                              <Text style={styles.date}>{item.budget} </Text>
                             </View>
                         </View>
                         <View style={styles.paddingAbove}>
-                            <View style={styles.textInRow2} > 
+                            {/* <View style={styles.textInRow2} > 
                               <View style={styles.skillWidth}>
                                   <Text style={styles.skillText}>Skill Level</Text>
                                 </View>
@@ -237,14 +237,14 @@ hideTab = () => {
                                 <View style={styles.leftSpace}>
                                   <Text style={styles.date}></Text>
                                 </View>
-                            </View>
+                            </View> */}
                         </View>
                         <View style={styles.paddingAbove}>
                             <View style={styles.textInRow2}> 
                                <View style={styles.skillWidth} >
-                                  <Text style={styles.skillText}>Expert</Text>
+                                  <Text style={styles.skillText}></Text>
                                 </View>
-                                <View style={styles.budgetWidth} >
+                                <View style={styles.budgetWidth}>
                                 </View>
                                 <View style={styles.leftSpace} >
                                   <TouchableOpacity onPress={() => this.pressIcon(item, index)}>

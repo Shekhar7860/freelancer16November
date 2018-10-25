@@ -127,7 +127,7 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Country
+                  <Text style={styles.textWrapDetails}> City
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -137,7 +137,7 @@ export default class JobDetails extends Component {
                   </Text>
                   </View>
          </View>
-         <View style={styles.rowAlignSideMenuRequest}>
+         {/* <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Job Type
                   </Text>
@@ -148,7 +148,7 @@ export default class JobDetails extends Component {
                   <Text style={styles.textWrap2Details}> {this.state.details.job_type}
                   </Text>
                   </View>
-         </View>
+         </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Budget
@@ -169,8 +169,8 @@ export default class JobDetails extends Component {
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.start_Date} to {this.state.details.end_Date}
-                  </Text>
+                  <Text style={styles.textWrap2Details}> {this.state.details.start_date} to  </Text><Text style={styles.textWrap2Details}> {this.state.details.end_date} </Text>
+                 
                   </View>
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
@@ -187,16 +187,31 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
+                  <Text style={styles.textWrapDetails}> Category
+                  </Text>
+                  </View>
+                  <View style={styles.colon}><Text> :</Text>
+                  </View>
+                  <View > 
+                  <Text style={styles.textWrap2Details}> {this.state.details.catid}
+                  </Text>
+                  </View>
+         </View>
+         <View style={styles.rowAlignSideMenuRequest}>
+                  <View> 
                   <Text style={styles.textWrapDetails}> Status
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.status}
+                  <Text style={styles.textWrap2Details}> {this.state.details.request_status}
                   </Text>
                   </View>
          </View>
+         <TouchableOpacity style={styles.toastMiddle}>
+                  <CustomToast ref = "defaultToastBottom"/>
+                  </TouchableOpacity>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Description
@@ -204,6 +219,7 @@ export default class JobDetails extends Component {
                   </View>
                   <View style={styles.colon}><Text> :</Text>
                   </View>
+                 
                   <View > 
                   <Text style={styles.textWrap2Details}> {this.state.details.description}
                   </Text>
@@ -212,9 +228,7 @@ export default class JobDetails extends Component {
          <Loader
               loading={this.state.loading} /> 
      </ScrollView>
-     <TouchableOpacity style={styles.toastMiddle}>
-       <CustomToast ref = "defaultToastBottom"/>
-       </TouchableOpacity>
+     
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
       <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
          <Text style={styles.textStyle}>{this.state.hireText}</Text>

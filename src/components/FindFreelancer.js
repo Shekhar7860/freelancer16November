@@ -12,9 +12,11 @@ export default class FindFreelancer extends Component {
      this.state = {
         userData: { picture_large:{ data:{}}},
         userResponse: {}, 
-        freelancers : {},
+        freelancers : {freelancer: []},
         loading:false,
-        search : true
+        search : true,
+        dummyText : "",
+        noText : true
       };
    
  }
@@ -55,7 +57,16 @@ export default class FindFreelancer extends Component {
       console.log("checkres", res);
       newres = JSON.stringify(res);
       json = JSON.parse(newres);
-      this.setState({ freelancers: json});
+      if(res.freelancer.length ===  0)
+      {
+        this.setState ({ dummyText: "No Freelancer Found"});
+        this.setState ({  noText: false});
+      }
+      
+      else
+      {
+      this.setState({ freelancers: res.freelancer});
+      }
     })
    }
 
@@ -114,15 +125,16 @@ export default class FindFreelancer extends Component {
               <View style={styles.empty}>
               </View>
             <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
-            
           </View>
       </MyView>
       </View>
-     
+      <MyView style={styles.defaultTextFreelancer} hide={this.state.noText}>
+      <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
+      </MyView>
      <ScrollView>
      <View style={styles.listCenter}>
      <FlatList
-        data={this.state.freelancers.freelancer}
+        data={this.state.freelancers}
         style={styles.freelancerlistCardWidth}
         renderItem={({ item }) => (
            <View  style={styles.spaceFromTop}>

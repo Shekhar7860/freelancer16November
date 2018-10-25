@@ -79,11 +79,11 @@ export default class PostProject extends Component {
   componentDidMount() {
     if(this.props.navigation.state.params)
     {
-     // console.log(this.props.navigation.state.params.category)
+      console.log(this.props.navigation.state.params.category)
       this.setState ({ category: this.props.navigation.state.params.category.selectedCategory});
       this.setState ({ title: this.props.navigation.state.params.category.inputData.title});
       this.setState ({ description: this.props.navigation.state.params.category.inputData.description});
-      this.setState ({ country: this.props.navigation.state.params.category.inputData.country});
+      this.setState ({ selectedCity: this.props.navigation.state.params.category.inputData.selectedCity});
     }
       service.getUserData("user").then(
         keyValue => {
@@ -109,14 +109,16 @@ export default class PostProject extends Component {
     }
 
     onChangeTextPress = ( value) => {
+      console.log(value)
       this.setState({ selectedCity : value })
+      console.log(this.state.selectedCity)
     }
     
     openCategory = () => {
       var projectData = {
         "title" :this.state.title,
         "description" : this.state.description,
-        "country" : this.state.country,
+        "selectedCity" : this.state.selectedCity,
         "pageName" : 'post'
       }
       this.props.navigation.navigate("Cat",  { page: projectData });
@@ -138,7 +140,32 @@ export default class PostProject extends Component {
       setTimeout(() => 
       {
       this.setState({loading: false})
-      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, this.state.skills).then((res) => {
+      var array = this.state.skills.split(',');
+      if(array.length >= 3)
+      {
+       var skills =  {
+          "lastname": array[0],
+          "email": array[1],
+          "phone": array[2]
+       }
+       }
+       else if (array.length = 2)
+       {
+        var skills =  {
+          "lastname": array[0],
+          "email": array[1],
+          "phone": " "
+       }
+       }
+      else if (array.length = 1)
+      {
+        var skills =  {
+          "lastname": array[0],
+          "email": " ",
+          "phone": " "
+       }
+      }
+      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, skills).then((res) => {
       console.log(this.state.startDateText);
       console.log(this.state.endDateText);
       if(res)
@@ -421,7 +448,7 @@ this.props.navigation.navigate('Jobs')
          <Image style={styles.searchIcon} />
         </TouchableOpacity>
         </View>
-
+        
         <ScrollView>
          <Text style={styles.projectInput}>
             Title
@@ -438,7 +465,7 @@ this.props.navigation.navigate('Jobs')
           />
 
           <Text style={styles.projectInput}>
-            Country
+            City
          </Text>
          <View style={styles.dropDown}
         >
@@ -452,7 +479,8 @@ this.props.navigation.navigate('Jobs')
         
             
 
-          <Text style={styles.projectInputJob}>
+
+          {/* <Text style={styles.projectInputJob}>
             Job Type
            </Text>
           <TextInput
@@ -464,11 +492,11 @@ this.props.navigation.navigate('Jobs')
             autoCapitalize="none"
             returnKeyType='done'
             value={this.state.jobType}
-          />
+          /> */}
 
 
 
-                <Text style={styles.projectInput}>
+                <Text style={styles.projectInputJob}>
                     Category
                 </Text>
                 <TouchableOpacity  style={styles.dropDown2} onPress={() => this.openCategory()}>
@@ -490,7 +518,7 @@ this.props.navigation.navigate('Jobs')
             returnKeyType='done'
             value={this.state.budget}
           />
-
+          
           <Text style={styles.projectInput}>
             Start Date & End Date
           </Text>
@@ -520,7 +548,9 @@ this.props.navigation.navigate('Jobs')
             returnKeyType='done'
             value={this.state.skills}
           />
-          
+          <TouchableOpacity  style={ styles.toastMiddle}>
+         <CustomToast ref = "defaultToastBottom"/>
+         </TouchableOpacity>
           <Text style={styles.projectInput}>
             Description
           </Text>
@@ -537,7 +567,6 @@ this.props.navigation.navigate('Jobs')
             value={this.state.description}
           />
           
-       <CustomToast ref = "defaultToastBottom"/>
       
         <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible}

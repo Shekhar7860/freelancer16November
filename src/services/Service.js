@@ -204,8 +204,9 @@ getFavJobList = (token) =>
    });
 }
 
-profile_update = (api_token,username,email,about_me, imageUri, category, file, ID, user) => 
+profile_update = (api_token,username,email,about_me, imageUri, category, file, ID, user, skills) => 
 {
+  console.log(skills)
 console.log("id", ID + "file", file)
  console.log("newimage", imageUri);
 if(imageUri.uri != undefined)
@@ -297,6 +298,7 @@ else
   body.append('identity_Id', proof);
   body.append('categoryId', category);
   body.append('image_file', photo);
+  body.append('skills', skills);
 }
 console.log("res", body)
 
@@ -340,6 +342,7 @@ console.error(error);
 
 post_project = (api_token,title,description,country,category,job_type,budget,start_date,end_date, skills) => 
 {
+  console.log(country);
 var data = {
 "api_token":api_token ,
 "title": title,
@@ -350,11 +353,7 @@ var data = {
 "budget": budget,
 "start_date": start_date,
 "end_date":end_date,
-"skills_name": {
-"lastname": "",
-"email": "",
-"phone": ""
-},
+"skills_name": skills,
 "publics":1
 }
 console.log(data)
