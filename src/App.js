@@ -85,7 +85,7 @@ const AppNavigator = createStackNavigator(
     Login2: { screen: MobileSignin2 },
     SignUp: { screen: SignUp},
     Forgot: { screen: ForgotPassword },
-    Home2: { screen: Menu },
+     Home2: { screen: Menu },
     Otp : { screen: Otp},
     Details : {screen : Details},
   },
@@ -108,7 +108,7 @@ export default class App extends Component {
       client : 0 ,
       freeLancer : 0
     }
-    service.saveUserData('count', firstTimeData);
+   service.saveUserData('count', firstTimeData);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     SplashScreen.hide()
     

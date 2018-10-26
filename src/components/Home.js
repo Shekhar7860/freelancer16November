@@ -9,28 +9,48 @@ import FEED from './Feed';
 import MyView from './MyView';
 import CustomToast from './CustomToast';
 export default class Home extends Component {
+
+state = {
+    userResponse: {},
+    feeds : {request_list: [] },
+    favourites : { request_list: [] },
+    heartIcon : constants.heartIcon,
+    showSoundImg: true,
+    isFeed : true,
+    loading:false,
+    isFav  : false,
+    isCat : false,
+    search : true,
+    itemFav : false,
+   modalVisible: false,
+   noText : true,
+   dummyText : ""
+  };
+
  constructor(props){
      super(props);
      service = new Service();
      constants = new Constants();
-     this.state = {
-      userResponse: {},
-      feeds : {request_list: [] },
-      favourites : { request_list: [] },
-      heartIcon : constants.heartIcon,
-      showSoundImg: true,
-      isFeed : true,
-      loading:false,
-      isFav  : false,
-      isCat : false,
-      search : true,
-      itemFav : false,
-     modalVisible: false,
-     noText : true,
-     dummyText : ""
-    };
-      
+  // this.componentWillUnmount();
  }
+
+
+ updateValue(props) {
+  this.setState ({ loading: true});
+ setTimeout(() => {
+   service.getUserData('user').then((keyValue) => {
+     console.log("local", keyValue);
+     var parsedData = JSON.parse(keyValue);
+     console.log("json", parsedData);
+     this.setState({ userResponse: parsedData});
+      this.getFeedRes();
+      this.getActiveJobs();
+  }, (error) => {
+     console.log(error) //Display error
+   });
+ //  service.saveUserData('count', '1');
+   }, 3000)
+} 
 
  pressIcon = (val, index) => {
    console.log(val);
@@ -62,9 +82,12 @@ openDetails = (val) => {
  this.props.navigation.navigate('Detail',  { details: val }) 
 }
 
+
+ 
+
 componentDidMount ()   {
+  this.setState ({ loading: true});
  setTimeout(() => {
-   this.setState ({ loading: false});
    service.getUserData('user').then((keyValue) => {
      console.log("local", keyValue);
      var parsedData = JSON.parse(keyValue);
@@ -78,7 +101,6 @@ componentDidMount ()   {
  //  service.saveUserData('count', '1');
    }, 3000)
 }
-
 
 addToFavourites = () => {
 console.log("heartfilled" + constants.paymentIcon)
@@ -97,6 +119,7 @@ getFeedRes = () => {
    console.log("checkres", res);
    if(res != undefined)
     {
+      this.setState ({ loading: false});
       if(res.request_list == "")
       {
         this.setState ({ dummyText: "No Request Found"});
@@ -150,7 +173,8 @@ hideTab = () => {
         }
 
     openDetails = (val) => {
-      console.log(this.props);
+      console.log(val);
+      service.saveUserData('userdetails', val);
       this.props.navigation.navigate('Details',  { details: val }) 
     }
 

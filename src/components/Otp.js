@@ -103,7 +103,7 @@ import CustomToast from './CustomToast';
               //alert("working")
               var firstTimeData = {
                 client : 1 ,
-                freeLancer : 0
+                freeLancer : " "
               }
             this.props.navigation.navigate('About')
             service.saveUserData('count', firstTimeData);
@@ -120,7 +120,7 @@ import CustomToast from './CustomToast';
             if(res.user.usertype == 2 && parsedData.freeLancer == 0  )
             {
               var firstTimeData = {
-                client : 0,
+                client : " ",
                 freeLancer : 1
               }
             this.props.navigation.navigate('About')

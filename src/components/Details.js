@@ -7,16 +7,19 @@ import HTMLView from 'react-native-htmlview';
 import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
+import Home from './Home';
 export default class Details extends Component {
   constructor(props){
     super(props);
     constants = new Constants();
     service = new Service();
+    home = new Home();
     this.state = { 
       userResponse: {},
         details : {},
-        loading:false,
-        accepted : false
+        loading: false,
+        accepted : false,
+        localData : {}
       }
   }
 
@@ -32,9 +35,18 @@ export default class Details extends Component {
      }, (error) => {
         console.log(error) //Display error
       });
+      service.getUserData('userdetails').then((keyValue) => {
+        console.log("local", keyValue);
+        var parsedData = JSON.parse(keyValue);
+        console.log("json", parsedData);
+      //  this.setState({ details: parsedData});
+        this.getDetails(parsedData);
+     }, (error) => {
+        console.log(error) //Display error
+      });
       if(this.props.navigation.state.params)
     {
-    this.setState({ details: this.props.navigation.state.params.details})
+   // this.setState({ details: this.props.navigation.state.params.details})
       if(this.props.navigation.state.params.details.request_status != "Pending")
       {
         this.setState({ accepted : true})
@@ -43,6 +55,21 @@ export default class Details extends Component {
       }, 1000)
     
   }
+
+  getDetails = (object) => {
+    // console.log(object)
+    service.getFreelancerDetails(this.state.userResponse.api_token, object.jobid).then((res) => {
+      console.log("listcheckres", res);
+      if(res != undefined)
+      {
+      this.setState({ details: res.request_list});
+      if(this.state.details.accepted != "Pending")
+      {
+        this.setState({ accepted : true})
+      }
+      }
+    })
+   }
 
   requestAcceptReject = (val) => 
   {
@@ -102,7 +129,7 @@ this.props.navigation.navigate('Create')
 }
   
   render() {
-      console.log(this.state.details)
+     // console.log(this.state.details)
     return (
   <SafeAreaView style = { styles.MainContainerRequest }>
         <View style={styles.commontoolbar}>
@@ -193,7 +220,7 @@ this.props.navigation.navigate('Create')
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.request_status}
+                  <Text style={styles.textWrap2Details}> {this.state.details.accepted}
                   </Text>
                   </View>
          </View>
@@ -214,17 +241,23 @@ this.props.navigation.navigate('Create')
      </ScrollView>
      <Loader
               loading={this.state.loading} />
-    <MyView style={styles.footer} hide={this.state.accepted}>
+    <MyView style={styles.footer} hide={this.state.accepted }>
               <View  style={styles.rowAlignSideMenu}>
               <View style={styles.emptySpaceRequest}>
               </View>
               <View style={styles.buttonWidthRequest}>
-                <Button  style={styles.buttonColor} title="Accept" onPress={() => this.requestAcceptReject('a')}></Button>
+              <TouchableOpacity style={styles.buttonBackgroundrequest} onPress={() => this.requestAcceptReject('a')}>
+		          <Text style={styles.buttonText}>Accept</Text>
+		           </TouchableOpacity>
+               {/* <Button  style={styles.buttonColor} title="Accept" onPress={() => this.requestAcceptReject('a')}></Button> */}
               </View>
               <View style={styles.emptySpaceRequest}>
               </View>
               <View style={styles.buttonWidthRequest}>
-                <Button  style={styles.buttonColor} title="Reject" onPress={() => this.requestAcceptReject('r')}></Button>
+              <TouchableOpacity style={styles.buttonBackgroundrequest} onPress={() => this.requestAcceptReject('r')}>
+		          <Text style={styles.buttonText}>Reject</Text>
+		           </TouchableOpacity>
+                {/* <Button  style={styles.buttonColor} title="Reject" onPress={() => this.requestAcceptReject('r')}></Button> */}
               </View>
                 <View style={styles.emptySpaceRequest}>
               </View>

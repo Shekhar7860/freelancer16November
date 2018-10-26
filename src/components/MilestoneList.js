@@ -152,7 +152,7 @@ export default class MilestoneList extends Component {
               extraData={this.state.jobs}
               renderItem={({ item, index }) => (
                 <View  style={styles.spaceFromTop}>
-                    <TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>
+                    <TouchableOpacity style={styles.listCard}>
                  <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> Amount

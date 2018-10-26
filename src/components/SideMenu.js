@@ -43,7 +43,6 @@ class SideMenu extends Component {
    // console.log('propvalue', props);
     service = new Service();
     constants = new Constants();
-    
    this.componentWillReceiveProps();
      
 }
@@ -73,6 +72,7 @@ logOut = () =>{
 }
 
 componentWillReceiveProps(props) {
+  console.log('data');
   service.getUserData('user').then((keyValue) => {
     var parsedData = JSON.parse(keyValue);
     console.log("sidemenujson", parsedData);

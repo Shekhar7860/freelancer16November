@@ -134,7 +134,7 @@ verifyOtp = (mobile, otp, type) =>
 getFeedList = (token) => 
 {
   console.log(constants.apiUrl + `/user/recommneded/active-jobs?&api_token=${token}`)
- return  fetch(constants.apiUrl + `/user/recommneded/active-jobs?&api_token=${token}`,
+ return fetch(constants.apiUrl + `/user/recommneded/active-jobs?&api_token=${token}`,
     {
       method: "GET"
    }).then((response) => 
@@ -147,6 +147,17 @@ getFeedList = (token) =>
 findFreelancer = (token) => 
 {
  return  fetch(constants.apiUrl + `/find-freelancer?&api_token=${token}`,
+    {
+      method: "GET"
+   }).then((response) => 
+   response.json())
+   .catch((error) => {
+     console.error(error);
+   });
+}
+
+getFreelancerDetails = (token, id) => {
+  return  fetch(constants.apiUrl + `/jobs-details?&api_token=${token}&job_id=${id}`,
     {
       method: "GET"
    }).then((response) => 

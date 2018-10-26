@@ -1334,7 +1334,6 @@ cardContainerSignUp:{
     color: colors.theme_orange,
     fontFamily: "blackjack"
   },
-
   buttonBackground: {
     marginTop: 200,
     backgroundColor: colors.theme_orange,
@@ -1343,8 +1342,13 @@ cardContainerSignUp:{
     alignItems: align.center,
     justifyContent: align.center
   },
-
-
+  buttonBackgroundrequest: {
+    marginTop: 200,
+    backgroundColor: colors.theme_orange,
+    height: 40,
+    alignItems: align.center,
+    justifyContent: align.center
+  },
   buttonText: {
     textAlign: align.center,
     fontSize: 15,
