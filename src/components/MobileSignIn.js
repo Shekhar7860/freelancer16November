@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, Text, View, TextInput, ScrollView, Image, SafeAreaView, ImageBackground,  TouchableOpacity, StatusBar} from 'react-native';
+import {Platform, Text, View, Alert, TextInput, ScrollView, Image, SafeAreaView, ImageBackground,  TouchableOpacity, StatusBar} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import CustomToast from './CustomToast';
 import { withNavigation } from "react-navigation";
 import Loader from './Loader';
+import firebase  from './Config';
  class  MobileSignIn extends Component {
   constructor(props){
     super(props);
@@ -17,16 +18,32 @@ import Loader from './Loader';
       emailFormatError:'',
       mobileLength:'',
       loading:false,
-      type:''
+      type:'',
+      deviceToken : ''
     }
     
   }
 
   componentDidMount() {
+    firebase.messaging().getToken().then((token) => {
+      this._onChangeToken(token)
+   });
+  
+   firebase.messaging().onTokenRefresh((token) => {
+       this._onChangeToken(token)
+   });
+   firebase.notifications().onNotification((notification) => {
+    this.notification(notification)
+});
+
     if(this.props.navigation.state.params)
     {
      console.log(this.props.navigation.state.params)
     }      
+    }
+
+    _onChangeToken = (token) => {
+      this.setState ({  deviceToken: token});
     }
   
  
@@ -45,7 +62,7 @@ import Loader from './Loader';
           setTimeout(() => 
           {
             this.setState({loading: false})
-          service.loginOtp(this.state.mobile).then((res) => {
+          service.loginOtp(this.state.mobile, Platform.OS, this.state.deviceToken).then((res) => {
          if (res != undefined) 
          {
            console.log(res);
@@ -105,6 +122,10 @@ selectAccount(mobile)
     }, 1000)
 }
 
+
+notification = (val) => {
+  console.log(val._title)
+}
 
     GetValueFunction = (ValueHolder) =>{
       var Value = ValueHolder.length.toString() ;

@@ -73,7 +73,7 @@ export default class MilestoneList extends Component {
 
   openDrawer = () => {
     // sidemenu.userData();
-    this.props.navigation.openDrawer();
+    this.props.navigation.navigate('OpenProjects') 
   };
 
   getMilestoneList = () => {

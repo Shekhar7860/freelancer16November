@@ -4,6 +4,7 @@ import styles from '../styles/styles';
 import Service from '../services/Service';
 import { colors } from '../styles/base';
 
+
 export default class Welcome extends Component {
   
   constructor(props){
@@ -50,6 +51,7 @@ componentDidMount ()   {
   goToSelect = () =>{
        this.props.navigation.navigate('Login')
       }
+
   
   render() {
     return (

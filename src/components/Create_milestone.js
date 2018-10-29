@@ -128,6 +128,10 @@ goToMilestone(value)
   }, 1000)
 }
 
+goToList = () => {
+  this.props.navigation.navigate('MilestoneList') 
+}
+
 
 
 
@@ -135,7 +139,7 @@ goToMilestone(value)
     return (
       <SafeAreaView style = { styles.MainContainerProject }>
          <View style={styles.tabsToolbar}>
-        <TouchableOpacity onPress={() => this.openDrawer()}>
+        <TouchableOpacity onPress={() => this.goToList()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
          <Text style={styles.toolbarTitle}> CREATE MILESTONE </Text>

@@ -3,6 +3,9 @@ package com.freelancetest;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
+import io.invertase.firebase.RNFirebasePackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,9 +28,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+           new RNFirebaseMessagingPackage(),
+            new RNFirebaseNotificationsPackage(),
             new ReactNativeDocumentPicker(),
             new SplashScreenReactPackage(),
-            new ImagePickerPackage()
+            new ImagePickerPackage(),
+            new RNFirebasePackage()
       );
     }
 

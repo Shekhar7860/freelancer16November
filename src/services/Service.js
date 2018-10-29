@@ -67,12 +67,15 @@ login = (mobile, password) =>
    });
 }
 
-loginOtp = (mobile) => 
+loginOtp = (mobile, type, deviceToken) => 
 {
   var data = {
-    mobile: mobile
+    mobile: mobile,
+    device_id : deviceToken,
+    device_type : type
    }
- return  fetch(constants.apiUrl + '/user/send-otp',
+   console.log(JSON.stringify(data));
+   return  fetch(constants.apiUrl + '/user/send-otp',
     {
       method: "POST",
       headers: {
