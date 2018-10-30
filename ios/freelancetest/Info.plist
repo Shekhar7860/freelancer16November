@@ -37,8 +37,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Allow to access Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow to access Library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>vincHand.ttf</string>
@@ -47,6 +53,11 @@
 		<string>GothamMedium.ttf</string>
 		<string>FontsFree-Net-Proxima-Nova-Bold.otf</string>
 		<string>ProximaNovaRegular.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -62,11 +73,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>Allo</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Allow to access Library</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow to access Library</string>
 </dict>
 </plist>
