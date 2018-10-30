@@ -3,6 +3,7 @@ package com.freelancetest;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -13,6 +14,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.imagepicker.ImagePickerPackage;
+// import net.gen10.RNDeviceInformation.RNDeviceInformation;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,12 +30,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
            new RNFirebaseMessagingPackage(),
             new RNFirebaseNotificationsPackage(),
             new ReactNativeDocumentPicker(),
             new SplashScreenReactPackage(),
             new ImagePickerPackage(),
             new RNFirebasePackage()
+            //  new RNDeviceInformation()
       );
     }
 

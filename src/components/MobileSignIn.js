@@ -7,6 +7,7 @@ import CustomToast from './CustomToast';
 import { withNavigation } from "react-navigation";
 import Loader from './Loader';
 import firebase  from './Config';
+import DeviceInfo from 'react-native-device-info-2';
  class  MobileSignIn extends Component {
   constructor(props){
     super(props);
@@ -19,12 +20,15 @@ import firebase  from './Config';
       mobileLength:'',
       loading:false,
       type:'',
-      deviceToken : ''
+      deviceToken : '',
+      deviceID : ''
     }
     
   }
 
   componentDidMount() {
+    const deviceId = DeviceInfo.getUniqueID();
+    this.setState ({  deviceID: deviceId});
     firebase.messaging().getToken().then((token) => {
       this._onChangeToken(token)
    });
@@ -62,7 +66,7 @@ import firebase  from './Config';
           setTimeout(() => 
           {
             this.setState({loading: false})
-          service.loginOtp(this.state.mobile, Platform.OS, this.state.deviceToken).then((res) => {
+          service.loginOtp(this.state.mobile, Platform.OS, this.state.deviceToken, this.state.deviceID).then((res) => {
          if (res != undefined) 
          {
            console.log(res);

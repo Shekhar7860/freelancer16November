@@ -58,4 +58,7 @@ starIcon= require('../images/filled_star.png');
 starUnfilledIcon= require('../images/stroke_star.png');
 cameraIcon= require('../images/camera.png');
 attachIcon= require('../images/attach.png');
+client = 0;
+freelancer = 0;
+
 }

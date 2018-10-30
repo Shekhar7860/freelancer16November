@@ -108,7 +108,7 @@ export default class App extends Component {
       client : 0 ,
       freeLancer : 0
     }
-   service.saveUserData('count', firstTimeData);
+     service.saveUserData('count', firstTimeData);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     SplashScreen.hide()
     

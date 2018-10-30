@@ -1,16 +1,26 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, AsyncStorage} from 'react-native';
 import styles from '../styles/styles';
-const userId = '8ba790f3-5acd-4a08-bc6a-97a36c124f29';
 import Constants from '../constants/Constants';
-export default class Service {
+export default class Service  extends Component {
   
-  constructor(){
+  constructor(props){
+    super(props);
     this.state = { 
-      user :''
+      user :'',
+      client : 0 
     }
     constants = new Constants();
     
+  }
+
+  setClient = (val) => {
+    console.log('this', this)
+    this.setState({ client : val});
+  }
+
+  getClient = () => {
+    return this.state.client;
   }
 
 saveUserData = async (key, value) => {
@@ -67,12 +77,13 @@ login = (mobile, password) =>
    });
 }
 
-loginOtp = (mobile, type, deviceToken) => 
+loginOtp = (mobile, type, deviceToken, deviceId) => 
 {
   var data = {
     mobile: mobile,
-    device_id : deviceToken,
-    device_type : type
+    device_token : deviceToken,
+    device_type : type,
+    device_id : deviceId
    }
    console.log(JSON.stringify(data));
    return  fetch(constants.apiUrl + '/user/send-otp',

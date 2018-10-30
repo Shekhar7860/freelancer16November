@@ -43,6 +43,7 @@ ext {
     compileSdkVersion = 26
     targetSdkVersion = 26
     supportLibVersion = "26.1.0"
+     googlePlayServicesVersion = "+"  
 }
 
 

@@ -1,4 +1,6 @@
 rootProject.name = 'freelancetest'
+include ':react-native-device-info-2'
+project(':react-native-device-info-2').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info-2/android')
 include ':react-native-firebase'
 project(':react-native-firebase').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-firebase/android')
 include ':react-native-document-picker'
@@ -10,3 +12,4 @@ project(':react-native-image-picker').projectDir = new File(rootProject.projectD
 include ':app'
 include ':react-native-document-picker'
 project(':react-native-document-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-document-picker/android')
+
