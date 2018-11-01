@@ -14,10 +14,10 @@ export default class Service  extends Component {
     
   }
 
-  setClient = (val) => {
-    console.log('this', this)
-    this.setState({ client : val});
-  }
+  // setClient = (val) => {
+  //   console.log('this', this)
+  //   this.setState({ client : val});
+  // }
 
   getClient = () => {
     return this.state.client;
@@ -312,6 +312,7 @@ body.append('user_name',  username);
 body.append('email', email);
 body.append('about_me', about_me);
 body.append('image_file', photo);
+body.append('isLogin', 1);
 }
 else
 {
@@ -324,6 +325,7 @@ else
   body.append('categoryId', category);
   body.append('image_file', photo);
   body.append('skills', skills);
+  body.append('isLogin', 1);
 }
 console.log("res", body)
 

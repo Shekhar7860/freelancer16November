@@ -46,13 +46,13 @@ export default class SelectAccount extends Component {
   <SafeAreaView>
 	 
 
-
-       <View style={styles.toolbar}>
-			<Text style={styles.backButton} onPress={() => this.goToWelcome()}>
-			<Image source={constants.backicon} style={styles.icon}/>
-			</Text>
-      <Text style={styles.toolbarTitle}>Select Account</Text>
-      </View>
+       <View style={styles.commontoolbar}>
+        <TouchableOpacity onPress={() => this.goToWelcome()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
+        </TouchableOpacity>
+          <Text style={styles.toolbarTitle}>Select Account</Text>
+          <Text style={styles.commontoolbarButton}></Text>
+         </View>
 	     <View style={styles.accountHeadline}>
 	       <Text style={styles.accountHeadlineText}>Select Account Type</Text>
 		   <TouchableOpacity style={styles.hireButtonBackground} onPress={() => this.goToSignUp(1)}>

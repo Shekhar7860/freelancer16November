@@ -53,7 +53,7 @@ export default class Messages extends Component {
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
          <Text style={styles.toolbarTitle}>Messages</Text>
-         <TouchableOpacity onPress={() => this.searchPage()}>
+         <TouchableOpacity>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
      </MyView>

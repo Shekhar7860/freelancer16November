@@ -484,7 +484,7 @@ cardContainerSignUp:{
         paddingTop:padding.md
       },
       topMargin:{
-        paddingTop:padding.sm
+        paddingTop:30
       },
       list:{
        
@@ -767,6 +767,10 @@ cardContainerSignUp:{
       rowAlignSideMenu2:{
         flexDirection:'row',
         paddingTop:padding.md
+      },
+      sideAlign:{
+        flexDirection:'row',
+        paddingTop :10
       },
       line :{
          borderBottomColor: colors.themeColor,
@@ -1233,7 +1237,7 @@ cardContainerSignUp:{
       backIcon:{
         width:25,
         height:25,
-        marginTop:5,
+        marginTop:2,
        marginLeft:25},
 
        MainContainerProject :{
@@ -1641,9 +1645,23 @@ createmilestoneinput: {
     width:'80%',
     fontSize :15
   },
+  searchfieldInput:{
+    width:'80%',
+    fontSize :20,
+   marginTop: ( Platform.OS === 'ios' ) ? 0 : -15
+  },
   defaultTextFreelancer:{
     alignItems:align.center,
     paddingTop :15
+  },
+  bottomViewDetails:{
+    width: '95%', 
+    height: 50, 
+    backgroundColor:'#FF8D47', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20
   }
   
       

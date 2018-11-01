@@ -92,51 +92,21 @@ import CustomToast from './CustomToast';
      }
 
    goToHome = (res) => {
-     
-    service.getUserData('count').then((keyValue) => {
-        console.log(res.user.usertype);
-        var parsedData = JSON.parse(keyValue);
-        if(res.user.usertype == 1)
-        {
-            if(res.user.usertype == 1 && parsedData.client == 0 )
-            {
-              //alert("working")
-              var firstTimeData = {
-                client : 1 ,
-                freeLancer : " "
-              }
+        if(res.user.isLogin == 0)
+        { 
             this.props.navigation.navigate('About')
-            service.saveUserData('count', firstTimeData);
-            }
-            else
-            {
-             // alert("not working")
-              this.props.navigation.navigate('Jobs') 
-            }
         }
         else
         {
-         
-            if(res.user.usertype == 2 && parsedData.freeLancer == 0  )
+            if(res.user.usertype == 1)
             {
-              var firstTimeData = {
-                client : " ",
-                freeLancer : 1
-              }
-            this.props.navigation.navigate('About')
-            service.saveUserData('count', firstTimeData);
+            this.props.navigation.navigate('Jobs')
             }
             else
             {
               this.props.navigation.navigate('Home') 
             }
         }
-      
-   }, (error) => {
-      console.log(error) //Display error
-    });
-
-    
    }
 
    resendOtp()

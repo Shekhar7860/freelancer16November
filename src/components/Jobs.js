@@ -35,6 +35,7 @@ export default class Jobs extends Component {
       dummyText : "",
       modalVisible: false
     };
+    this.arrayholder = []
    
     service.getUserData('count').then((keyValue) => {
       console.log("local", keyValue);
@@ -59,6 +60,18 @@ export default class Jobs extends Component {
   findFreelancer = () => {
 
   }
+
+
+  searchFilterFunction = text => {
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.title.toUpperCase()}`;
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      jobs: newData
+    });
+  };
 
   componentDidMount() {
   setTimeout(() => {
@@ -93,6 +106,7 @@ export default class Jobs extends Component {
       }
       else
       {
+      this.arrayholder = res.Job;
       this.setState({ jobs: res.Job});
       }
     });
@@ -141,7 +155,7 @@ export default class Jobs extends Component {
               <Image source={constants.searchicon} style={styles.newsearchIcon} />
               <View style={styles.empty}>
               </View>
-            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.otpInput}/>
+            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.searchfieldInput}  onChangeText={text => this.searchFilterFunction(text)}/>
           </View>
       </MyView>
       </View>

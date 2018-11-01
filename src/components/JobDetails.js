@@ -230,7 +230,7 @@ export default class JobDetails extends Component {
      </ScrollView>
      
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
-      <TouchableOpacity style={styles.bottomView} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
+      <TouchableOpacity style={styles.bottomViewDetails} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
          <Text style={styles.textStyle}>{this.state.hireText}</Text>
       </TouchableOpacity>
       </MyView>

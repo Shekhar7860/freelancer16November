@@ -50,16 +50,30 @@ var subCategoryData = {
   this.props.navigation.navigate('Sub',  { subCategory: subCategoryData })  
 }
 
+goBack = () => {
+if(this.props.navigation.state.params.page.pageName == "post")
+{
+  this.props.navigation.navigate('PostProject')  
+}
+else 
+{
+  this.props.navigation.navigate('UpdateProfile')  
+}
+}
   render() {
     return (
       <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-       <View style={styles.toolbar} >
-        <TouchableOpacity>
+      <View style={styles.tabsToolbar}>
+        <TouchableOpacity onPress={() => this.goBack()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Category</Text>
+         <Text style={styles.toolbarTitle}>  Category </Text>
          <TouchableOpacity>
+        </TouchableOpacity>
+         <TouchableOpacity>
+         <Image style={styles.searchIcon} />
         </TouchableOpacity>
         </View>
         <ScrollView>

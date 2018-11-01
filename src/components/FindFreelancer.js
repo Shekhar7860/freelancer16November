@@ -18,6 +18,7 @@ export default class FindFreelancer extends Component {
         dummyText : "",
         noText : true
       };
+      this.arrayholder = []
    
  }
 
@@ -49,6 +50,18 @@ export default class FindFreelancer extends Component {
    
    }
 
+   searchFilterFunction = text => {
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.email.toUpperCase()}  ${item.username.toUpperCase()} `;
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({
+      freelancers: newData
+    });
+  }; 
+
+
  openDrawer = () => {
    this.props.navigation.openDrawer()}
 
@@ -65,6 +78,7 @@ export default class FindFreelancer extends Component {
       
       else
       {
+        this.arrayholder =  res.freelancer;
       this.setState({ freelancers: res.freelancer});
       }
     })
@@ -98,7 +112,7 @@ export default class FindFreelancer extends Component {
     const defaultImg =
     'https://satishrao.in/wp-content/uploads/2016/06/dummy-profile-pic-male.jpg'
 
-    console.log(this.state.freelancers.freelancer)
+   // console.log(this.state.freelancers.freelancer)
     
     return (
         
@@ -124,7 +138,7 @@ export default class FindFreelancer extends Component {
               <Image source={constants.searchicon} style={styles.newsearchIcon} />
               <View style={styles.empty}>
               </View>
-            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.topInput}/>
+            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.searchfieldInput} onChangeText={text => this.searchFilterFunction(text)}/>
           </View>
       </MyView>
       </View>

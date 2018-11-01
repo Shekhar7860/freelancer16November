@@ -9,7 +9,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Select,
-  Picker
+  Picker,
+  Alert
 } from "react-native";
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -46,9 +47,10 @@ export default class PostProject extends Component {
        category :'Category',
        user: '',
        cities : '',
-       selectedCity : ' '
+       selectedCity : ' ',
+       date : new Date()
       }
-
+     
       
   }
 
@@ -131,67 +133,97 @@ export default class PostProject extends Component {
   goBack = () =>{
     this.props.navigation.navigate('Jobs');
    }
+   
+   disablePrevDates = (startDate) => {
+    const startSeconds = Date.parse(startDate);
+    return (date) => {
+      return Date.parse(date) < startSeconds;
+    }
+  }
 
 
   post_project = () => {
-    if(this.state.endDateText >= this.state.startDateText)
-    {
-      this.setState({loading: true})
-      setTimeout(() => 
-      {
-      this.setState({loading: false})
-      var array = this.state.skills.split(',');
-      if(array.length >= 3)
-      {
-       var skills =  {
-          "lastname": array[0],
-          "email": array[1],
-          "phone": array[2]
-       }
-       }
-       else if (array.length = 2)
-       {
-        var skills =  {
-          "lastname": array[0],
-          "email": array[1],
-          "phone": " "
-       }
-       }
-      else if (array.length = 1)
-      {
-        var skills =  {
-          "lastname": array[0],
-          "email": " ",
-          "phone": " "
-       }
-      }
-      service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, skills).then((res) => {
-      console.log(this.state.startDateText);
-      console.log(this.state.endDateText);
-      if(res)
-     {
-       console.log("project posted", res)
-        if(res.status == "success")
+    console.log('today', this.state.date)
+    // if(this.state.endDateText >= this.state.date && this.state.startDateText >= this.state.date)
+    //     {
+        if(this.state.endDateText >= this.state.startDateText)
         {
-          this.refs.defaultToastBottom.ShowToastFunction('Job Added Successfully');
-          this.openProject();
-        }
+          this.setState({loading: true})
+          setTimeout(() => 
+          {
+          this.setState({loading: false})
+          var array = this.state.skills.split(',');
+          if(array.length >= 3)
+          {
+          var skills =  {
+              "lastname": array[0],
+              "email": array[1],
+              "phone": array[2]
+          }
+          }
+          else if (array.length = 2)
+          {
+            var skills =  {
+              "lastname": array[0],
+              "email": array[1],
+              "phone": " "
+          }
+          }
+          else if (array.length = 1)
+          {
+            var skills =  {
+              "lastname": array[0],
+              "email": " ",
+              "phone": " "
+          }
+          }
+          service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, skills).then((res) => {
+        // console.log(this.state.startDateText);
+        // console.log(this.state.endDateText);
+          if(res)
+        {
+          console.log("project posted", res)
+            if(res.status == "success")
+            {
+            // this.refs.defaultToastBottom.ShowToastFunction('Job Added Successfully');
+              Alert.alert(
+                'Job Added Successfully'
+              )
+              this.openProject();
+            }
+            else
+            {
+              // this.refs.defaultToastBottom.ShowToastFunction('An Error Occured');
+              Alert.alert(
+                'An Error Occured'
+              )
+            }
+          }
         else
-        {
-          this.refs.defaultToastBottom.ShowToastFunction('An Error Occured');
+          {
+            Alert.alert(
+              'Network error'
+            )
+          // this.refs.defaultToastBottom.ShowToastFunction('Network error');
         }
+      })
+        }, 3000)
       }
-     else
+      else
       {
-        this.refs.defaultToastBottom.ShowToastFunction('Network error');
-     }
-   })
-    }, 3000)
-  }
-  else
-  {
-    this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
-  }
+        Alert.alert(
+          'Invalid End Date'
+        )
+      // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
+      }
+  //   }
+  // else
+  // {
+  //   Alert.alert(
+  //     'Please select valid date'
+  //   )
+  //  // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
+  // }
 }
 
 openProject()
@@ -203,7 +235,7 @@ this.props.navigation.navigate('Jobs')
 
 
   render() {
-  
+   
     let data = [{
       value: 'Afif',
     }, {
@@ -456,7 +488,7 @@ this.props.navigation.navigate('Jobs')
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Tittle"
+            placeholder="Title"
             onChangeText={(text)=>this.setState({ title:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -516,6 +548,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
+            keyboardType="numeric"
             value={this.state.budget}
           />
           
@@ -534,7 +567,6 @@ this.props.navigation.navigate('Jobs')
                 </TouchableOpacity>
             </View>
           </View>
-
           <Text style={styles.projectInput}>
             Skills
           </Text>
@@ -548,9 +580,7 @@ this.props.navigation.navigate('Jobs')
             returnKeyType='done'
             value={this.state.skills}
           />
-          <TouchableOpacity  style={ styles.toastMiddle}>
-         <CustomToast ref = "defaultToastBottom"/>
-         </TouchableOpacity>
+        
           <Text style={styles.projectInput}>
             Description
           </Text>
@@ -572,6 +602,7 @@ this.props.navigation.navigate('Jobs')
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
+          
         />
          <DateTimePicker
           isVisible={this.state.isDateTimePickerVisible2}

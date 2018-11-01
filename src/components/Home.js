@@ -203,7 +203,7 @@ hideTab = () => {
          <TouchableOpacity onPress={() => this.goToNotification()}>
          <Image source={constants.notificationIcon} style={styles.searchIcon} />
         </TouchableOpacity>
-         <TouchableOpacity onPress={() => this.searchPage()}>
+         <TouchableOpacity >
          <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>
         </MyView>

@@ -45,6 +45,9 @@ export default class SubCategory extends Component {
   }
  }
  
+ goBack = () => {
+  this.props.navigation.navigate('Cat') 
+ }
 
   render() {
    
@@ -54,13 +57,17 @@ export default class SubCategory extends Component {
       source={constants.loginbg}
       style={styles.container}>
     
-    <View style={styles.toolbar} >
-        <TouchableOpacity>
+    <View style={styles.tabsToolbar}>
+        <TouchableOpacity onPress={() => this.goBack()}>
+        <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Sub Category</Text>
+         <Text style={styles.toolbarTitle}> Sub Category </Text>
          <TouchableOpacity>
         </TouchableOpacity>
-     </View>
+         <TouchableOpacity>
+         <Image style={styles.searchIcon} />
+        </TouchableOpacity>
+        </View>
     
      <View style={styles.listCenter}>
         <FlatList

@@ -383,7 +383,7 @@ goToFeedbackPage = () => {
               <Text style={styles.listTextFontSize}>Account</Text>
               </View>
           </TouchableOpacity> */}
-          <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToSettingsPage()}>
+          <TouchableOpacity  style={styles.sideAlign} onPress = {() => this.goToSettingsPage()}>
             <View style={styles.listIconsWidth} >
                <Image source={constants.settingsIcon} style={styles.listIcon}/>
             </View>
