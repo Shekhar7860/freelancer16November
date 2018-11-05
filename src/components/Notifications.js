@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
-
+import { strings } from '../services/stringsoflanguages';
 export default class Notifications extends Component {
  constructor(props){
      super(props);
@@ -35,7 +35,7 @@ export default class Notifications extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Notifications</Text>
+         <Text style={styles.toolbarTitle}>{strings.Notifications}</Text>
          <TouchableOpacity onPress={() => this.searchPage()}>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>

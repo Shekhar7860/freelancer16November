@@ -7,6 +7,7 @@ import HTMLView from 'react-native-htmlview';
 import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
+import { strings } from '../services/stringsoflanguages';
 export default class JobDetails extends Component {
   constructor(props){
     super(props);
@@ -109,13 +110,13 @@ export default class JobDetails extends Component {
         <TouchableOpacity onPress={() => this.goToJobs()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>JOB DETAIL</Text>
+          <Text style={styles.toolbarTitle}>{strings.Jobdetail}</Text>
           <Text style={styles.commontoolbarButton}></Text>
          </View>
       <ScrollView style={styles.detailsContainer}>
        <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Title
+                  <Text style={styles.textWrapDetails}> {strings.Title}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -127,7 +128,7 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> City
+                  <Text style={styles.textWrapDetails}> {strings.City}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -151,19 +152,19 @@ export default class JobDetails extends Component {
          </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Budget
+                  <Text style={styles.textWrapDetails}> {strings.Budget}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.budget}
-                  </Text>
+                  <Text style={styles.textWrap2Details}> {this.state.details.budget} SAR
+</Text>
                   </View>
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Start & End Date
+                  <Text style={styles.textWrapDetails}>{strings.Startenddate}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -175,7 +176,7 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Skills
+                  <Text style={styles.textWrapDetails}> {strings.Skills}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -187,7 +188,7 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Category
+                  <Text style={styles.textWrapDetails}> {strings.Category}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -199,7 +200,7 @@ export default class JobDetails extends Component {
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Status
+                  <Text style={styles.textWrapDetails}> {strings.Status}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -214,7 +215,7 @@ export default class JobDetails extends Component {
                   </TouchableOpacity>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Description
+                  <Text style={styles.textWrapDetails}> {strings.Description}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>

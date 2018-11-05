@@ -3,7 +3,7 @@ import {ScrollView, SafeAreaView, Text, View, TouchableHighlight, ImageBackgroun
 import Service from '../services/Service';
 import Constants from '../constants/Constants';
 import MyView from './MyView';
-
+import { strings } from "../services/stringsoflanguages";
 class SideMenu extends Component {
   state = {
     userFbData: { picture_large:{ data:{}}},
@@ -47,6 +47,28 @@ class SideMenu extends Component {
      
 }
 
+overLang() {
+  service.getUserData("language").then(
+    keyValue => {
+     if(keyValue == true)
+     {
+      strings.setLanguage("en");
+     }
+     else
+     {
+      strings.setLanguage("ar");
+     }
+        
+    },
+    error => {
+      console.log(error); //Display error
+    }
+  );
+ }
+
+
+
+
 takePicture = () => {
   const options = {};
   this.camera.capture({ metadata: options })
@@ -54,6 +76,13 @@ takePicture = () => {
   .catch(err => console.error(err));
 }
 logOut = () =>{
+
+  service.getUserData("language").then(
+    keyValue => {
+     if(keyValue == true)
+     {
+
+
   Alert.alert(
     'Log Out',
     'Are you sure you want to logout?', [{
@@ -67,9 +96,36 @@ logOut = () =>{
     }, ], {
         cancelable: false
     }
- )
   
+ )
+  }else{
+
+    Alert.alert(
+      'الخروج',
+      'هل أنت متأكد أنك تريد تسجيل الخروج؟', [{
+          text: 'إلغاء',
+          style: 'cancel'
+      },
+      {
+          text: 'حسنا',
+          onPress: () => 
+          this.exit()
+      }, ], {
+          cancelable: false
+      }
+    
+   )
+
+
+  } 
+},
+    error => {
+      console.log(error); //Display error
+    }
+  );
 }
+
+
 
 componentWillReceiveProps(props) {
   console.log('data');
@@ -121,11 +177,33 @@ componentWillReceiveProps(props) {
 }
 
 componentDidMount ()   {
+
+////////sk
+
+// service.getUserData("language").then(
+//   keyValue => {
+//    if(keyValue == true)
+//    {
+//     strings.setLanguage("en");
+//    }
+//    else
+//    {
+//     strings.setLanguage("ar");
+//    }
+      
+//   },
+//   error => {
+//     console.log(error); //Display error
+//   }
+// );
+
+///////////ek
+
   service.getUserData('user').then((keyValue) => {
     var parsedData = JSON.parse(keyValue);
     console.log("sidemenujson", parsedData);
-    if(parsedData.usertype == 1)
-    {
+    if(parsedData.usertype == "1")
+    { 
       this.setState ({
          names: [
           {
@@ -284,6 +362,39 @@ goToFeedbackPage = () => {
   }
  }
  
+ getItemName=(itemName)=>{
+  var s = 'dhd'
+
+  switch(itemName) {
+    case 'About':
+    s = strings.About
+    return s;
+     case 'My Balance':
+     s = strings.MyBalance
+     return s;
+     case 'Find Works':
+     s = strings.FindWorks
+     return s;
+     case 'My Jobs':
+     s = strings.MyJobs
+     return s;
+     case 'Messages':
+     s = strings.Messages
+     return s;
+     case 'My Payment':
+     s = strings.MyPayment
+     return s;
+     case 'My Project':
+     s = strings.MyProject
+     return s;
+    default:
+    s = 'ttt'
+
+  }
+  
+
+  return s
+ }
 
   render () {
     // this.componentDidMount();
@@ -365,7 +476,7 @@ goToFeedbackPage = () => {
                         </TouchableOpacity>
                         <View style={styles.listItemsBlank}></View>
                         <View style={styles.listTextWidth}>
-                           <Text style={styles.listTextFontSize}>{item.name}</Text>
+                           <Text style={styles.listTextFontSize}>{this.getItemName(item.name)}</Text>
                         </View>
                      </View>
                   </TouchableOpacity>
@@ -389,7 +500,7 @@ goToFeedbackPage = () => {
             </View>
             <View style={styles.listItemsBlank}></View>
               <View style={styles.listTextWidth}>
-              <Text style={styles.listTextFontSize}>Settings</Text>
+              <Text style={styles.listTextFontSize}>{strings.Settings}</Text>
               </View>
           </TouchableOpacity>
            <TouchableOpacity  style={styles.rowAlignSideMenu2} onPress = {() => this.goToFeedbackPage()}>
@@ -398,7 +509,7 @@ goToFeedbackPage = () => {
             </View>
             <View style={styles.listItemsBlank}></View>
               <View style={styles.listTextWidth}>
-              <Text style={styles.listTextFontSize}>Feedback</Text>
+              <Text style={styles.listTextFontSize}>{strings.Feedback}</Text>
               </View>
           </TouchableOpacity> 
          </MyView>
@@ -410,7 +521,7 @@ goToFeedbackPage = () => {
           </TouchableOpacity>
            <View style={styles.listItemsBlank}></View>
           <View style={styles.listTextWidth}>
-              <Text style={styles.listTextFontSize}>Log Out</Text>
+              <Text style={styles.listTextFontSize}>{strings.Logout}</Text>
           </View>
           </MyView>
           </TouchableOpacity> }

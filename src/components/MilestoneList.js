@@ -20,6 +20,7 @@ import styles from "../styles/styles";
 import MyView from './MyView';
 import Loader from './Loader';
 import SideMenu from './SideMenu';
+import { strings } from '../services/stringsoflanguages';
 export default class MilestoneList extends Component {
   constructor(props) {
     super(props);
@@ -124,7 +125,7 @@ export default class MilestoneList extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> MILESTONE LIST</Text>
+         <Text style={styles.toolbarTitle}>{strings.Milestonelist}</Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity onPress={() => this.goToPostproject()}>

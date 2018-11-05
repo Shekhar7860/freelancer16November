@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,StatusBar, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity} from 'react-native';
 import styles from '../styles/styles';
 import Service from '../services/Service';
-import { colors } from '../styles/base';
+import { colors, fonts, padding, dimensions, align } from "../styles/base.js";
+import { strings } from '../services/stringsoflanguages';
 
 
 export default class Welcome extends Component {
@@ -13,7 +14,9 @@ export default class Welcome extends Component {
     service = new Service();
     this.state = {
        userResponse: {},
-       id: '' 
+       id: '',
+       englishImage: constants.fillrdrIcon,
+       arabicImage: constants.unfilledrIcon
     }
      
 }
@@ -42,6 +45,47 @@ componentDidMount ()   {
     console.log(error) //Display error
   });
  }
+
+
+
+ englishTap = () => {
+
+  if (this.state.check) {
+    this.setState({ englishImage: constants.fillrdrIcon });
+    this.setState({ arabicImage: constants.unfilledrIcon });
+    this.setState({ check: false });
+    strings.setLanguage("en");
+  
+    service.saveUserData("language", true);
+  }
+ 
+};
+ArabicTap = () => {
+  if (!this.state.check) {
+
+  this.setState({ englishImage: constants.unfilledrIcon });
+  this.setState({ arabicImage: constants.fillrdrIcon });
+  this.setState({ check: true });
+  strings.setLanguage("ar");
+
+  service.saveUserData("language", false);
+
+  }
+};
+
+
+overLang() {
+  if (this.state.check) {
+    //this.setState({ check: false });
+    strings.setLanguage("en");
+    //alert("t_f");
+  } else {
+    //this.setState({ check: true });
+    strings.setLanguage("ar");
+    //alert("f_t");
+  }
+}
+
 
 
   // going to next screen
@@ -82,15 +126,82 @@ componentDidMount ()   {
 
 
 		   <TouchableOpacity style={styles.buttonBackground} onPress={() => this.goToSelect()}>
-		     <Text style={styles.buttonText}>Create An Account</Text>
+		     <Text style={styles.buttonText}>{strings.CreateAnAccount}</Text>
 		   </TouchableOpacity>
 
        <View style={styles.rowAlignSideMenu}>
-		    <Text style={styles.accountText}>Already have an account? </Text>
+		    <Text style={styles.accountText}>{strings.Alreadyhaveanaccount} </Text>
         <TouchableOpacity>
-        <Text onPress={() => this.goToLogin()} style={styles.welcomeLoginText}>Login</Text>
+        <Text onPress={() => this.goToLogin()} style={styles.welcomeLoginText}>{strings.Login}</Text>
         </TouchableOpacity>
         </View>
+
+ <View
+          style={{
+            backgroundColor: "#f0f0f0",
+            alignItems: "flex-start",
+            width: dimensions.fullWidth - 20,
+            marginLeft: 10,
+            marginTop: 30,
+            height: 50,
+            justifyContent: "flex-start",
+            flexDirection: "row",
+            alignItems: "center"
+          }}
+        >
+          <Image
+            source={constants.langIcon}
+            style={{ marginLeft: 12, width: 25, height: 25 }}
+          />
+          <Text style={{ marginLeft: 12 }}>{strings.Language}</Text>
+          <View
+            style={{
+              left: dimensions.fullWidth / 2 - 150,
+              backgroundColor: "clear",
+              width: dimensions.fullWidth / 2,
+              height: 50,
+              flexDirection: "row"
+            }}
+          >
+            <TouchableOpacity onPress={() => this.englishTap()}>
+              <View
+                style={{
+                  marginLeft: 0,
+                  height: 50,
+                  backgroundColor: "clear",
+                  width: dimensions.fullWidth / 4,
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
+              >
+                <Image
+                  source={this.state.englishImage}
+                  style={{ marginLeft: 0, width: 25, height: 25 }}
+                />
+                <Text style={{ marginLeft: 8 }}>English</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.ArabicTap()}>
+              <View
+                style={{
+                  marginLeft: 0,
+                  height: 50,
+                  backgroundColor: "clear",
+                  width: dimensions.fullWidth / 4,
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
+              >
+                <Image
+                  source={this.state.arabicImage}
+                  style={{ marginLeft: 0, width: 25, height: 25 }}
+                />
+                <Text style={{ marginLeft: 8 }}>Arabic</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
 	     </View>
 	   </View>
        

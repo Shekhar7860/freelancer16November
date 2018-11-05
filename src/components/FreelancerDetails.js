@@ -7,6 +7,7 @@ import HTMLView from 'react-native-htmlview';
 import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
+import { strings } from '../services/stringsoflanguages';
 export default class FreelancerDetails extends Component {
   constructor(props){
     super(props);
@@ -75,13 +76,13 @@ this.props.navigation.navigate('Jobs')
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>FREELANCER DETAILS</Text>
+          <Text style={styles.toolbarTitle}>{strings.Freelancerdetail}</Text>
           <Text style={styles.commontoolbarButton}></Text>
          </View>
          <ScrollView style={styles.detailsContainer}>
        <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Email
+                  <Text style={styles.textWrapDetails}> {strings.Email}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -93,7 +94,7 @@ this.props.navigation.navigate('Jobs')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Name
+                  <Text style={styles.textWrapDetails}> {strings.Name}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -105,7 +106,7 @@ this.props.navigation.navigate('Jobs')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Short Bio
+                  <Text style={styles.textWrapDetails}> {strings.Shortbio}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -117,7 +118,7 @@ this.props.navigation.navigate('Jobs')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Category
+                  <Text style={styles.textWrapDetails}> {strings.Category}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -129,7 +130,7 @@ this.props.navigation.navigate('Jobs')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Skills
+                  <Text style={styles.textWrapDetails}> {strings.Skills}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -147,7 +148,7 @@ this.props.navigation.navigate('Jobs')
               loading={this.state.loading} /> 
      <MyView hide={this.state.isJobId}  style={ styles.bottomView}>
     <TouchableOpacity onPress={() => this.submitProposal()}>
-      <Text style={styles.textStyle}>Submit Proposal</Text>
+      <Text style={styles.textStyle}>{strings.SubmitProposal}</Text>
       </TouchableOpacity>
       </MyView>
       <CustomToast ref = "defaultToastBottom"/> 

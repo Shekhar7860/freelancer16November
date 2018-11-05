@@ -4,6 +4,7 @@ import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
 import MyView from './MyView';
+import { strings } from "../services/stringsoflanguages";
 export default class FindFreelancer extends Component {
  constructor(props){
      super(props);
@@ -124,7 +125,7 @@ export default class FindFreelancer extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>FIND FREELANCER</Text>
+         <Text style={styles.toolbarTitle}>{strings.FindFreelancer}</Text>
          <TouchableOpacity>
         </TouchableOpacity>
          <TouchableOpacity >

@@ -13,6 +13,8 @@ target 'freelancetest' do
   target 'freelancetest-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'ReactNativeLocalization', :path => '../node_modules/react-native-localization'
+
   end
 
   target 'freelancetestTests' do

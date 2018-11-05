@@ -8,6 +8,7 @@ import { withNavigation } from "react-navigation";
 import Loader from './Loader';
 import firebase  from './Config';
 import DeviceInfo from 'react-native-device-info-2';
+import { strings } from '../services/stringsoflanguages';
  class  MobileSignIn extends Component {
   constructor(props){
     super(props);
@@ -161,12 +162,13 @@ notification = (val) => {
       <View style={styles.lowerContainer}>
         <View style={styles.centerAlignSignUp}>
           <View style={styles.cardContainerSignIn}>
-            <Text style={styles.mobilesignsignUpText}>SIGN IN</Text>
+            <Text style={styles.mobilesignsignUpText}>{strings.Signin}</Text>
             <View style={styles.rowAlign}>
               <Image source={constants.phoneIcon} style={styles.inputIcon} />
               <TextInput
                 style={styles.mobilesigntextInputWidth}
                 placeholderTextColor='#5F6C78'
+              //  placeholder={strings.Signin}
                 placeholder="Mobile Number"
                 value={this.state.mobile}
                 onChangeText={text => this.GetValueFunction(text)}
@@ -180,7 +182,7 @@ notification = (val) => {
                 style={styles.mobilesigninButton}
                 onPress={() => this.submit()}
               >
-                <Text style={styles.accountButtonText}>SIGN IN</Text>
+                <Text style={styles.accountButtonText}>{strings.Signin}</Text>
               </TouchableOpacity>
               <CustomToast ref="defaultToastBottom" />
             </View>

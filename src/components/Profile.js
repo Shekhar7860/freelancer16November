@@ -4,6 +4,7 @@ import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import MyView from './MyView';
+import { strings } from '../services/stringsoflanguages';
 export default class Profile extends Component {
   
   constructor(props){
@@ -97,7 +98,7 @@ goToHome = () => {
         <Text style={styles.backButton} onPress={() => this.goToHome()}>
         <Image source={constants.backicon} style={styles.icon}/>
         </Text>
-          <Text style={styles.toolbarTitle}>PROFILE</Text>
+          <Text style={styles.toolbarTitle}>{strings.Profile}</Text>
           <TouchableOpacity onPress={() => this.goToUpdateProfile()}>
           <Image source={constants.editIcon} style={styles.searchIcon} />
           </TouchableOpacity>
@@ -173,7 +174,7 @@ goToHome = () => {
             </View> */}
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
                 <Text style={styles.themetextColor}>
-                    Category
+                    {strings.Category}
                 </Text>
                 <View  style={styles.categoryTextProfile}>
                     <Text style={styles.dateTextColorProfile} >
@@ -183,7 +184,7 @@ goToHome = () => {
             </MyView>
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
                 <Text style={styles.themetextColor}>
-                    C.V
+                    {strings.Cv}
                 </Text>
                 <View  style={styles.categoryTextProfile}>
                     <Text style={styles.CVtext} >
@@ -193,7 +194,7 @@ goToHome = () => {
             </MyView>
             <MyView style={{padding:10}} hide={this.state.isFreelancer}>
                 <Text style={styles.themetextColor}>
-                    I.D Proof
+                    {strings.IdProf}
                 </Text>
                 <View  style={styles.categoryTextProfile}>
                     <Text style={styles.CVtext} >

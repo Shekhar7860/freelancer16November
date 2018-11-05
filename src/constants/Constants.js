@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 
 export default class Constants  {
-  apiUrl  = "http://18.222.157.200:8022/api";
+  apiUrl  = "http://zaraf.org/freelancerWeb/api";
   background =  require('../images/bg.png');
   logo = require('../images/1.png');
   emailicon = require('../images/email.png');
@@ -24,6 +24,7 @@ export default class Constants  {
   favIcon =  require('../images/fav.png');
   creditIcon =  require('../images/credits.png');
   helpIcon =  require('../images/help.png');
+  notificationIcongrey =  require('../images/notification_gray.png');
   notificationIcon =  require('../images/notification.png');
   toggleIcon=  require('../images/off.png');
   cameraIcon=  require('../images/cemra.png');

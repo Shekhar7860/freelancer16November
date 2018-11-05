@@ -524,6 +524,30 @@ getprojectList = (token, id) =>
      console.error(error);
    });
 }
+
+
+
+feebback = (token, feedbck) => 
+{
+  var data = {
+    api_token: token,
+    feedback: feedbck
+   }
+   console.log(data)
+ return  fetch(constants.apiUrl + '/submit-feedback',
+    {
+      method: "POST",
+      headers: {
+       "Accept": "application/json",
+       "Content-Type": "application/json"
+      },
+     body: JSON.stringify(data)
+   }).then((response) => 
+   response.json())
+   .catch((error) => {
+     console.error(error);
+   });
+}
  
   
   

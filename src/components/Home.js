@@ -8,6 +8,8 @@ import Loader from './Loader';
 import FEED from './Feed';
 import MyView from './MyView';
 import CustomToast from './CustomToast';
+import strings from '../services/stringsoflanguages';
+import{ colors, fonts, padding, dimensions, align} from '../styles/base';
 export default class Home extends Component {
 
 state = {
@@ -83,7 +85,25 @@ openDetails = (val) => {
 }
 
 
- 
+ checkLanguage=()=>{
+
+
+  service.getUserData("language").then(
+    keyValue => {
+     if(keyValue == "true")
+     {
+      strings.setLanguage("en");
+    }else{
+      strings.setLanguage("ar");
+    }
+        
+    },
+    error => {
+      console.log(error); //Display error
+    }
+  );
+
+ }
 
 componentDidMount ()   {
   this.setState ({ loading: true});
@@ -95,6 +115,7 @@ componentDidMount ()   {
      this.setState({ userResponse: parsedData});
       this.getFeedRes();
       this.getActiveJobs();
+      this.checkLanguage();
   }, (error) => {
      console.log(error) //Display error
    });
@@ -122,7 +143,7 @@ getFeedRes = () => {
       this.setState ({ loading: false});
       if(res.request_list == "")
       {
-        this.setState ({ dummyText: "No Request Found"});
+        this.setState ({ dummyText:strings.NoRequestFound});
         this.setState ({  noText: false});
       }
       newres = JSON.stringify(res);
@@ -149,17 +170,19 @@ getActiveJobs = () => {
 }
 
 hideTab = () => {
-  if(this.state.isFeed)
-  {
-    this.setState({ isFeed: false});
-    this.setState({ isFav: true});
-  }
-  else 
-  {
-    this.setState({ isFeed: true});
+ 
+  this.setState({ isFeed: true});
     this.setState({ isFav: false});
-  }
+ 
   
+  
+  
+}
+hideTab2=()=>{
+
+  this.setState({ isFeed: false});
+  this.setState({ isFav: true});
+
 }
 
   openDrawer = () => {
@@ -199,9 +222,9 @@ hideTab = () => {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Freelancer</Text>
+         <Text style={styles.toolbarTitle}>{strings.Freelancerstring}</Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
-         <Image source={constants.notificationIcon} style={styles.searchIcon} />
+         <Image source={constants.notificationIcongrey} style={styles.searchIcon} />
         </TouchableOpacity>
          <TouchableOpacity >
          <Image source={constants.searchicon} style={styles.searchIcon} />
@@ -213,10 +236,10 @@ hideTab = () => {
           <View style={styles.empty}>
           </View>
           <TouchableOpacity style={styles.Tab1} onPress={() => this.hideTab()}>
-            <Text style={styles.textFeed}>FEED</Text>
+            <Text style={{color :this.state.isFeed == false ? "white" : colors.theme_orange,textAlign :'center',paddingTop:15,left: -10,width:dimensions.fullWidth/2}}>{strings.FEEDstring}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.Tab3} onPress={() => this.hideTab()}>
-            <Text style={styles.textWhite}>FAVOURITE</Text>
+          <TouchableOpacity style={styles.Tab3} onPress={() => this.hideTab2()}>
+            <Text style={{color :this.state.isFeed == true ? "white" : colors.theme_orange ,textAlign :'center',paddingTop:15,width:dimensions.fullWidth/2}}>{strings.FAVOURITEstring}</Text>
             </TouchableOpacity>
             <View style={styles.empty}>
             </View>
@@ -272,10 +295,10 @@ hideTab = () => {
                                 </View>
                                 <View style={styles.leftSpace} >
                                   <TouchableOpacity onPress={() => this.pressIcon(item, index)}>
-                                    <MyView style={styles.topMargin} hide={!this.state.isFav }> 
+                                    <MyView style={{paddingTop:-30}} hide={!this.state.isFav }> 
                                           <Image source={ constants.heartIconfilled } style={styles.iconHeart}/>
                                   </MyView>
-                                      <MyView style={styles.topMargin} hide={this.state.isFav }> 
+                                      <MyView style={{paddingTop:-30}} hide={this.state.isFav }> 
                                           <Image source={ constants.heartIcon } style={styles.iconHeart}/>
                                     </MyView>
                                   </TouchableOpacity>

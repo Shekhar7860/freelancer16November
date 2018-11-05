@@ -8,7 +8,7 @@ import Loader from './Loader';
 import ImagePicker from "react-native-image-picker";
 import MyView from './MyView';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
-
+import { strings } from '../services/stringsoflanguages';
 export default class UpdateProfile extends Component {
   
   constructor(props){
@@ -443,9 +443,9 @@ export default class UpdateProfile extends Component {
 			<TouchableOpacity  onPress={() => this.goBack()}>
 			<Image source={constants.backicon} style={styles.hamburgerIcon}/>
 			</TouchableOpacity>
-         <Text style={styles.toolbarTitle}> PROFILE</Text>
+         <Text style={styles.toolbarTitle}> {strings.Profile}</Text>
          <TouchableOpacity onPress={() => this.updateProfile()}>
-         <Text style={styles.updateText}>DONE</Text>
+         <Text style={styles.updateText}>{strings.Done}</Text>
         </TouchableOpacity>
       </View>
      
@@ -465,7 +465,7 @@ export default class UpdateProfile extends Component {
         </TouchableOpacity>
       <View style={{padding:10}}>
       <Text style={styles.themetextColor}>
-           User Name
+           {strings.Username}
       </Text>
       <TextInput
             style={styles.postprojectinputprofile}
@@ -480,7 +480,7 @@ export default class UpdateProfile extends Component {
           </View>
           <View style={{padding:10}}>
       <Text style={styles.themetextColor}>
-           Email Address
+           {strings.Emailaddress}
       </Text>
       <TextInput
             style={styles.postprojectinputprofile}
@@ -495,7 +495,7 @@ export default class UpdateProfile extends Component {
           </View>
           <View style={{padding:10}}>
       <Text style={styles.themetextColor}>
-          About Me
+         {strings.AboutMe}
       </Text>
       <TextInput
             style={styles.about}
@@ -512,7 +512,7 @@ export default class UpdateProfile extends Component {
           </View>
           <View style={{padding:10}}>
       <Text style={styles.themetextColor}>
-           User Type
+           {strings.Usertype}
       </Text>
       <TextInput
             style={styles.postprojectinputprofile}
@@ -527,7 +527,7 @@ export default class UpdateProfile extends Component {
           
           <MyView style={{padding:10}} hide={this.state.isFreelancer}>
               <Text style={styles.themetextColor}>
-                  Category
+                  {strings.Category}
               </Text>
               <View  style={styles.categoryTextProfile}>
                   <Text style={styles.dateTextColorProfile} onPress={() => this.openCategory()}>
@@ -537,7 +537,7 @@ export default class UpdateProfile extends Component {
           </MyView>
           <MyView style={{padding:10}} hide={this.state.isFreelancer}>
           <Text style={styles.themetextColor}>
-              Skills
+              {strings.Skills}
           </Text>
           <TextInput
                 style={styles.postprojectinputprofile}
@@ -554,7 +554,7 @@ export default class UpdateProfile extends Component {
           {/* <MyView style={{padding:10}} hide={this.state.ifCV}> */}
               <MyView style={styles.CV} hide={this.state.isFreelancer}>
                   <Text style={styles.themetextColor}>
-                      C.V
+                      {strings.Cv}
                   </Text>
                   <View  style={{flexDirection:'row', width:'95%'}}>
                     <View style={styles.inputWidth}>
@@ -573,7 +573,7 @@ export default class UpdateProfile extends Component {
                 </MyView> 
                <MyView style={styles.proof} hide={this.state.isFreelancer}>
                   <Text style={styles.themetextColor}>
-                      Identity Proof
+                     {strings.IdProf}
                   </Text>
                   <View  style={{flexDirection:'row',  width:'95%'}}>
                     <View style={styles.inputWidth}>

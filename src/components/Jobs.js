@@ -12,7 +12,8 @@ import {
   TextInput, 
   TouchableOpacity,
   Modal,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
@@ -20,6 +21,8 @@ import styles from "../styles/styles";
 import MyView from './MyView';
 import Loader from './Loader';
 import SideMenu from './SideMenu';
+import firebase  from './Config';
+import { strings } from "../services/stringsoflanguages";
 export default class Jobs extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +76,32 @@ export default class Jobs extends Component {
     });
   };
 
+
+ checkLanguage=()=>{
+
+
+  service.getUserData("language").then(
+    keyValue => {
+     if(keyValue == "true")
+     {
+      strings.setLanguage("en");
+    }else{
+      strings.setLanguage("ar");
+    }
+        
+    },
+    error => {
+      console.log(error); //Display error
+    }
+  );
+
+ }
   componentDidMount() {
+    
+    firebase.notifications().onNotification((notification) => {
+      this.notification(notification)
+      this.checkLanguage();
+  });
   setTimeout(() => {
     this.setState ({ loading: false});
     service.getUserData("user").then(
@@ -92,10 +120,17 @@ export default class Jobs extends Component {
     }, 3000)
   }
 
+  
   openDrawer = () => {
     // sidemenu.userData();
     this.props.navigation.openDrawer();
   };
+
+  notification = (val) => {
+    Alert.alert(
+      'Request Accepted Successfully'
+  )
+  }
 
   getFreelancersResponse = () => {
     service.jobs(this.state.userResponse.api_token).then(res => {
@@ -141,7 +176,7 @@ export default class Jobs extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> JOBS </Text>
+         <Text style={styles.toolbarTitle}> {strings.Jobs} </Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity onPress={() => this.goToPostproject()}>
@@ -192,7 +227,7 @@ export default class Jobs extends Component {
                                     <Text >-</Text>
                                   </View>
                                   <View >
-                                    <Text style={styles.date}> {item.budget} </Text>
+                                    <Text style={styles.date}> {item.budget} SAR </Text>
                                   </View>
                                 </View>
                               </View>

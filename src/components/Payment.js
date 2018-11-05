@@ -3,6 +3,7 @@ import {Platform, StyleSheet, TextInput, SafeAreaView, Text, View, Image, ImageB
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import MyView from './MyView';
+import { strings } from '../services/stringsoflanguages';
 export default class Payment extends Component {
  constructor(props){
      super(props);
@@ -45,7 +46,7 @@ export default class Payment extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Payment</Text>
+         <Text style={styles.toolbarTitle}>{strings.Payment}</Text>
          <TouchableOpacity onPress={() => this.searchPage()}>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>

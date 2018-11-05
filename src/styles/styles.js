@@ -96,7 +96,7 @@ toolbarTitle:{
     color:colors.white,
     textAlign:'center',
     flex:1,
-    marginTop: (Platform.OS === 'ios') ? 5 : 0,
+    marginTop: (Platform.OS === 'ios') ? 0 : 0,
     fontSize:20               //Step 3
  },
  updateText:{
@@ -484,7 +484,7 @@ cardContainerSignUp:{
         paddingTop:padding.md
       },
       topMargin:{
-        paddingTop:30
+        paddingTop:30,
       },
       list:{
        
@@ -888,7 +888,7 @@ cardContainerSignUp:{
         margin:10,
         backgroundColor:'#F0F0F0',
         width:'95%',
-        height:150
+        height:300
       },
       jobTitle :{
         fontSize:20, 
@@ -928,13 +928,18 @@ cardContainerSignUp:{
       },
       textWhite:{
         color :'white',
-        textAlign :'left',
-        paddingTop:10
+        textAlign :'center',
+        paddingTop:15,
+        width:dimensions.fullWidth/2,
       },
       textFeed:{
         color :'white',
         textAlign :'center',
-        paddingTop:10
+        paddingTop:15,
+        left: -10,
+        width:dimensions.fullWidth/2
+
+
       },
       topInput:{
         width:'80%',
@@ -955,7 +960,8 @@ cardContainerSignUp:{
         marginLeft : 10 
       },
       listCardWidth : {
-        width: '100%'
+        width: '100%',
+        marginTop: -30
       },
       freelancerlistCardWidth : {
         width: '90%'
@@ -1104,7 +1110,10 @@ cardContainerSignUp:{
     alignItems:align.center
   },
   defaultTextSize:{
-    fontSize:20
+    fontSize:20,
+    alignSelf:"center",
+    paddingTop: 10
+
   },
   bottomViewrequest:{
   height: 50, 
@@ -1293,10 +1302,14 @@ cardContainerSignUp:{
           textWrap2Details:{
             margin :10,
             fontSize:15,
-           color:'#C4C4C4',
+           color:'#a8a8a8',
            textTransform: 'capitalize'
           },
-          
+          textWrap2Details2:{
+            margin :10,
+            fontSize:15,
+           color:'#a8a8a8',
+          },
           //Freelancer Page
           textInRowlist:{
             flexDirection:'row',
@@ -1662,7 +1675,20 @@ createmilestoneinput: {
     alignItems: 'center',
     position: 'absolute',
     bottom: 20
-  }
+  },
+
+  feedbacknputdiscrpation: {
+    marginBottom: 10,
+    marginLeft: 10,
+    marginTop: 10,
+    height: 100,
+    textAlign: 'left',
+    borderColor: "#AEA9A8",
+    borderWidth: 1,
+    padding: 5,
+    color:colors.black,
+    width: "95%"
+    },
   
       
           

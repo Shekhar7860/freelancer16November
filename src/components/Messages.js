@@ -5,6 +5,7 @@ import Service from '../services/Service';
 import MyView from './MyView';
 import Loader from './Loader';
 import CustomToast from './CustomToast';
+import { strings } from '../services/stringsoflanguages';
 export default class Messages extends Component {
  constructor(props){
      super(props);
@@ -22,6 +23,7 @@ export default class Messages extends Component {
   this.setState ({ loading: true});
   setTimeout(() => {
     this.setState ({ loading: false});
+    
     this.setState ({ dummyText: "No Messages Found"});
     }, 2000)
  }
@@ -52,7 +54,7 @@ export default class Messages extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>Messages</Text>
+         <Text style={styles.toolbarTitle}>{strings.Messages}</Text>
          <TouchableOpacity>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>

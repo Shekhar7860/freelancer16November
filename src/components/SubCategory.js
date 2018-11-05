@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, SafeAreaView, FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
-
+import { strings } from '../services/stringsoflanguages';
 export default class SubCategory extends Component {
  constructor(props){
      super(props);
@@ -61,7 +61,7 @@ export default class SubCategory extends Component {
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> Sub Category </Text>
+         <Text style={styles.toolbarTitle}> {strings.Subcategory} </Text>
          <TouchableOpacity>
         </TouchableOpacity>
          <TouchableOpacity>

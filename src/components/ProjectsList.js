@@ -20,6 +20,7 @@ import styles from "../styles/styles";
 import MyView from './MyView';
 import Loader from './Loader';
 import SideMenu from './SideMenu';
+import { strings } from '../services/stringsoflanguages';
 export default class ProjectsList extends Component {
   constructor(props) {
     super(props);
@@ -152,7 +153,7 @@ export default class ProjectsList extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> PROJECTS LIST</Text>
+         <Text style={styles.toolbarTitle}>{strings.Projectlist}</Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity onPress={() => this.goToMilestone()}>
@@ -178,7 +179,7 @@ export default class ProjectsList extends Component {
                     <TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>
                  <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Amount
+                  <Text style={styles.textWrapDetails}> {strings.Amount}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -202,7 +203,7 @@ export default class ProjectsList extends Component {
                   </View> */}
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Description
+                  <Text style={styles.textWrapDetails}> {strings.Description}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -214,7 +215,7 @@ export default class ProjectsList extends Component {
                   </View>
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> FreeLancer Name
+                  <Text style={styles.textWrapDetails}> {strings.Freelancername}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>

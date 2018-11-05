@@ -42,7 +42,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Allo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow to access Library</string>
 	<key>UIAppFonts</key>

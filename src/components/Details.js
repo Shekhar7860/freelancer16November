@@ -8,6 +8,7 @@ import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
 import Home from './Home';
+import { strings } from '../services/stringsoflanguages';
 export default class Details extends Component {
   constructor(props){
     super(props);
@@ -39,7 +40,7 @@ export default class Details extends Component {
         console.log("local", keyValue);
         var parsedData = JSON.parse(keyValue);
         console.log("json", parsedData);
-      //  this.setState({ details: parsedData});
+        this.setState({ details: parsedData});
         this.getDetails(parsedData);
      }, (error) => {
         console.log(error) //Display error
@@ -94,7 +95,7 @@ export default class Details extends Component {
     }
     else
     {
-      service.requestResponse(this.state.userResponse.api_token, "Decline", this.state.details.jobid).then(res => {
+      service.requestResponse(this.state.userResponse.api_token, "Rejected", this.state.details.jobid).then(res => {
         console.log("reslocal", res);
         if(res)
         {
@@ -136,13 +137,13 @@ this.props.navigation.navigate('Create')
           <TouchableOpacity style={styles.commontoolbarButton} onPress={() => this.goBack()}>
           <Image source={constants.backicon} style={styles.commonBackIcon}/>
           </TouchableOpacity>
-          <Text style={styles.toolbarTitle}>Job Details</Text>
+          <Text style={styles.toolbarTitle}>{strings.Jobdetail}</Text>
           <Text style={styles.commontoolbarButton}></Text>
         </View>
         <ScrollView style={styles.detailsContainer}>
        <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Title
+                  <Text style={styles.textWrapDetails}> {strings.Title}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -154,7 +155,7 @@ this.props.navigation.navigate('Create')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Country
+                  <Text style={styles.textWrapDetails}> {strings.Country}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -178,19 +179,19 @@ this.props.navigation.navigate('Create')
          </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Budget
+                  <Text style={styles.textWrapDetails}>{strings.Budget}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.budget}
+                  <Text style={styles.textWrap2Details2}>SAR {this.state.details.budget}
                   </Text>
                   </View>
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}>  Date
+                  <Text style={styles.textWrapDetails}>  {strings.Date}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -214,7 +215,7 @@ this.props.navigation.navigate('Create')
          </View> */}
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Status
+                  <Text style={styles.textWrapDetails}> {strings.Status}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -226,7 +227,7 @@ this.props.navigation.navigate('Create')
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Description
+                  <Text style={styles.textWrapDetails}> {strings.Description}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>

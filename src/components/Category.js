@@ -3,6 +3,7 @@ import {Platform, StyleSheet, SafeAreaView, ScrollView, FlatList, Text, View, Im
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
+import { strings } from '../services/stringsoflanguages';
 export default class CATEGORY extends Component {
  constructor(props){
      super(props);
@@ -69,7 +70,7 @@ else
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>  Category </Text>
+         <Text style={styles.toolbarTitle}>  {strings.Category} </Text>
          <TouchableOpacity>
         </TouchableOpacity>
          <TouchableOpacity>

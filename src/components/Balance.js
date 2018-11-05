@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, SafeAreaView,ScrollView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
+import { strings } from '../services/stringsoflanguages';
 
 export default class Balance extends Component {
  constructor(props){
@@ -34,7 +35,7 @@ export default class Balance extends Component {
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>My Balance</Text>
+         <Text style={styles.toolbarTitle}>{strings.MyBalance}</Text>
          <TouchableOpacity onPress={() => this.searchPage()}>
         <Image source={constants.searchicon} style={styles.searchIcon} />
         </TouchableOpacity>

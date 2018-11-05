@@ -23,6 +23,7 @@ import CustomToast from './CustomToast';
 import Loader from './Loader';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import Moment from 'moment';
+import { strings } from '../services/stringsoflanguages';
 
 export default class Create_milestone extends Component {
   constructor(props) {
@@ -142,7 +143,7 @@ goToList = () => {
         <TouchableOpacity onPress={() => this.goToList()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> CREATE MILESTONE </Text>
+         <Text style={styles.toolbarTitle}>{strings.CreateMilestones}</Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity>
@@ -198,7 +199,7 @@ goToList = () => {
         />
        
       <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.submit()}>
-         <Text style={styles.textStyle}>SUBMIT</Text>
+         <Text style={styles.textStyle}>{strings.Submit}</Text>
          <CustomToast ref = "defaultToastBottom"/>  
       </TouchableOpacity>
       </ScrollView>
