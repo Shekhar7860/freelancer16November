@@ -35,13 +35,6 @@ export default class Settings extends Component {
     };
   }
   componentDidMount() {
-    // if (this.state.check) {
-    //  this.englishTap()
-    // } else {
-    //   this.ArabicTap()
-    // }
-
-
     service.getUserData("language").then(
       keyValue => {
        if(keyValue == "true")

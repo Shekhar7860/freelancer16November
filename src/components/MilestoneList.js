@@ -68,8 +68,6 @@ export default class MilestoneList extends Component {
       }
     );
     service.saveUserData('count', 1);
-  
-    
   }
 
   openDrawer = () => {
@@ -80,19 +78,27 @@ export default class MilestoneList extends Component {
   getMilestoneList = () => {
     service.getMilestoneList(this.state.userResponse.api_token, this.props.navigation.state.params.details.project_id).then(res => {
       console.log("reslocal", res);
-      setTimeout(() => {
-     if (res){
-        this.setState ({ loading: false});
-        if(res.milestone.length ===  0)
-        {
-            this.setState ({ dummyText: "No Milestone Found"});
-        }
-        else
-        {
-        this.setState({ jobs: res.milestone});
-        }
-    }
-    });
+     // this.setState ({ loading: false});
+      if(res.status_code != 400)
+      {
+              setTimeout(() => {
+              if (res){
+                this.setState ({ loading: false});
+                if(res.milestone.length ===  0)
+                {
+                    this.setState ({ dummyText: "No Milestone Found"});
+                }
+                else
+                {
+                this.setState({ jobs: res.milestone});
+                }
+            }
+            });
+      }
+      else
+      {
+        this.refs.defaultToastBottom.ShowToastFunction('An Error Occurred');
+      }
   }, 3000)
   };
 

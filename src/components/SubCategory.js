@@ -73,7 +73,7 @@ export default class SubCategory extends Component {
         <FlatList
               data={this.state.subcategories}
               keyExtractor={(item, index) => index}
-              style={styles.listCardWidth}
+              style={styles.categoryCard }
               extraData={this.state.subcategories}
               renderItem={({ item, index }) => (
                 <View  style={styles.spaceFromTop}>

@@ -198,7 +198,7 @@ addFav = (token,jobId,isFav) =>
   var data = {
     api_token: token,
     job_id : jobId,
-    is_favourite : true
+    isFavourite : isFav
    }
   console.log(data)
  return  fetch(constants.apiUrl + '/favourites/jobs',

@@ -43,10 +43,11 @@ CreateMilestones	:"Create Milestones",
 Homepage	:"Homepage",
 Categories	:"Categories",
 Websites	:"Websites",
+CreateProject	:"CREATE PROJECT",
 
 
 Verificationcode:"VERIFICATION CODE",
-Resentotp:"Resent Otp",
+Resentotp:"Resend OTP",
 Changeno:"Change Number",
 Enterotp:"Enter the four digit code sent to you at",
 
@@ -217,7 +218,8 @@ Searchstring:"بحث",
 FixedPrice : "سعر ثابت",
 Accept : "قبول",
 Reject : "رفض",
-Hirefreelancer : "استئجار المستقل"
+Hirefreelancer : "استئجار المستقل",
+CreateProject	:"خلق المشروع"
 
 
 }

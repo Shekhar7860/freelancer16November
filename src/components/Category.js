@@ -17,7 +17,7 @@ export default class CATEGORY extends Component {
       };
    
  }
- 
+
  componentDidMount() {
   if(this.props.navigation.state.params)
   {
@@ -31,7 +31,8 @@ export default class CATEGORY extends Component {
     }, 3000)
 }
 
-
+ 
+ // selection of categories
 getCategoryResponse = () => {
   service.category().then(res => {
     console.log("cat_response", res);
@@ -82,7 +83,7 @@ else
         <FlatList
               data={this.state.categories}
               keyExtractor={(item, index) => index}
-              style={styles.listCardWidth}
+              style={styles.categoryCard }
               extraData={this.state.categories}
               renderItem={({ item, index }) => (
                 <View  style={styles.spaceFromTop}>
@@ -97,7 +98,6 @@ else
             />
        </View>
        </ScrollView>
-       
        <Loader
               loading={this.state.loading} />
  </SafeAreaView>

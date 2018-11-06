@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback
 } from "react-native";
-
+import { strings } from "../services/stringsoflanguages";
 import styles from "../styles/styles";
 import Constants from "../constants/Constants";
 
@@ -132,8 +132,6 @@ this.props.navigation.navigate('JobDetails')
 }
 
 
-
-
   render() {
     return (
       <SafeAreaView style = { styles.MainContainerProject }>
@@ -141,7 +139,7 @@ this.props.navigation.navigate('JobDetails')
         <TouchableOpacity onPress={() => this.goback()}>
         <Image source={constants.backicon} style={styles.backIcon} />
         </TouchableOpacity>
-         <Text style={styles.toolbarTitle}> CREATE PROJECT </Text>
+         <Text style={styles.toolbarTitle}> {strings.CreateProject} </Text>
          <TouchableOpacity onPress={() => this.goToNotification()}>
         </TouchableOpacity>
          <TouchableOpacity>
@@ -187,10 +185,8 @@ this.props.navigation.navigate('JobDetails')
       <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.submit()}>
          <Text style={styles.textStyle}>SUBMIT</Text>
       </TouchableOpacity>
-      
        <Loader
           loading={this.state.loading} /> 
-       
    </SafeAreaView>
     );
   }

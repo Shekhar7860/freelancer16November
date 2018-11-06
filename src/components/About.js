@@ -1,3 +1,4 @@
+// About Us Page
 import React, { Component } from "react";
 import {
   Platform,
@@ -24,7 +25,9 @@ export default class About extends Component {
       userData: { picture_large: { data: {} } }
     };
   }
+
   componentDidMount() {}
+
   openDrawer = () => {
     this.props.navigation.openDrawer();
   };

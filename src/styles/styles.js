@@ -963,6 +963,9 @@ cardContainerSignUp:{
         width: '100%',
         marginTop: -30
       },
+     categoryCard : {
+        width: '100%'
+      },
       freelancerlistCardWidth : {
         width: '90%'
         
