@@ -79,7 +79,7 @@ logOut = () =>{
 
   service.getUserData("language").then(
     keyValue => {
-     if(keyValue == true)
+     if(keyValue == "true")
      {
 
 
@@ -404,7 +404,7 @@ goToFeedbackPage = () => {
    const GoogleName = <Text style={styles.userName}>{this.state.userGoogleData.name}</Text>
    const DefaultName = <Text style={styles.defaultUserName}>{this.state.name}</Text>
    const ProfileName = <Text style={styles.defaultUserName}>Client</Text>
-   const ProfileName2 = <Text style={styles.defaultUserName}>Freelancer</Text>
+   const ProfileName2 = <Text style={styles.defaultUserName}>{strings.Freelancerstring}</Text>
    
       var profile;
       if (this.state.personData.usertype == "1") 

@@ -102,9 +102,12 @@ Freelancername:"Freelancer Name",
 FEEDstring : "FEED",
 FAVOURITEstring : "FAVOURITE",
 Freelancerstring : "Freelancer",
-NoRequestFound : "No Request Found"
-
-
+NoRequestFound : "No Request Found",
+Searchstring:"Search",
+FixedPrice : "Fixed Price",
+Accept : "Accept",
+Reject : "Reject",
+Hirefreelancer : "Hire freelancer"
 
   },
 
@@ -209,7 +212,12 @@ Freelancername:"اسم حر",
 FEEDstring : "تغذية",
 FAVOURITEstring : "مفضل",
 Freelancerstring : "مستقل",
-NoRequestFound : "لم يتم العثور على طلب"
+NoRequestFound : "لم يتم العثور على طلب",
+Searchstring:"بحث",
+FixedPrice : "سعر ثابت",
+Accept : "قبول",
+Reject : "رفض",
+Hirefreelancer : "استئجار المستقل"
 
 
 }

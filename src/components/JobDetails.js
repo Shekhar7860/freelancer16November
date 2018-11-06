@@ -38,7 +38,7 @@ export default class JobDetails extends Component {
     {
       if(this.props.navigation.state.params.details.details.request_status == "Accepted")
       {
-        this.setState({ hireText: "Hire Freelancer"})
+        this.setState({ hireText: strings.Hirefreelancer})
       }
       else if(this.props.navigation.state.params.details.details.request_status == "Hired")
       {

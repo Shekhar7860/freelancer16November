@@ -264,7 +264,7 @@ hideTab2=()=>{
                         </View>
                         <View style={styles.textInRow} > 
                           <View >
-                              <Text style={styles.priceText}>Fixed Price</Text>
+                              <Text style={styles.priceText}>{strings.FixedPrice}</Text>
                             </View>
                             <View style={styles.contPadding}>
                               <Text >-</Text>

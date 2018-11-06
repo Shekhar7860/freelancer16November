@@ -248,7 +248,7 @@ this.props.navigation.navigate('Create')
               </View>
               <View style={styles.buttonWidthRequest}>
               <TouchableOpacity style={styles.buttonBackgroundrequest} onPress={() => this.requestAcceptReject('a')}>
-		          <Text style={styles.buttonText}>Accept</Text>
+		          <Text style={styles.buttonText}>{strings.Accept}</Text>
 		           </TouchableOpacity>
                {/* <Button  style={styles.buttonColor} title="Accept" onPress={() => this.requestAcceptReject('a')}></Button> */}
               </View>
@@ -256,7 +256,7 @@ this.props.navigation.navigate('Create')
               </View>
               <View style={styles.buttonWidthRequest}>
               <TouchableOpacity style={styles.buttonBackgroundrequest} onPress={() => this.requestAcceptReject('r')}>
-		          <Text style={styles.buttonText}>Reject</Text>
+		          <Text style={styles.buttonText}>{strings.Reject}</Text>
 		           </TouchableOpacity>
                 {/* <Button  style={styles.buttonColor} title="Reject" onPress={() => this.requestAcceptReject('r')}></Button> */}
               </View>
