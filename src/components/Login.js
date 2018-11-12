@@ -5,6 +5,7 @@ import Service from '../services/Service';
 import Constants from '../constants/Constants';
 import CustomToast from './CustomToast';
 import Loader from './Loader';
+import strings from '../services/stringsoflanguages';
 
 
 export default class Login extends Component {
@@ -137,7 +138,7 @@ export default class Login extends Component {
                     <View style={styles.topSpace}>
                     <View style={styles.rowAlign}>
                     <Image source={constants.phoneIcon} style={styles.inputIcon}/>
-                    <TextInput style={styles.textInputWidth} placeholder="Mobile Number" value={this.state.mobile} onChangeText={(text)=>
+                    <TextInput style={styles.textInputWidth} placeholder={strings.Mobilenumber} value={this.state.mobile} onChangeText={(text)=>
                     this.GetValueFunction(text)}  keyboardType='numeric' maxLength={10}></TextInput>
                     </View>
                     </View>

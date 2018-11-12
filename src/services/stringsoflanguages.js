@@ -108,14 +108,23 @@ Searchstring:"Search",
 FixedPrice : "Fixed Price",
 Accept : "Accept",
 Reject : "Reject",
-Hirefreelancer : "Hire freelancer"
-
+Hirefreelancer : "Hire freelancer",
+EnterMobileNumber : "Enter Mobile Number",
+EnterValidMobileNumber: "Enter Valid Mobile Number",
+OTPSentSuccessfully:"OTP Sent Successfully",
+NetworkError:"Network Error",
+GoToProjects:"Go To Projects",
   },
 
 
 
   
 ar:{
+  GoToProjects:"الذهاب إلى المشاريع",
+  NetworkError:"خطأ في الشبكة",
+  OTPSentSuccessfully:"OTP تم إرساله بنجاح",
+  EnterValidMobileNumber: "ادخل رقم هاتف خلوي ساري المفعول",
+  EnterMobileNumber : "أدخل رقم الجوال",
   Login	:" تسجيل الدخول",
   Signup	:"سجل",
   HireFreelancer	:"استئجار لحسابهم الخاص",

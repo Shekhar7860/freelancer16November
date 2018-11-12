@@ -101,7 +101,24 @@ export default class JobDetails extends Component {
    }, 1000)
    }
    
-  
+  changeTextToArabic=(textString)=>{
+
+    if (textString == "Go To Projects") {
+      return strings.GoToProjects;
+    }
+
+    if (textString == "Find Freelancer") {
+      
+      return strings.FindFreelancer;
+
+    }
+
+    if (textString == "Hire Freelancer") {
+      
+      return strings.HireFreelancer;
+
+    }
+  }
   render() {
     console.log(this.props.navigation.state.params.details)
     return (
@@ -182,8 +199,7 @@ export default class JobDetails extends Component {
                   <View style={styles.colon}><Text> :</Text>
                   </View>
                   <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.details.skills}
-                  </Text>
+                  <Text style={styles.textWrap2Details}>{this.state.details.skills}           </Text>
                   </View>
          </View>
          <View style={styles.rowAlignSideMenuRequest}>
@@ -232,7 +248,7 @@ export default class JobDetails extends Component {
      
      <MyView style = { styles.MainContainer } hide={this.state.hired}>
       <TouchableOpacity style={styles.bottomViewDetails} onPress={() => this.goToFreelancerPage(this.state.hireText)}>
-         <Text style={styles.textStyle}>{this.state.hireText}</Text>
+         <Text style={styles.textStyle}>{this.changeTextToArabic(this.state.hireText)}</Text>
       </TouchableOpacity>
       </MyView>
       

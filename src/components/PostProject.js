@@ -87,6 +87,14 @@ export default class PostProject extends Component {
       this.setState ({ title: this.props.navigation.state.params.category.inputData.title});
       this.setState ({ description: this.props.navigation.state.params.category.inputData.description});
       this.setState ({ selectedCity: this.props.navigation.state.params.category.inputData.selectedCity});
+      this.setState ({ budget: this.props.navigation.state.params.category.inputData.budget});
+      this.setState ({ startDateText: this.props.navigation.state.params.category.inputData.startdate});
+      this.setState ({ endDateText: this.props.navigation.state.params.category.inputData.enddate});
+      this.setState ({ skills: this.props.navigation.state.params.category.inputData.skills});
+
+
+
+
     }
       service.getUserData("user").then(
         keyValue => {
@@ -122,7 +130,11 @@ export default class PostProject extends Component {
         "title" :this.state.title,
         "description" : this.state.description,
         "selectedCity" : this.state.selectedCity,
-        "pageName" : 'post'
+        "pageName" : 'post',
+        "budget": this.state.budget,
+        "startdate":this.state.startDateText,
+        "enddate":this.state.endDateText,
+        "skills":this.state.skills
       }
       this.props.navigation.navigate("Cat",  { page: projectData });
     }
@@ -494,7 +506,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-           // value={this.state.title}
+            value={this.state.title}
           />
 
           <Text style={styles.projectInput}>
@@ -503,7 +515,8 @@ this.props.navigation.navigate('Jobs')
          <View style={styles.dropDown}
         >
          <Dropdown
-        label=''
+        label={this.state.selectedCity}
+        labelFontSize={-10}
         data={data}
         valueExtractor={({value})=> value}
         onChangeText={(value)=>{this.onChangeTextPress( value)}}
@@ -550,7 +563,7 @@ this.props.navigation.navigate('Jobs')
             autoCapitalize="none"
             returnKeyType='done'
             keyboardType="numeric"
-            // value={this.state.budget}
+             value={this.state.budget}
           />
           
           <Text style={styles.projectInput}>
@@ -579,7 +592,7 @@ this.props.navigation.navigate('Jobs')
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
             returnKeyType='done'
-           // value={this.state.skills}
+            value={this.state.skills}
           />
         
           <Text style={styles.projectInput}>
@@ -595,7 +608,7 @@ this.props.navigation.navigate('Jobs')
             returnKeyType='done'
             multiline={true}
             numberOfLines={4}
-            //value={this.state.description}
+            value={this.state.description}
           />
           
       

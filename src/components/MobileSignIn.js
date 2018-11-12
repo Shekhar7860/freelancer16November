@@ -56,10 +56,10 @@ import { strings } from '../services/stringsoflanguages';
   {
       if(this.state.mobile.trim() === "")
       {
-        this.refs.defaultToastBottom.ShowToastFunction('Please Enter Mobile');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.EnterMobileNumber);
       }
       else if (this.state.mobileLength != 10) {
-        this.refs.defaultToastBottom.ShowToastFunction('Please enter Valid Mobile Number');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.EnterValidMobileNumber);
       } 
       else
       {
@@ -77,7 +77,7 @@ import { strings } from '../services/stringsoflanguages';
               {
                   if (res.usertype == "0" )
                {
-                    this.refs.defaultToastBottom.ShowToastFunction("Otp Send Successfully");
+                    this.refs.defaultToastBottom.ShowToastFunction(strings.OTPSentSuccessfully);
                     var personData = {
                     mobile:this.state.mobile
                   }
@@ -90,13 +90,13 @@ import { strings } from '../services/stringsoflanguages';
                   type : res.usertype
                 }
                 console.log(personData)
-                this.refs.defaultToastBottom.ShowToastFunction("Otp Send Successfully");
+                this.refs.defaultToastBottom.ShowToastFunction(strings.OTPSentSuccessfully);
                 this.openOtp(personData);
               }
               }
               else 
               {
-                this.refs.defaultToastBottom.ShowToastFunction("Network Error"); 
+                this.refs.defaultToastBottom.ShowToastFunction(strings.NetworkError); 
               }
             
             }
@@ -104,7 +104,7 @@ import { strings } from '../services/stringsoflanguages';
         }
       else
       {
-        this.refs.defaultToastBottom.ShowToastFunction("Network Error"); 
+        this.refs.defaultToastBottom.ShowToastFunction(strings.NetworkError); 
       }
     })
 
@@ -152,9 +152,13 @@ notification = (val) => {
           </TouchableOpacity>
         </View>
         <View style={styles.welcomeHeadlineSignUp}>
+        <TouchableOpacity onPress={() => this.goBack()}><Image
+            source={require("../images/top_back.png")}
+            style={{marginLeft:8,top:-20,height:20,width:28}}
+          /></TouchableOpacity>
           <Image
             source={require("../images/logosmal.png")}
-            style={{ padding: 2 }}
+            style={{alignSelf:"center" }}
           />
         </View>
       </View>
@@ -169,7 +173,7 @@ notification = (val) => {
                 style={styles.mobilesigntextInputWidth}
                 placeholderTextColor='#5F6C78'
               //  placeholder={strings.Signin}
-                placeholder="Mobile Number"
+                placeholder={strings.Mobilenumber}
                 value={this.state.mobile}
                 onChangeText={text => this.GetValueFunction(text)}
                 keyboardType="numeric"

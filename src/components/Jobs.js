@@ -157,10 +157,16 @@ export default class Jobs extends Component {
 
 
   goToPostproject = () => {
+    var projectData = {
+      "startdate":"Start Date",
+      "enddate":"End Date",
+      "selectedCity" :"Select City",
+
+    }
 
     var userInputData =  {
       selectedCategory : "Select Category",
-      inputData : ""
+      inputData : projectData
     }
      this.props.navigation.navigate('PostProject',  { category: userInputData }) 
   };

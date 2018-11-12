@@ -593,6 +593,11 @@ export default class UpdateProfile extends Component {
             {/* </MyView>  */}
       </KeyboardAvoidingView>
       </ScrollView>
+      {/* <View style={styles.doneCenter}>
+      <TouchableOpacity style={styles.bottomViewDetails}  onPress={() => this.updateProfile()}>
+         <Text style={styles.textStyle}>DONE</Text>
+      </TouchableOpacity>
+      </View> */}
       <View style={styles.toastCenter}>
 	    <CustomToast ref = "defaultToastBottom"/>
       </View>

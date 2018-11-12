@@ -201,7 +201,7 @@ addFav = (token,jobId,isFav) =>
     isFavourite : isFav
    }
   console.log(data)
- return  fetch(constants.apiUrl + '/favourites/jobs',
+ return  fetch(constants.apiUrl + '/is-favourite',
     {
       method: "POST",
       headers: {

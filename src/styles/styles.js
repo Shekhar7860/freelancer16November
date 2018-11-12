@@ -546,8 +546,8 @@ cardContainerSignUp:{
 		  paddingTop:200
     },
     welcomeHeadlineSignUp:{
-		  alignItems:align.center,
-		  marginTop:0
+      marginTop:-10,
+      flexDirection:"column"
 	  },
 	   accountHeadline:{
 		  flex:1,
@@ -1166,6 +1166,12 @@ cardContainerSignUp:{
   {
    flex: 1,
    paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0
+  },
+  doneCenter:
+  {
+   flex: 1,
+   paddingTop: ( Platform.OS === 'ios' ) ? 20 : 0,
+   alignItems:'center'
   },
   postprojectinputprofile: {
     height: 40,
