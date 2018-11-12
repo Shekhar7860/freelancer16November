@@ -83,8 +83,9 @@ export default class ProjectsList extends Component {
   }
 
   openDrawer = () => {
+     // this.props.navigation.goBack();
     // sidemenu.userData();
-    this.props.navigation.openDrawer();
+   this.props.navigation.openDrawer();
   };
 
   getMilestoneList = () => {
@@ -175,8 +176,7 @@ export default class ProjectsList extends Component {
         <View style={styles.listCenter}>
         <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
         
-                <View  style={styles.spaceFromTop}>
-                    <TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>
+                <View  style={styles.listCard}>
                  <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> {strings.Amount}
@@ -189,18 +189,8 @@ export default class ProjectsList extends Component {
                   </Text>
                   </View>
                   </View>
-                  {/* <View style={styles.rowAlignSideMenuRequest}>
-                  <View> 
-                  <Text style={styles.textWrapDetails}> Due Date
-                  </Text>
-                  </View>
-                  <View style={styles.colon}><Text> :</Text>
-                  </View>
-                  <View > 
-                  <Text style={styles.textWrap2Details}> {this.state.jobs.end_date}
-                  </Text>
-                  </View>
-                  </View> */}
+            
+            
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
                   <Text style={styles.textWrapDetails}> {strings.Description}
@@ -213,7 +203,7 @@ export default class ProjectsList extends Component {
                   </Text>
                   </View>
                   </View>
-                  <View style={styles.rowAlignSideMenuRequest}>
+                  <View style={{flexDirection:"row",marginTop:-15}}>
                   <View> 
                   <Text style={styles.textWrapDetails}> {strings.Freelancername}
                   </Text>
@@ -225,34 +215,6 @@ export default class ProjectsList extends Component {
                   </Text>
                   </View>
                   </View>
-                     
-                         
-                        {/* <View style={styles.paddingAbove}>
-                            <View style={styles.textInRow2}> 
-                              <View style={styles.skillWidth}>
-                                  <Text style={styles.skillText}>Skill Level</Text>
-                                </View>
-                                <View style={styles.budgetWidth}>
-                                  <Text style={styles.skillText}>{item.budget}</Text>
-                                </View>
-                                <View style={styles.leftSpace}>
-                                  <Text style={styles.date}></Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.paddingAbove}>
-                            <View style={styles.textInRow2}> 
-                              <View style={styles.skillWidth}>
-                                  <Text style={styles.skillText}>Expert</Text>
-                                </View>
-                                <View style={styles.budgetWidth}>
-                                  <Text style={styles.skillText}>1000</Text>
-                                </View>
-                                <View style={styles.leftSpace}>
-                                </View>
-                            </View>
-                        </View> */}
-                        </TouchableOpacity>
                 </View>
              
         </View>
@@ -279,3 +241,4 @@ export default class ProjectsList extends Component {
     );
   }
 }
+//<TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>

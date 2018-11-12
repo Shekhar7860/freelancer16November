@@ -182,7 +182,7 @@ export default class UpdateProfile extends Component {
                         {
                           setTimeout(() => {
                             Alert.alert(
-                              'Profile Updated Successfully'
+                              strings.ProfileUpdatedSuccessfully
                             )
                           service.saveUserData('user', res.user);
                           this.goToHome(res);
@@ -209,7 +209,7 @@ export default class UpdateProfile extends Component {
                           setTimeout(() => {
                         //  this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
                             Alert.alert(
-                              'Profile Updated Successfully'
+                              strings.ProfileUpdatedSuccessfully
                           )
                           service.saveUserData('user', res.user);
                           this.goToHome(res);
@@ -229,7 +229,7 @@ export default class UpdateProfile extends Component {
           else
           {
             Alert.alert(
-              'Please enter valid email address'
+             strings.Pleaseentervalidemail
           )
           }
 
@@ -237,7 +237,7 @@ export default class UpdateProfile extends Component {
           else
           {
             Alert.alert(
-              'Please fill all details'
+              strings.Pleasefillalldetails
           )
           }
     }
@@ -278,7 +278,7 @@ export default class UpdateProfile extends Component {
                         {
                           setTimeout(() => {
                             Alert.alert(
-                              'Profile Updated Successfully'
+                              strings.ProfileUpdatedSuccessfully
                             )
                           service.saveUserData('user', res.user);
                           this.goToHome(res);
@@ -307,7 +307,7 @@ export default class UpdateProfile extends Component {
                           setTimeout(() => {
                         //  this.refs.defaultToastBottom.ShowToastFunction('Profile Updated Successfully');
                             Alert.alert(
-                              'Profile Updated Successfully'
+                              strings.ProfileUpdatedSuccessfully
                           )
                           service.saveUserData('user', res.user);
                           this.goToHome(res);
@@ -331,22 +331,22 @@ export default class UpdateProfile extends Component {
           else
           {
             Alert.alert(
-              'Please enter valid email address'
-          )
+              strings.Pleaseentervalidemail
+           )
           }
 
           }
           else
           {
             Alert.alert(
-              'Please fill all details'
+              strings.Pleasefillalldetails
           )
           }
      }
        else
       {
       Alert.alert(
-        'Please select valid file format'
+        strings.Pleaseselectvalidfileformat
        )
      }
          
@@ -470,7 +470,7 @@ export default class UpdateProfile extends Component {
       <TextInput
             style={styles.postprojectinputprofile}
             underlineColorAndroid="transparent"
-            placeholder="Name"
+            placeholder={strings.Name}
             onChangeText={(text)=>this.setState({ name:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -485,7 +485,7 @@ export default class UpdateProfile extends Component {
       <TextInput
             style={styles.postprojectinputprofile}
             underlineColorAndroid="transparent"
-            placeholder="Email"
+            placeholder={strings.Email}
             onChangeText={(text)=>this.setState({ email:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -500,7 +500,7 @@ export default class UpdateProfile extends Component {
       <TextInput
             style={styles.about}
             underlineColorAndroid="transparent"
-            placeholder="About Me"
+            placeholder={strings.AboutMe}
             onChangeText={(text)=>this.setState({ about:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"

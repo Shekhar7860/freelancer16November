@@ -27,7 +27,8 @@ itemFav : false,
 modalVisible: false,
 noText : true,
 dummyText : "",
-favStatus : false
+favStatus : false,
+Item : 0
 };
 
 constructor(props){
@@ -57,14 +58,15 @@ console.log(error) //Display error
 
 pressIcon = (val, index) => {
 console.log(val);
-if(val.is_favourite === 0 ){
+if(val.isFavourite === "0" ){
 this.setState({ itemFav : true});
+this.setState({ Item : 1});
 }
-
 this.setState({favStatus:!this.state.favStatus})
-
-service.addFav(this.state.userResponse.api_token, val.jobid, true).then((res) => {
+console.log(this.state.Item)
+service.addFav(this.state.userResponse.api_token, val.jobid, this.state.Item).then((res) => {
 console.log("checkres", res);
+
 newres = JSON.stringify(res);
 json = JSON.parse(newres);
 if(json.status_code == 200)
@@ -241,8 +243,9 @@ style={styles.container}>
 <View style={styles.empty}>
 </View>
 </View>
-<ScrollView>
+
 <MyView hide={!this.state.isFeed}>
+<ScrollView>
 <MyView style={styles.noTextContainer} hide={this.state.noText}>
 <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
 </MyView>
@@ -260,7 +263,7 @@ renderItem={({ item, index }) => (
 </View>
 <View style={styles.textInRow} > 
 <View >
-<Text style={styles.priceText}>Fixed Price</Text>
+<Text style={styles.priceText}>{strings.FixedPrice}</Text>
 </View>
 <View style={styles.contPadding}>
 <Text >-</Text>
@@ -289,54 +292,48 @@ renderItem={({ item, index }) => (
 </View>
 )}
 />
-</MyView>
 </ScrollView>
-<ScrollView>
+</MyView>
+
+
 <MyView hide={!this.state.isFav}>
+<ScrollView>
 <FlatList
 data={this.state.favourites.request_list}
 keyExtractor={(item, index) => index}
-extraData={this.state.favourites.request_list}
+style={{marginTop :0}}
+data={this.state.favourites.request_list}
 renderItem={({ item, index }) => (
 <View style={styles.spaceFromTop}>
 <TouchableOpacity style={styles.listCard} onPress={() => this.openDetails(item)}>
-<View style={styles.textInRow}> 
+<View style={styles.textInRow} > 
 <Text style={styles.textWrap}> {item.title} 
 </Text>
 </View>
-<View style={styles.textInRow}> 
+<View style={styles.textInRow} > 
 <View >
-<Text style={styles.priceText}>Fixed Price</Text>
+<Text style={styles.priceText}>{strings.FixedPrice}</Text>
 </View>
 <View style={styles.contPadding}>
 <Text >-</Text>
 </View>
 <View >
-<Text style={styles.date}>{item.start_date} </Text>
+<Text style={styles.date}>{item.budget} </Text>
 </View>
 </View>
 <View style={styles.paddingAbove}>
-<View style={styles.textInRow2}> 
-<View style={styles.skillWidth}>
-<Text style={styles.skillText}>Skill Level</Text>
-</View>
-<View style={styles.budgetWidth}>
-<Text style={styles.skillText}>{item.budget}</Text>
-</View>
-<View style={styles.leftSpace}>
-<Text style={styles.date}></Text>
-</View>
-</View>
 </View>
 <View style={styles.paddingAbove}>
 <View style={styles.textInRow2}> 
-<View style={styles.skillWidth}>
-<Text style={styles.skillText}>Expert</Text>
+<View style={styles.skillWidth} >
+<Text style={styles.skillText}></Text>
 </View>
 <View style={styles.budgetWidth}>
-<Text style={styles.skillText}>1000</Text>
 </View>
-<View style={styles.leftSpace}>
+<View style={styles.leftSpace} >
+<TouchableOpacity onPress={() => this.pressIcon(item, index)}>
+<Image source={ item.isFavourite == 0 ? constants.heartIcon : constants.heartIconfilled} style={styles.iconHeart}/>
+</TouchableOpacity>
 </View>
 </View>
 </View>
@@ -344,34 +341,12 @@ renderItem={({ item, index }) => (
 </View>
 )}
 />
-</MyView>
 </ScrollView>
+</MyView>
+
 <CustomToast ref = "defaultToastBottom"/> 
 <Loader
 loading={this.state.loading} />
-
-<Modal
-transparent={true}
-animationType={'none'}
-visible={this.state.modalVisible}
-onRequestClose={() => {console.log('close modal')}}>
-<View style={styles.homemodalBackground}>
-<View style={styles.homeModalStyle}>
-<View style={styles.modalToolbar}>
-<TouchableOpacity style={styles.commontoolbarButton} >
-</TouchableOpacity>
-<Text style={styles.modalTitle}>Modal</Text>
-<TouchableOpacity style={styles.commontoolbarButton} onPress={() => {
-this.setModalVisible(!this.state.modalVisible);
-}}>
-<Image source={constants.closeIcon} style={styles.commonBackIcon}/>
-</TouchableOpacity>
-</View>
-<Text>About Us</Text>
-<Text>Know About the Application</Text>
-</View>
-</View>
-</Modal> 
 </SafeAreaView>
 );
 }

@@ -139,7 +139,7 @@ export default class FindFreelancer extends Component {
               <Image source={constants.searchicon} style={styles.newsearchIcon} />
               <View style={styles.empty}>
               </View>
-            <TextInput placeholder="Search"  placeholderTextColor="#a2a2a2" style={styles.searchfieldInput} onChangeText={text => this.searchFilterFunction(text)}/>
+            <TextInput placeholder={strings.Searchstring}  placeholderTextColor="#a2a2a2" style={styles.searchfieldInput} onChangeText={text => this.searchFilterFunction(text)}/>
           </View>
       </MyView>
       </View>

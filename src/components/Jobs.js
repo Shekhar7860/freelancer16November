@@ -97,10 +97,11 @@ export default class Jobs extends Component {
 
  }
   componentDidMount() {
-    
+    console.log("Yaha pe aaja bhai");
+    this.checkLanguage();
+
     firebase.notifications().onNotification((notification) => {
       this.notification(notification)
-      this.checkLanguage();
   });
   setTimeout(() => {
     this.setState ({ loading: false});

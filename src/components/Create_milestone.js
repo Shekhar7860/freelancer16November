@@ -76,13 +76,13 @@ export default class Create_milestone extends Component {
   {
       if(this.state.amount.trim() === "")
       {
-        this.refs.defaultToastBottom.ShowToastFunction('Please Enter Amount');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseEnterAmount);
       }
       else if (this.state.startDateText.trim() === ""||this.state.startDateText=="Due Date") {
-        this.refs.defaultToastBottom.ShowToastFunction('Please enter valid Due Date');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseentervalidDueDate);
       } 
       else if (this.state.discripation.trim() === "") {
-        this.refs.defaultToastBottom.ShowToastFunction('Please enter Discripation');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseenterDescription);
       } 
       else
     {
@@ -99,12 +99,12 @@ export default class Create_milestone extends Component {
               {
               if (res.status == "success" )
               {
-                this.refs.defaultToastBottom.ShowToastFunction("Milestone Created Successfully"); 
+                this.refs.defaultToastBottom.ShowToastFunction(strings.MilestoneCreatedSuccessfully); 
                 this.goToMilestone(res); 
               }
               else 
               {
-                this.refs.defaultToastBottom.ShowToastFunction("Network Error"); 
+                this.refs.defaultToastBottom.ShowToastFunction(strings.NetworkError); 
               }
             
             }
@@ -112,7 +112,7 @@ export default class Create_milestone extends Component {
         }
       else
       {
-        this.refs.defaultToastBottom.ShowToastFunction("Network Error"); 
+        this.refs.defaultToastBottom.ShowToastFunction(strings.NetworkError); 
       }
     })
 
@@ -134,6 +134,15 @@ goToList = () => {
 }
 
 
+changeTextStartDate=(textString)=>{
+
+  if (textString == "Due Date") {
+    return strings.DueDate;
+  }else{
+
+    return textString;
+  }
+}
 
 
   render() {
@@ -157,7 +166,7 @@ goToList = () => {
             style={styles.Createmilestoneinput}
             underlineColorAndroid="transparent"
             
-            placeholder="Amount"
+            placeholder={strings.Amount}
             onChangeText={(text)=>this.setState({ amount:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -170,7 +179,7 @@ goToList = () => {
           <View style={{ flexDirection: "row" }}>
             <View style={{ width: "100%" }}>
                   <TouchableOpacity onPress={this._showDateTimePicker} style={styles.postprojectinput}>
-                  <Text style={styles.dateTextColor}>{this.state.startDateText}</Text>
+                  <Text style={styles.dateTextColor}>{this.changeTextStartDate(this.state.startDateText)}</Text>
                 </TouchableOpacity>
             </View>
             
@@ -182,7 +191,7 @@ goToList = () => {
           <TextInput
             style={styles.createmilestoneinputdiscrpation}
             underlineColorAndroid="transparent"
-            placeholder="Descripation"
+            placeholder={strings.Description}
             text
             onChangeText={(text)=>this.setState({ discripation:text})}
             placeholderTextColor="#AEA9A8"

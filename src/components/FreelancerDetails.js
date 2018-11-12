@@ -45,12 +45,12 @@ export default class FreelancerDetails extends Component {
       console.log("checkres", res);
       if(res.status == "success")
       {
-        this.refs.defaultToastBottom.ShowToastFunction("Request Send Successfully");
+        this.refs.defaultToastBottom.ShowToastFunction(strings.RequestSendSuccessfully);
         this.goToHome();
       }
       else 
       {
-        this.refs.defaultToastBottom.ShowToastFunction("Already Sent Request"); 
+        this.refs.defaultToastBottom.ShowToastFunction(strings.AlreadySentRequest); 
       }
     })
     this.setState ({ loading: false});

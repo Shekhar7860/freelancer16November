@@ -200,7 +200,7 @@ export default class PostProject extends Component {
             {
             // this.refs.defaultToastBottom.ShowToastFunction('Job Added Successfully');
               Alert.alert(
-                'Job Added Successfully'
+                strings.JobAddedSuccessfully
               )
               this.openProject();
             }
@@ -208,14 +208,14 @@ export default class PostProject extends Component {
             {
               // this.refs.defaultToastBottom.ShowToastFunction('An Error Occured');
               Alert.alert(
-                'An Error Occured'
+                strings.AnErrorOccured
               )
             }
           }
         else
           {
             Alert.alert(
-              'Network error'
+              strings.NetworkError
             )
           // this.refs.defaultToastBottom.ShowToastFunction('Network error');
         }
@@ -225,7 +225,7 @@ export default class PostProject extends Component {
       else
       {
         Alert.alert(
-          'Invalid End Date'
+          strings.Fillallrequireddetails
         )
       // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
       }
@@ -246,7 +246,47 @@ this.props.navigation.navigate('Jobs')
 }, 1000)
 }
 
+changeTextToArabic=(textString)=>{
 
+  if (textString == "Select City") {
+    return strings.SelectCitystring;
+  }else{
+
+    return textString;
+  }
+
+}
+
+changeTextToArabicCategory=(textString)=>{
+
+  if (textString == "Select Category") {
+    return strings.SelectCategorystring;
+  }else{
+
+    return textString;
+  }
+}
+
+changeTextStartDate=(textString)=>{
+
+  if (textString == "Start Date") {
+    return strings.StartDate;
+  }else{
+
+    return textString;
+  }
+}
+
+
+changeTextEndDate=(textString)=>{
+
+  if (textString == "End Date") {
+    return strings.EndDate;
+  }else{
+
+    return textString;
+  }
+}
   render() {
    
     let data = [{
@@ -501,7 +541,7 @@ this.props.navigation.navigate('Jobs')
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Title"
+            placeholder={strings.Title}
             onChangeText={(text)=>this.setState({ title:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -515,7 +555,7 @@ this.props.navigation.navigate('Jobs')
          <View style={styles.dropDown}
         >
          <Dropdown
-        label={this.state.selectedCity}
+        label={this.changeTextToArabic(this.state.selectedCity)}
         labelFontSize={-10}
         data={data}
         valueExtractor={({value})=> value}
@@ -547,7 +587,7 @@ this.props.navigation.navigate('Jobs')
                 </Text>
                 <TouchableOpacity  style={styles.dropDown2} onPress={() => this.openCategory()}>
                     <Text style={styles.dateTextColorProfile} >
-                  {this.state.category}
+                  {this.changeTextToArabicCategory(this.state.category)}
                     </Text>
                 </TouchableOpacity>
             
@@ -557,7 +597,7 @@ this.props.navigation.navigate('Jobs')
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Enter amount"
+            placeholder={strings.Enteramount}
             onChangeText={(text)=>this.setState({ budget:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -572,12 +612,12 @@ this.props.navigation.navigate('Jobs')
           <View style={{ flexDirection: "row", marginRight:'3%' }}>
             <View style={{ width: "49%" }}>
                   <TouchableOpacity onPress={this._showDateTimePicker} style={styles.postprojectinput}>
-                  <Text style={styles.dateTextColor}>{this.state.startDateText}</Text>
+                  <Text style={styles.dateTextColor}>{this.changeTextStartDate(this.state.startDateText) }</Text>
                 </TouchableOpacity>
             </View>
             <View style={{ width: "49%" }}>
                 <TouchableOpacity onPress={this._showDateTimePicker2} style={styles.postprojectinput}>
-                  <Text style={styles.dateTextColor}>{this.state.endDateText}</Text>
+                  <Text style={styles.dateTextColor}>{this.changeTextEndDate(this.state.endDateText)}</Text>
                 </TouchableOpacity>
             </View>
           </View>
@@ -587,7 +627,7 @@ this.props.navigation.navigate('Jobs')
           <TextInput
             style={styles.postprojectinput}
             underlineColorAndroid="transparent"
-            placeholder="Enter skills"
+            placeholder={strings.Enterskills}
             onChangeText={(text)=>this.setState({ skills:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -601,7 +641,7 @@ this.props.navigation.navigate('Jobs')
           <TextInput
             style={styles.textArea}
             underlineColorAndroid="transparent"
-            placeholder="Description"
+            placeholder={strings.Description}
             onChangeText={(text)=>this.setState({ description:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"

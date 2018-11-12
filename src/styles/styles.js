@@ -1152,7 +1152,7 @@ cardContainerSignUp:{
   },
   dateTextColor :{
     color : '#AEA9A8',
-    padding :8
+    padding :4
   },
   categoryText:{
     color : '#AEA9A8',

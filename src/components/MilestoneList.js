@@ -162,7 +162,7 @@ export default class MilestoneList extends Component {
                     <TouchableOpacity style={styles.listCard}>
                  <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Amount
+                  <Text style={styles.textWrapDetails}>{strings.Amount}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -174,7 +174,7 @@ export default class MilestoneList extends Component {
                   </View>
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Due Date
+                  <Text style={styles.textWrapDetails}>{strings.DueDate}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>
@@ -186,7 +186,7 @@ export default class MilestoneList extends Component {
                   </View>
                   <View style={styles.rowAlignSideMenuRequest}>
                   <View> 
-                  <Text style={styles.textWrapDetails}> Description
+                  <Text style={styles.textWrapDetails}>{strings.DueDate}
                   </Text>
                   </View>
                   <View style={styles.colon}><Text> :</Text>

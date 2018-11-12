@@ -152,7 +152,7 @@ this.props.navigation.navigate('JobDetails')
           <TextInput
             style={styles.Createmilestoneinput}
             underlineColorAndroid="transparent"
-            placeholder="Amount"
+            placeholder={strings.Amount}
             onChangeText={(text)=>this.setState({ amount:text})}
             placeholderTextColor="#AEA9A8"
             autoCapitalize="none"
@@ -163,7 +163,7 @@ this.props.navigation.navigate('JobDetails')
           <TextInput
             style={styles.createmilestoneinputdiscrpation}
             underlineColorAndroid="transparent"
-            placeholder="Descripation"
+            placeholder={strings.Description}
             text
             onChangeText={(text)=>this.setState({ discripation:text})}
             placeholderTextColor="#AEA9A8"
@@ -183,7 +183,7 @@ this.props.navigation.navigate('JobDetails')
        <CustomToast ref = "defaultToastBottom"/>
        </TouchableOpacity>
       <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.submit()}>
-         <Text style={styles.textStyle}>SUBMIT</Text>
+         <Text style={styles.textStyle}>{strings.Submit}</Text>
       </TouchableOpacity>
        <Loader
           loading={this.state.loading} /> 

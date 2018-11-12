@@ -84,7 +84,7 @@ export default class Details extends Component {
         console.log("reslocal", res);
         if(res)
         {
-          this.refs.defaultToastBottom.ShowToastFunction('Request Accepted Successfully');
+          this.refs.defaultToastBottom.ShowToastFunction(strings.Requestaccpetsuccessfully);
           this.goToHome();
         }
         else
@@ -100,7 +100,7 @@ export default class Details extends Component {
         console.log("reslocal", res);
         if(res)
         {
-          this.refs.defaultToastBottom.ShowToastFunction('Request Rejected');
+          this.refs.defaultToastBottom.ShowToastFunction(strings.RequestReject);
           this.goToHome();
         }
         else

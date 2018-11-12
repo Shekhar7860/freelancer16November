@@ -73,7 +73,7 @@ export default class JobDetails extends Component {
           console.log("projectID", this.props.navigation.state.params.details.details.jobid);
           if(res.status == "success")
           {
-             this.refs.defaultToastBottom.ShowToastFunction('Hired Successfully');
+             this.refs.defaultToastBottom.ShowToastFunction(strings.HiredSuccessfully);
              var projectDetails = {
                freelancerId : res.freelancer_id,
                jobId : this.props.navigation.state.params.details.details.jobid
@@ -105,15 +105,11 @@ export default class JobDetails extends Component {
 
     if (textString == "Go To Projects") {
       return strings.GoToProjects;
-    }
-
-    if (textString == "Find Freelancer") {
+    }else if (textString == "Find Freelancer") {
       
       return strings.FindFreelancer;
 
-    }
-
-    if (textString == "Hire Freelancer") {
+    }else{
       
       return strings.HireFreelancer;
 

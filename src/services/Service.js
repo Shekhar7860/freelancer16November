@@ -219,7 +219,7 @@ addFav = (token,jobId,isFav) =>
 getFavJobList = (token) => 
 {
   console.log(token)
- return  fetch(constants.apiUrl + `/user/favourites/jobs/lists?&api_token=${token}`,
+ return  fetch(constants.apiUrl + `/user/recommneded/favourite/Job?&api_token=${token}`,
     {
       method: "GET"
    }).then((response) => 

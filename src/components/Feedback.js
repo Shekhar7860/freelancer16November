@@ -51,7 +51,7 @@ export default class Feedback extends Component {
 
   submit = () => {
     if (this.state.feedback.trim() === "") {
-      this.refs.defaultToastBottom.ShowToastFunction("Please Enter Feedback");
+      this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseEnterFeedback);
     } else {
       this.setState({ loading: true });
       setTimeout(() => {
@@ -63,11 +63,11 @@ export default class Feedback extends Component {
             console.log(this.state.userResponse.api_token);
             console.log(this.state.feedback);
 
-           if  (res != undefined) {
+            if (res != undefined) {
               if (res.status_code == 200) {
                 if (res.status == "success") {
                   this.refs.defaultToastBottom.ShowToastFunction(
-                    "Submit Successfully"
+                   strings.SubmitSuccessfully
                   );
                   //this.navigation.(res);
                 } else {
