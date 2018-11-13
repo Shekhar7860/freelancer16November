@@ -542,7 +542,7 @@ export default class UpdateProfile extends Component {
           <TextInput
                 style={styles.postprojectinputprofile}
                 underlineColorAndroid="transparent"
-                placeholder="ABC, XYZ "
+                placeholder={strings.Addskills}
                 onChangeText={(text)=>this.setState({ skills:text})}
                 placeholderTextColor="#AEA9A8"
                 autoCapitalize="none"

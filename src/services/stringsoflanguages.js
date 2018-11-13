@@ -136,8 +136,11 @@ MilestoneCreatedSuccessfully : "Milestone Created Successfully",
 ProfileUpdatedSuccessfully : "Profile Updated Successfully",
 Pleasefillalldetails : "Please fill all details",
 Pleaseselectvalidfileformat : "Please select valid file format",
-Pleaseentervalidemail : "Please enter valid email"
-
+Pleaseentervalidemail : "Please enter valid email",
+Addskills : "Add skills",
+JobAddedtoFavouritesSuccessfully : "Job added to favourites successfully",
+ProjectCreatedSuccessfully : "Project Created Successfully",
+JobRemovedFromFavoritesSuccessfully : "Job Removed From Favourites Successfully"
 
   },
 
@@ -145,6 +148,9 @@ Pleaseentervalidemail : "Please enter valid email"
 
   
 ar:{
+  ProjectCreatedSuccessfully : "تم إنشاء المشروع بنجاح",
+  JobAddedtoFavouritesSuccessfully : "الوظيفة المضافة إلى المفضلة بنجاح",
+  Addskills : "إضافة المهارات",
   MilestoneCreatedSuccessfully : "معلم خلقت بنجاح",
   PleaseenterDescription : "يرجى إدخال الوصف",
   PleaseentervalidDueDate : "الرجاء إدخال تاريخ الاستحقاق الساري",
@@ -154,7 +160,7 @@ ar:{
   AlreadySentRequest : "تم إرسال الدعوة مسبقا",
   RequestSendSuccessfully : "طلب إرسال بنجاح",
   AnErrorOccured : "حدث خطأ",
-  JobAddedSuccessfully : "Job Added Successfully",
+  JobAddedSuccessfully : "الوظيفة المضافة بنجاح",
   Fillallrequireddetails : "املأ جميع التفاصيل المطلوبة",
   SubmitSuccessfully	:"يقدم بنجاح",
   PleaseEnterFeedback	:"يرجى إدخال ملاحظات",
@@ -276,7 +282,8 @@ CreateProject	:"خلق المشروع",
 ProfileUpdatedSuccessfully : "تم تحديث الملف الشخصي بنجاح",
 Pleasefillalldetails : "يرجى ملء جميع التفاصيل",
 Pleaseselectvalidfileformat : " يرجى تحديد تنسيق ملف صالح",
-Pleaseentervalidemail : "الرجاء إدخال بريد إلكتروني صحيح"
+Pleaseentervalidemail : "الرجاء إدخال بريد إلكتروني صحيح",
+JobRemovedFromFavoritesSuccessfully : "تمت إزالة المهمة من المفضلة بنجاح"
 
 
 

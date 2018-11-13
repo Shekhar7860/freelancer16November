@@ -246,12 +246,13 @@ this.props.navigation.navigate('Jobs')
 }, 1000)
 }
 
-changeTextToArabic=(textString)=>{
-
+changeTextToArabic=(textString)=>
+{
   if (textString == "Select City") {
     return strings.SelectCitystring;
-  }else{
-
+  }
+  else
+  {
     return textString;
   }
 
@@ -268,22 +269,22 @@ changeTextToArabicCategory=(textString)=>{
 }
 
 changeTextStartDate=(textString)=>{
-
   if (textString == "Start Date") {
     return strings.StartDate;
-  }else{
-
+  }
+  else
+  {
     return textString;
   }
 }
 
 
 changeTextEndDate=(textString)=>{
-
   if (textString == "End Date") {
     return strings.EndDate;
-  }else{
-
+  }
+  else
+  {
     return textString;
   }
 }

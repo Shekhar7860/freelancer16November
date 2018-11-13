@@ -77,10 +77,10 @@ export default class CreateProject extends Component {
   {
       if(this.state.amount.trim() === "")
       {
-        this.refs.defaultToastBottom.ShowToastFunction('Please Enter Amount');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseEnterAmount);
       }
       else if (this.state.discripation.trim() === "") {
-        this.refs.defaultToastBottom.ShowToastFunction('Please enter Discripation');
+        this.refs.defaultToastBottom.ShowToastFunction(strings.PleaseenterDescription);
       } 
       else
     {
@@ -97,19 +97,19 @@ export default class CreateProject extends Component {
               {
               if (res.status  == "success" )
               {
-                this.refs.defaultToastBottom.ShowToastFunction("Project Created Successfully");
+                this.refs.defaultToastBottom.ShowToastFunction(strings.ProjectCreatedSuccessfully);
                 this.goToMilestone(res);
               }
               else 
               {
-                this.refs.defaultToastBottom.ShowToastFunction("An Error Occured"); 
+                this.refs.defaultToastBottom.ShowToastFunction(strings.AnErrorOccured); 
               }
             
             }
         }
       else
       {
-        this.refs.defaultToastBottom.ShowToastFunction("Network Error"); 
+        this.refs.defaultToastBottom.ShowToastFunction(strings.NetworkError); 
       }
     })
 

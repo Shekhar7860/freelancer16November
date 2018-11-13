@@ -58,25 +58,43 @@ console.log(error) //Display error
 
 pressIcon = (val, index) => {
 console.log(val);
-if(val.isFavourite === "0" ){
+if(val.isFavourite == 0){
 this.setState({ itemFav : true});
 this.setState({ Item : 1});
 }
+else
+{
+ this.setState({ Item : 0});   
+}
 this.setState({favStatus:!this.state.favStatus})
 console.log(this.state.Item)
-service.addFav(this.state.userResponse.api_token, val.jobid, this.state.Item).then((res) => {
-console.log("checkres", res);
 
-newres = JSON.stringify(res);
-json = JSON.parse(newres);
-if(json.status_code == 200)
-{
-this.refs.defaultToastBottom.ShowToastFunction('Job Added to Favourites Successfully');
-this.getActiveJobs();
+this.calApi(val);
+
 }
-//this.setState({ feeds: json});
-})
 
+calApi=(val)=>{
+
+    service.addFav(this.state.userResponse.api_token, val.jobid, !val.isFavourite).then((res) => {
+        console.log("checkres", res);
+        
+        newres = JSON.stringify(res);
+        json = JSON.parse(newres);
+        if(json.status_code == 200)
+        {
+            if(this.state.Item == 1 )
+            {
+           this.refs.defaultToastBottom.ShowToastFunction(strings.JobAddedtoFavouritesSuccessfully);
+            }
+            else
+            {
+            this.refs.defaultToastBottom.ShowToastFunction(strings.JobRemovedFromFavoritesSuccessfully);   
+            }
+            this.getFeedRes();
+            this.getActiveJobs();
+        }
+        //this.setState({ feeds: json});
+        })
 }
 
 setModalVisible(visible) {
