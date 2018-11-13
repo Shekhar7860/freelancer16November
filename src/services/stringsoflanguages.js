@@ -140,8 +140,9 @@ Pleaseentervalidemail : "Please enter valid email",
 Addskills : "Add skills",
 JobAddedtoFavouritesSuccessfully : "Job added to favourites successfully",
 ProjectCreatedSuccessfully : "Project Created Successfully",
-JobRemovedFromFavoritesSuccessfully : "Job Removed From Favourites Successfully"
-
+JobRemovedFromFavoritesSuccessfully : "Job Removed From Favourites Successfully",
+NomessagesFound: "No Messages Found",
+Invalidenddate : "Invalid end date"
   },
 
 
@@ -283,7 +284,9 @@ ProfileUpdatedSuccessfully : "تم تحديث الملف الشخصي بنجاح
 Pleasefillalldetails : "يرجى ملء جميع التفاصيل",
 Pleaseselectvalidfileformat : " يرجى تحديد تنسيق ملف صالح",
 Pleaseentervalidemail : "الرجاء إدخال بريد إلكتروني صحيح",
-JobRemovedFromFavoritesSuccessfully : "تمت إزالة المهمة من المفضلة بنجاح"
+JobRemovedFromFavoritesSuccessfully : "تمت إزالة المهمة من المفضلة بنجاح",
+NomessagesFound: "لا توجد رسائل",
+Invalidenddate : "تاريخ غير صالح",
 
 
 

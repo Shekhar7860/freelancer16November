@@ -156,16 +156,11 @@ export default class PostProject extends Component {
 
 
   post_project = () => {
-    console.log('today', this.state.date)
-    // if(this.state.endDateText >= this.state.date && this.state.startDateText >= this.state.date)
-    //     {
-        if(this.state.endDateText >= this.state.startDateText)
-        {
-          this.setState({loading: true})
-          setTimeout(() => 
-          {
-          this.setState({loading: false})
-          var array = this.state.skills.split(',');
+    console.log('today', this.state.skills)
+    console.log('category', this.state.category)
+    if( this.state.skills  != undefined)
+    {
+    var array = this.state.skills.split(',');
           if(array.length >= 3)
           {
           var skills =  {
@@ -190,6 +185,16 @@ export default class PostProject extends Component {
               "phone": " "
           }
           }
+        }
+            
+    if(this.state.title && this.state.description && this.state.selectedCity != "Select City" && this.state.category != "Select Category" && this.state.budget && this.state.startDateText && this.state.endDateText && skills)
+        {
+        if(this.state.endDateText >= this.state.startDateText)
+        {
+          this.setState({loading: true})
+          setTimeout(() => 
+          {
+          this.setState({loading: false})
           service.post_project(this.state.userResponse.api_token,this.state.title,this.state.description, this.state.selectedCity, this.state.category, this.state.jobType, this.state.budget,this.state.startDateText, this.state.endDateText, skills).then((res) => {
         // console.log(this.state.startDateText);
         // console.log(this.state.endDateText);
@@ -225,18 +230,18 @@ export default class PostProject extends Component {
       else
       {
         Alert.alert(
-          strings.Fillallrequireddetails
+          strings.Invalidenddate
         )
       // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
       }
-  //   }
-  // else
-  // {
-  //   Alert.alert(
-  //     'Please select valid date'
-  //   )
-  //  // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
-  // }
+    }
+  else
+  {
+    Alert.alert(
+      strings.Pleasefillalldetails 
+    )
+   // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
+  }
 }
 
 openProject()

@@ -299,11 +299,9 @@ renderItem={({ item, index }) => (
 </View>
 <View style={styles.budgetWidth}>
 </View>
-<View style={styles.leftSpace} >
-<TouchableOpacity onPress={() => this.pressIcon(item, index)}>
-<Image source={ item.isFavourite == 0 ? constants.heartIcon : constants.heartIconfilled} style={styles.iconHeart}/>
+<TouchableOpacity style = {{width:60,height:50,  marginTop :-70 , marginLeft:-20 , alignItems:"center",justifyContent:"center"}} onPress={() => this.pressIcon(item, index)}>
+<Image source={ item.isFavourite == 0 ? constants.heartIcon : constants.heartIconfilled} style={{ width:20,height:20}}/>
 </TouchableOpacity>
-</View>
 </View>
 </View>
 </TouchableOpacity>

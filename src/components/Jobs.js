@@ -128,9 +128,9 @@ export default class Jobs extends Component {
   };
 
   notification = (val) => {
-    Alert.alert(
-      'Request Accepted Successfully'
-  )
+  //   Alert.alert(
+  //     'Request Accepted Successfully'
+  // )
   }
 
   getFreelancersResponse = () => {

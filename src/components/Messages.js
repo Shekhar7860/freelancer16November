@@ -24,7 +24,7 @@ export default class Messages extends Component {
   setTimeout(() => {
     this.setState ({ loading: false});
     
-    this.setState ({ dummyText: "No Messages Found"});
+    this.setState ({ dummyText: strings.NomessagesFound });
     }, 2000)
  }
  openDrawer = () => {

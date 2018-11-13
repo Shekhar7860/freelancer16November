@@ -848,7 +848,7 @@ cardContainerSignUp:{
         width:"30%"
       },
       leftSpace:{
-        width:"20%"
+        width:"20%",
       },
       skillWidth2:{
         width:"45%"
@@ -1464,7 +1464,7 @@ upperContainer: {
   bottom: Platform.OS === "ios" ? 5 : 5
   },
   mobilesigntextInputWidth: {
-  width: "100%",
+  width: "90%",
   height: 40,
   padding: 5
   },
