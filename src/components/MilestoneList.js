@@ -14,6 +14,7 @@ import {
   Modal,
   ScrollView
 } from "react-native";
+import OfflineNotice from './OfflineNotice';
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
 import styles from "../styles/styles";
@@ -126,6 +127,7 @@ export default class MilestoneList extends Component {
   render() {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
+        <OfflineNotice/> 
         <View style={styles.topView}>
         <MyView style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.openDrawer()}>

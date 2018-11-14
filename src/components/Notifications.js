@@ -3,6 +3,7 @@ import {Platform, StyleSheet, SafeAreaView, Text, View, Image, ImageBackground, 
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class Notifications extends Component {
  constructor(props){
      super(props);
@@ -30,7 +31,7 @@ export default class Notifications extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-    
+      <OfflineNotice/> 
     <View style={styles.toolbar} >
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />

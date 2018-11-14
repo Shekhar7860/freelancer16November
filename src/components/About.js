@@ -15,6 +15,7 @@ import {
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
 import { strings } from "../services/stringsoflanguages";
+import OfflineNotice from './OfflineNotice';
 
 export default class About extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class About extends Component {
   render() {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.MainContainer}>
+       <OfflineNotice/>
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={() => this.openDrawer()}>
             <Image source={constants.menuicon} style={styles.hamburgerIcon} />

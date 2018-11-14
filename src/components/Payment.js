@@ -4,6 +4,7 @@ import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import MyView from './MyView';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class Payment extends Component {
  constructor(props){
      super(props);
@@ -32,7 +33,7 @@ export default class Payment extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-    
+    <OfflineNotice/> 
     <View style={styles.topView}>
        <MyView  hide={this.state.search} style={styles.searchContainer}>
           <View style={styles.topSearchbar}>

@@ -4,8 +4,8 @@ import styles from '../styles/styles';
 import Service from '../services/Service';
 import { colors, fonts, padding, dimensions, align } from "../styles/base.js";
 import { strings } from '../services/stringsoflanguages';
-
-
+import OfflineNotice from './OfflineNotice';
+import CustomToast from './CustomToast';
 export default class Welcome extends Component {
   
   constructor(props){
@@ -100,8 +100,9 @@ overLang() {
   
   render() {
     return (
+      
        <ScrollView style={styles.welcomeContainer}>
-
+         <OfflineNotice/> 
        
 	     {/* <View style={styles.welcomeHeadline}>
 	       <Text style={styles.headlineText}>Freelancer</Text>
@@ -208,6 +209,7 @@ overLang() {
        
        }
 	   </ScrollView>
+  
 	   
     );
   }

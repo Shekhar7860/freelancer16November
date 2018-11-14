@@ -4,6 +4,7 @@ import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class CATEGORY extends Component {
  constructor(props){
      super(props);
@@ -67,6 +68,7 @@ else
       <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
+       <OfflineNotice/>
       <View style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />

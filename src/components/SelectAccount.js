@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import styles from "../styles/styles";
 import Constants from "../constants/Constants";
+import OfflineNotice from './OfflineNotice';
 import { strings } from "../services/stringsoflanguages";
 
 export default class SelectAccount extends Component {
@@ -53,6 +54,7 @@ export default class SelectAccount extends Component {
   render() {
     return (
       <SafeAreaView>
+        <OfflineNotice/> 
         <View style={styles.commontoolbar}>
           <TouchableOpacity onPress={() => this.goToWelcome()}>
             <Image source={constants.backicon} style={styles.backIcon} />

@@ -3,6 +3,7 @@ import {Platform, StyleSheet, SafeAreaView, FlatList, Text, View, Image, ImageBa
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class SubCategory extends Component {
  constructor(props){
      super(props);
@@ -56,7 +57,7 @@ export default class SubCategory extends Component {
       <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
-    
+     <OfflineNotice/> 
     <View style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />

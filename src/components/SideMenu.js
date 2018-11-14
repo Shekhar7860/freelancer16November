@@ -4,6 +4,7 @@ import Service from '../services/Service';
 import Constants from '../constants/Constants';
 import MyView from './MyView';
 import { strings } from "../services/stringsoflanguages";
+import OfflineNotice from './OfflineNotice';
 class SideMenu extends Component {
   state = {
     userFbData: { picture_large:{ data:{}}},
@@ -432,6 +433,7 @@ goToFeedbackPage = () => {
       <SafeAreaView
       source={constants.loginbg}
       style={styles.sideMenucontainer}>
+       <OfflineNotice/> 
           <View style={styles.upperContainerSideMenu}>
             <View style={styles.sideMenuAlign}>
             <TouchableOpacity style={styles.arrowView} onPress = {() => this.goToProfile()}>

@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
-
+import OfflineNotice from './OfflineNotice';
 import CustomToast from "./CustomToast";
 import Loader from "./Loader";
 import { strings } from "../services/stringsoflanguages";
@@ -87,6 +87,7 @@ export default class Feedback extends Component {
   render() {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
+        <OfflineNotice/> 
         <View style={styles.toolbar}>
           <TouchableOpacity onPress={() => this.openDrawer()}>
             <Image source={constants.menuicon} style={styles.hamburgerIcon} />

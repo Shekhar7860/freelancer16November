@@ -139,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-reachability')
     compile project(':react-native-localization')
     compile project(':react-native-device-info-2')
     compile project(':react-native-firebase')

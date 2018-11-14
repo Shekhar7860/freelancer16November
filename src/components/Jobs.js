@@ -22,6 +22,7 @@ import MyView from './MyView';
 import Loader from './Loader';
 import SideMenu from './SideMenu';
 import firebase  from './Config';
+import OfflineNotice from './OfflineNotice';
 import { strings } from "../services/stringsoflanguages";
 export default class Jobs extends Component {
   constructor(props) {
@@ -183,6 +184,7 @@ export default class Jobs extends Component {
   render() {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
+      <OfflineNotice/>
         <View style={styles.topView}>
         <MyView style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.openDrawer()}>

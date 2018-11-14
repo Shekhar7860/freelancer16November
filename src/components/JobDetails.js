@@ -8,6 +8,7 @@ import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class JobDetails extends Component {
   constructor(props){
     super(props);
@@ -53,7 +54,8 @@ export default class JobDetails extends Component {
   goToFreelancerPage = (status) => {
     var clientDetails = {
       apiToken : this.props.navigation.state.params.details.token,
-      jobId : this.state.details.jobid
+      jobId : this.state.details.jobid,
+      category : this.state.details.catid
     }
     if (status == "Find Freelancer")
     {
@@ -119,6 +121,7 @@ export default class JobDetails extends Component {
     console.log(this.props.navigation.state.params.details)
     return (
   <SafeAreaView style = { styles.MainContainerDetails }>
+    <OfflineNotice/> 
         <View style={styles.commontoolbar}>
         <TouchableOpacity onPress={() => this.goToJobs()}>
         <Image source={constants.backicon} style={styles.backIcon} />

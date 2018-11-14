@@ -12,6 +12,7 @@ import {
   StatusBar,
   ScrollView
 } from "react-native";
+import OfflineNotice from './OfflineNotice';
 import styles from "../styles/styles";
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
@@ -137,6 +138,7 @@ class Otp extends Component {
       <SafeAreaView
         style={{ flex: 1, alignItems: "center", backgroundColor: colors.white }}
       >
+      <OfflineNotice/> 
         <View
           style={{
             backgroundColor: colors.themeColor,

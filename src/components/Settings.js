@@ -16,6 +16,7 @@ import {
 import Constants from "../constants/Constants";
 import Service from "../services/Service";
 import MyView from "./MyView";
+import OfflineNotice from './OfflineNotice';
 import { colors, fonts, padding, dimensions, align } from "../styles/base.js";
 import { strings } from "../services/stringsoflanguages";
 export default class Settings extends Component {
@@ -134,6 +135,7 @@ export default class Settings extends Component {
   render() {
     return (
       <SafeAreaView source={constants.loginbg} style={styles.container}>
+      <OfflineNotice/> 
         <View style={styles.topView}>
           <MyView hide={this.state.search} style={styles.searchContainer}>
             <View style={styles.topSearchbar}>

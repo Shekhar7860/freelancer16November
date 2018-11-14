@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback
 } from "react-native";
-
+import OfflineNotice from './OfflineNotice';
 import styles from "../styles/styles";
 import Constants from "../constants/Constants";
 
@@ -148,6 +148,7 @@ changeTextStartDate=(textString)=>{
   render() {
     return (
       <SafeAreaView style = { styles.MainContainerProject }>
+        <OfflineNotice/> 
          <View style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.goToList()}>
         <Image source={constants.backicon} style={styles.backIcon} />

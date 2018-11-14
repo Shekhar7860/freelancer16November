@@ -17,7 +17,7 @@ import {
 import { strings } from "../services/stringsoflanguages";
 import styles from "../styles/styles";
 import Constants from "../constants/Constants";
-
+import OfflineNotice from './OfflineNotice';
 import Service from '../services/Service';
 import CustomToast from './CustomToast';
 import Loader from './Loader';
@@ -135,6 +135,7 @@ this.props.navigation.navigate('JobDetails')
   render() {
     return (
       <SafeAreaView style = { styles.MainContainerProject }>
+        <OfflineNotice/> 
          <View style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.goback()}>
         <Image source={constants.backicon} style={styles.backIcon} />

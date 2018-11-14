@@ -10,6 +10,7 @@ import Service from '../services/Service';
 import MyView from './MyView';
 import Home from './Home';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class Details extends Component {
   constructor(props){
     super(props);
@@ -134,6 +135,7 @@ this.props.navigation.navigate('Create')
      // console.log(this.state.details)
     return (
   <SafeAreaView style = { styles.MainContainerRequest }>
+    <OfflineNotice/> 
         <View style={styles.commontoolbar}>
           <TouchableOpacity style={styles.commontoolbarButton} onPress={() => this.goBack()}>
           <Image source={constants.backicon} style={styles.commonBackIcon}/>

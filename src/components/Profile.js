@@ -94,6 +94,7 @@ goToHome = () => {
     // const fbImage = <Image source={{uri: this.state.userFbData.picture_large.data.url}} style={styles.profilePic} />;
     return (
   <SafeAreaView style={styles.profileContainerView}>
+  <OfflineNotice/> 
         <View style={styles.toolbar}>
         <Text style={styles.backButton} onPress={() => this.goToHome()}>
         <Image source={constants.backicon} style={styles.icon}/>

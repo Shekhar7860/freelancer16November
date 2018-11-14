@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0055F2A2E964AFC567958302 /* libPods-freelancetest-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B7F688CE2B91B6FC8C506D /* libPods-freelancetest-tvOS.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -50,6 +49,7 @@
 		7E09EFB947B046B29489647D /* blackjack.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7826599D935546FD86C5F4F6 /* blackjack.otf */; };
 		8216A4429F6A46489EA6B88E /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B9D6FBFB8AF455E867A0091 /* libRNDeviceInfo-tvOS.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8553BDDA46C34EC280658A36 /* libRNReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EA11C67904DC4BFA235A7 /* libRNReachability.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C620314918864D5E72C5E5B9 /* libPods-freelancetest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B130548B049D809D45CA65 /* libPods-freelancetest.a */; };
 		CB1DE8E08DB883ADDD1D8411 /* libPods-freelancetestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9887096FF9A273CBEA6EF3 /* libPods-freelancetestTests.a */; };
@@ -135,6 +135,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
+		};
+		04C5FFB8219C227400A13322 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FC117A351DA4975ACB01D1A /* RNReachability.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNReachability;
 		};
 		0AABFDE9218D5D4800B90C58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -424,6 +431,7 @@
 		3D46FB2D2C1A4E20BE70A96A /* GreatVibes-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "GreatVibes-Regular.otf"; path = "../assets/fonts/GreatVibes-Regular.otf"; sourceTree = "<group>"; };
 		3D5AEA89079C46A0B9CB5194 /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		3F36F381617C4F6B91F384BB /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
+		3FC117A351DA4975ACB01D1A /* RNReachability.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNReachability.xcodeproj; path = "../node_modules/react-native-reachability/ios/RNReachability.xcodeproj"; sourceTree = "<group>"; };
 		472DC99FE1C56B45E9BF3446 /* Pods-freelancetest-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freelancetest-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freelancetest-tvOSTests/Pods-freelancetest-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C5195A453A1412E9826A0E8 /* vincHand.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = vincHand.ttf; path = ../assets/fonts/vincHand.ttf; sourceTree = "<group>"; };
 		4D256DDFC34018414653A215 /* libPods-freelancetest-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-freelancetest-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,6 +453,7 @@
 		C85E641B0265EE1BE7C85DD0 /* Pods-freelancetestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freelancetestTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freelancetestTests/Pods-freelancetestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DA9887096FF9A273CBEA6EF3 /* libPods-freelancetestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-freelancetestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA98E07E8963447FA930BA3F /* ProximaNovaRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ProximaNovaRegular.ttf; path = ../assets/fonts/ProximaNovaRegular.ttf; sourceTree = "<group>"; };
+		DB7EA11C67904DC4BFA235A7 /* libRNReachability.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNReachability.a; sourceTree = "<group>"; };
 		E536F24EF966DFFC10D33B83 /* Pods-freelancetest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freelancetest.release.xcconfig"; path = "Pods/Target Support Files/Pods-freelancetest/Pods-freelancetest.release.xcconfig"; sourceTree = "<group>"; };
 		F15B1CEB0DAF4628B0C30E01 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		F15D81BB2F4E475C88A2C7D5 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
@@ -483,6 +492,7 @@
 				20D8A2AD3663420BB65612A3 /* libRNFirebase.a in Frameworks */,
 				60AD20E7131F47869F85B373 /* libRNDeviceInfo.a in Frameworks */,
 				C620314918864D5E72C5E5B9 /* libPods-freelancetest.a in Frameworks */,
+				8553BDDA46C34EC280658A36 /* libRNReachability.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +618,7 @@
 				3F36F381617C4F6B91F384BB /* libRNFirebase.a */,
 				A182B51D570B475293AD481B /* libRNDeviceInfo.a */,
 				7B9D6FBFB8AF455E867A0091 /* libRNDeviceInfo-tvOS.a */,
+				DB7EA11C67904DC4BFA235A7 /* libRNReachability.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -616,6 +627,14 @@
 			isa = PBXGroup;
 			children = (
 				04C30A8A215A16020055B316 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04C5FFB5219C227400A13322 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04C5FFB9219C227400A13322 /* libRNReachability.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -766,6 +785,7 @@
 				0BA2594157204974A2945F17 /* RNDocumentPicker.xcodeproj */,
 				F15D81BB2F4E475C88A2C7D5 /* RNFirebase.xcodeproj */,
 				2530F32DFF624FA2ABF64A17 /* RNDeviceInfo.xcodeproj */,
+				3FC117A351DA4975ACB01D1A /* RNReachability.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1029,6 +1049,10 @@
 					ProjectRef = F15B1CEB0DAF4628B0C30E01 /* RNImagePicker.xcodeproj */;
 				},
 				{
+					ProductGroup = 04C5FFB5219C227400A13322 /* Products */;
+					ProjectRef = 3FC117A351DA4975ACB01D1A /* RNReachability.xcodeproj */;
+				},
+				{
 					ProductGroup = 04C30A86215A16010055B316 /* Products */;
 					ProjectRef = 6A51CB48DC424D16BEFE9451 /* SplashScreen.xcodeproj */;
 				},
@@ -1112,6 +1136,13 @@
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = 04C30A89215A16020055B316 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04C5FFB9219C227400A13322 /* libRNReachability.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNReachability.a;
+			remoteRef = 04C5FFB8219C227400A13322 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0AABFDEA218D5D4800B90C58 /* libReactNativeLocalization.a */ = {
@@ -1577,12 +1608,14 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = freelancetestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1609,12 +1642,14 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = freelancetestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1646,6 +1681,7 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = freelancetest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1679,6 +1715,7 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = freelancetest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1715,11 +1752,13 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = "freelancetest-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1755,11 +1794,13 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = "freelancetest-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1794,11 +1835,13 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = "freelancetest-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1833,11 +1876,13 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-device-info-2/ios/RNDeviceInfo",
+					"$(SRCROOT)/../node_modules/react-native-reachability/ios/**",
 				);
 				INFOPLIST_FILE = "freelancetest-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

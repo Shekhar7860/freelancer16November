@@ -7,6 +7,7 @@ import CustomToast from './CustomToast';
 import Loader from './Loader';
 import ImagePicker from "react-native-image-picker";
 import MyView from './MyView';
+import OfflineNotice from './OfflineNotice';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { strings } from '../services/stringsoflanguages';
 export default class UpdateProfile extends Component {
@@ -439,6 +440,7 @@ export default class UpdateProfile extends Component {
       const  NewImage =   <TouchableOpacity ><Image source={{uri: this.state.userResponse.image_path || defaultImg  }} style={styles.profilePic}/></TouchableOpacity>
     return (
   <SafeAreaView style={styles.MainContainerProfile}>
+   <OfflineNotice/> 
 	    <View style={styles.toolbar}>
 			<TouchableOpacity  onPress={() => this.goBack()}>
 			<Image source={constants.backicon} style={styles.hamburgerIcon}/>

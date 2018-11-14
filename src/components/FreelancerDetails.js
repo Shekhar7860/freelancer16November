@@ -8,6 +8,7 @@ import CustomToast from './CustomToast';
 import Service from '../services/Service';
 import MyView from './MyView';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
 export default class FreelancerDetails extends Component {
   constructor(props){
     super(props);
@@ -72,6 +73,7 @@ this.props.navigation.navigate('Jobs')
   render() {
     return (
   <SafeAreaView style = { styles.MainContainer }>
+    <OfflineNotice/> 
 	     <View style={styles.commontoolbar}>
         <TouchableOpacity onPress={() => this.goBack()}>
         <Image source={constants.backicon} style={styles.backIcon} />

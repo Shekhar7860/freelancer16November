@@ -3,7 +3,7 @@ import {Platform, StyleSheet, SafeAreaView,ScrollView, Text, View, Image, ImageB
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import { strings } from '../services/stringsoflanguages';
-
+import OfflineNotice from './OfflineNotice';
 export default class Balance extends Component {
  constructor(props){
      super(props);
@@ -32,6 +32,7 @@ export default class Balance extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
+      <OfflineNotice/>
     <View style={styles.toolbar} >
         <TouchableOpacity onPress={() => this.openDrawer()}>
         <Image source={constants.menuicon} style={styles.hamburgerIcon} />

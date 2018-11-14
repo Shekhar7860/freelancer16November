@@ -9,6 +9,10 @@ import Loader from './Loader';
 import firebase  from './Config';
 import DeviceInfo from 'react-native-device-info-2';
 import { strings } from '../services/stringsoflanguages';
+import OfflineNotice from './OfflineNotice';
+ 
+const timeout = 1000 // default is 5000 milis
+
  class  MobileSignIn extends Component {
   constructor(props){
     super(props);
@@ -52,8 +56,25 @@ import { strings } from '../services/stringsoflanguages';
     }
   
  
+    CheckInternetConnection=()=>{
+
+      fetch('http://zaraf.org/freelancerWeb/api/categories')
+         .then((response) => {
+           
+          this.submit();
+           
+         })
+     .catch((error) => {
+           if(error == 'TypeError: Network request failed'){
+           return  Alert.alert('Alert!', 'Check your internet connection'); 
+           }
+          });
+   
+   }
   submit = () => 
   {
+
+
       if(this.state.mobile.trim() === "")
       {
         this.refs.defaultToastBottom.ShowToastFunction(strings.EnterMobileNumber);
@@ -144,6 +165,7 @@ notification = (val) => {
 
   render() {
     return (
+      <View style={{ height:'100%',flexDirection:"column"}}><OfflineNotice/> 
       <SafeAreaView style={styles.mainContainer}>
       <View style={styles.upperContainer}>
         <View style={styles.imgContainer}>
@@ -184,7 +206,7 @@ notification = (val) => {
             <View style={styles.mobilesignloginContainerSignIn}>
               <TouchableOpacity
                 style={styles.mobilesigninButton}
-                onPress={() => this.submit()}
+                onPress={() => this.CheckInternetConnection()}
               >
                 <Text style={styles.accountButtonText}>{strings.Signin}</Text>
               </TouchableOpacity>
@@ -195,7 +217,7 @@ notification = (val) => {
       </View>
      
       <Loader loading={this.state.loading} />
-    </SafeAreaView>
+    </SafeAreaView></View>
   );
 }
 }

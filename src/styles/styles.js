@@ -383,7 +383,7 @@ cardContainerSignUp:{
       paddingTop:5
     },
     MainContainer :{
-      height:'100%',
+      height:'95%',
       alignItems: 'center',
       },
        
@@ -1346,8 +1346,7 @@ cardContainerSignUp:{
           marginTop:20},
           /////////welcome 
   welcomeContainer: {
-    flex: 1,
-    backgroundColor: colors.white
+    flex: 1
   },
   welcomeHeadline: {
     flex: 1,

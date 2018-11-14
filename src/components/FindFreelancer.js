@@ -5,6 +5,7 @@ import Service from '../services/Service';
 import Loader from './Loader';
 import MyView from './MyView';
 import { strings } from "../services/stringsoflanguages";
+import OfflineNotice from './OfflineNotice';
 export default class FindFreelancer extends Component {
  constructor(props){
      super(props);
@@ -64,7 +65,8 @@ export default class FindFreelancer extends Component {
 
 
  openDrawer = () => {
-   this.props.navigation.openDrawer()}
+   this.props.navigation.openDrawer()
+  }
 
    getFreelancersResponse = () => {
     service.findFreelancer(this.state.userResponse.api_token).then((res) => {
@@ -120,6 +122,7 @@ export default class FindFreelancer extends Component {
      <SafeAreaView
       source={constants.loginbg}
       style={styles.container}>
+        <OfflineNotice/> 
        <View style={styles.topView}>
         <MyView style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.openDrawer()}>

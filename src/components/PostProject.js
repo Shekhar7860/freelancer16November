@@ -10,7 +10,8 @@ import {
   KeyboardAvoidingView,
   Select,
   Picker,
-  Alert
+  Alert,
+  NetInfo
 } from "react-native";
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -20,6 +21,7 @@ import CustomToast from './CustomToast';
 import Loader from './Loader';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import Moment from 'moment';
+import OfflineNotice from './OfflineNotice';
 import { strings } from '../services/stringsoflanguages';
 
 
@@ -79,7 +81,9 @@ export default class PostProject extends Component {
     this._hideDateTimePicker2();
   };
 
+  
   componentDidMount() {
+
     if(this.props.navigation.state.params)
     {
       console.log(this.props.navigation.state.params.category)
@@ -124,8 +128,9 @@ export default class PostProject extends Component {
       this.setState({ selectedCity : value })
       console.log(this.state.selectedCity)
     }
-    
-    openCategory = () => {
+
+    CheckInternetConnection=()=>{
+
       var projectData = {
         "title" :this.state.title,
         "description" : this.state.description,
@@ -137,6 +142,24 @@ export default class PostProject extends Component {
         "skills":this.state.skills
       }
       this.props.navigation.navigate("Cat",  { page: projectData });
+      
+   
+   }
+    
+    openCategory = () => {
+
+      
+      fetch('http://zaraf.org/freelancerWeb/api/categories')
+         .then((response) => {
+           
+          this.CheckInternetConnection();
+           
+         })
+     .catch((error) => {
+           if(error == 'TypeError: Network request failed'){
+           return  Alert.alert('Alert!', 'Check your internet connection'); 
+           }
+          });
     }
 
   goToJobs = () => {
@@ -156,6 +179,7 @@ export default class PostProject extends Component {
 
 
   post_project = () => {
+
     console.log('today', this.state.skills)
     console.log('category', this.state.category)
     if( this.state.skills  != undefined)
@@ -528,6 +552,7 @@ changeTextEndDate=(textString)=>{
     return (
     
       <SafeAreaView style = { styles.MainContainerProject }>
+      <OfflineNotice/> 
          <View style={styles.tabsToolbar}>
         <TouchableOpacity onPress={() => this.goToJobs()}>
         <Image source={constants.backicon} style={styles.backIcon} />

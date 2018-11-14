@@ -8,6 +8,7 @@ import Loader from './Loader';
 import FEED from './Feed';
 import MyView from './MyView';
 import CustomToast from './CustomToast';
+import OfflineNotice from './OfflineNotice';
 import strings from '../services/stringsoflanguages';
 import{ colors, fonts, padding, dimensions, align} from '../styles/base';
 export default class Home extends Component {
@@ -225,6 +226,7 @@ return (
 <SafeAreaView
 source={constants.loginbg}
 style={styles.container}>
+ <OfflineNotice/> 
 <View style={styles.topView}>
 <MyView hide={this.state.search} style={styles.searchContainer}>
 <View style={styles.topSearchbar}>

@@ -5,6 +5,7 @@ import Service from '../services/Service';
 import Constants from '../constants/Constants';
 import CustomToast from './CustomToast';
 import Loader from './Loader';
+import OfflineNotice from './OfflineNotice';
 import strings from '../services/stringsoflanguages';
 
 
@@ -120,6 +121,7 @@ export default class Login extends Component {
   render() {
     return (
       <SafeAreaView style={styles.mainContainer}>
+       <OfflineNotice/> 
       <View style={styles.upperContainer}>
         <View style={styles.imgContainer}>
          <TouchableOpacity onPress={() => this.goBack()}>

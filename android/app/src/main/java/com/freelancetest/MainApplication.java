@@ -3,6 +3,7 @@ package com.freelancetest;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.younics.reachability.RNReachabilityPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNReachabilityPackage(),
             new ReactNativeLocalizationPackage(),
             new RNDeviceInfo(),
            new RNFirebaseMessagingPackage(),
