@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView, FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, SafeAreaView,Alert, FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import MyView from './MyView';

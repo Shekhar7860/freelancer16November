@@ -136,8 +136,8 @@ export default class Jobs extends Component {
 
   getFreelancersResponse = () => {
     service.jobs(this.state.userResponse.api_token).then(res => {
-      console.log("reslocal", res);
-      if(res.Job.length ===  0)
+      console.log("reslocal", res.Job.length);
+      if(res.Job.length ==  0)
       {
         this.setState ({ dummyText: "No Project Found"});
       }

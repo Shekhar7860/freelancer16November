@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, AsyncStorage} from 'react-native';
+import {Platform, StyleSheet, AsyncStorage, NetInfo} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 export default class Service  extends Component {
@@ -8,11 +8,29 @@ export default class Service  extends Component {
     super(props);
     this.state = { 
       user :'',
-      client : 0 
+      client : 0,
+      isConnected: true
     }
     constants = new Constants();
     
   }
+
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  handleConnectivityChange = isConnected => {
+    if (isConnected) {
+      this.setState({ isConnected });
+    } else {
+      this.setState({ isConnected });
+    }
+    return NetInfo.getConnectionInfo();
+  };
 
   // setClient = (val) => {
   //   console.log('this', this)

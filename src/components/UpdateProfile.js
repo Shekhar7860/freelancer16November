@@ -157,6 +157,23 @@ export default class UpdateProfile extends Component {
   goToSignUp = (userType) =>{
   this.props.navigation.navigate('SignUp', { type: userType })
       }
+
+
+
+      CheckInternetConnection=()=>{
+        service.handleConnectivityChange().then((res) => {
+        if(res.type == "none")
+        {
+          Alert.alert('Alert!', 'Check your internet connection');
+        }
+        else
+        {
+          this.updateProfile();
+        }
+        })
+    
+     
+     }
  
  updateProfile = () => {
  // if(this.state.pickedImage || this.state.userResponse.image_path )
@@ -446,7 +463,7 @@ export default class UpdateProfile extends Component {
 			<Image source={constants.backicon} style={styles.hamburgerIcon}/>
 			</TouchableOpacity>
          <Text style={styles.toolbarTitle}> {strings.Profile}</Text>
-         <TouchableOpacity onPress={() => this.updateProfile()}>
+         <TouchableOpacity onPress={() => this.CheckInternetConnection()}>
          <Text style={styles.updateText}>{strings.Done}</Text>
         </TouchableOpacity>
       </View>

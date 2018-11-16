@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
+  Alert,
   Text,
   View,
   TextInput,
@@ -69,6 +70,23 @@ export default class Create_milestone extends Component {
     this.setState({ startDateText:newDate})
     this._hideDateTimePicker();
   };
+
+
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.submit();
+    }
+    })
+
+ 
+ }
+
 
 
 
@@ -208,7 +226,7 @@ changeTextStartDate=(textString)=>{
           onCancel={this._hideDateTimePicker}
         />
        
-      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.submit()}>
+      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.CheckInternetConnection()}>
          <Text style={styles.textStyle}>{strings.Submit}</Text>
          <CustomToast ref = "defaultToastBottom"/>  
       </TouchableOpacity>

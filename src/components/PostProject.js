@@ -11,7 +11,8 @@ import {
   Select,
   Picker,
   Alert,
-  NetInfo
+  NetInfo,
+  Dimensions
 } from "react-native";
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -23,6 +24,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 import Moment from 'moment';
 import OfflineNotice from './OfflineNotice';
 import { strings } from '../services/stringsoflanguages';
+const { width , height } = Dimensions.get('window');
 
 
 
@@ -178,6 +180,22 @@ export default class PostProject extends Component {
   }
 
 
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.post_project();
+    }
+    })
+
+ 
+ }
+
+
   post_project = () => {
 
     console.log('today', this.state.skills)
@@ -254,7 +272,7 @@ export default class PostProject extends Component {
       else
       {
         Alert.alert(
-          strings.Invalidenddate
+          strings.Pleasefillalldetails
         )
       // this.refs.defaultToastBottom.ShowToastFunction('Invalid End Date');
       }
@@ -565,7 +583,7 @@ changeTextEndDate=(textString)=>{
         </TouchableOpacity>
         </View>
         
-        <ScrollView>
+        <ScrollView><View style={{width:width, height:height + 300}}>
          <Text style={styles.projectInput}>
             {strings.Title}
         </Text>
@@ -694,10 +712,10 @@ changeTextEndDate=(textString)=>{
           onConfirm={this._handleDatePicked2}
           onCancel={this._hideDateTimePicker2}
         />
-      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.post_project()}>
+      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.CheckInternetConnection()}>
          <Text style={styles.textStyle}>{strings.Submit} </Text>
       </TouchableOpacity>
-      </ScrollView>
+      </View></ScrollView>
       <Loader
           loading={this.state.loading} />
       

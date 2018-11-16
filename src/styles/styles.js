@@ -347,8 +347,7 @@ cardContainerSignUp:{
       height:30,
      marginRight:25},
      homeContent:{
-       alignItems:align.center,
-       width: 100
+       alignItems:align.center
      },
      cardImage:{
        width:'90%',
@@ -1697,6 +1696,80 @@ createmilestoneinput: {
     color:colors.black,
     width: "95%"
     },
+    //rating
+    cancelButton: {
+      marginTop: 20,
+      backgroundColor: colors.theme_orange,
+      height: 40,
+      alignItems: align.center,
+      justifyContent: align.center
+      },
+      buttonWidthRating :{
+      width:'42%'
+      
+      },
+      emptySpaceRating :{
+      width:'5%'
+      },
+      
+      iconRating:{
+      width:20,
+      height:20,
+      marginTop:-10
+      },
+      review: {
+        height: 80,
+        borderColor: '#AEA9A8',
+        borderWidth: 1,
+        padding:5,
+        width:'95%',
+        marginTop :20
+        },
+        myStarStyle: {
+          color: colors.theme_orange,
+          backgroundColor: 'transparent',
+          textShadowColor: 'black',
+          textShadowOffset: {width: 1, height: 1},
+          textShadowRadius: 2,
+          fontSize:30
+        },
+        myEmptyStarStyle: {
+          color: 'lightgrey',
+        },
+        //Messages
+        sender:{
+          alignItems: 'flex-end',
+     
+          width:'100%'
+        },
+        receiver :{
+            alignItems: 'flex-start',
+     
+             width:'100%'
+        },
+        senderText:{
+          padding :20,
+         marginBottom:10,
+     
+           width:100,
+           color:'white'
+         //   backgroundColor:"brown"
+        },
+        receiverText:{
+          padding :20,
+         marginBottom:10,
+     
+           width:100,
+             color:'white'
+           // backgroundColor:"orange"
+        },
+        chatInput: {
+          height: 50,
+          padding: 4,
+          marginRight: 5,
+          fontSize: 15,
+          width:'85%'
+        }
   
       
           

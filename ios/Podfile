@@ -15,6 +15,8 @@ target 'freelancetest' do
     # Pods for testing
     pod 'ReactNativeLocalization', :path => '../node_modules/react-native-localization'
 
+    pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   end
 
   target 'freelancetestTests' do

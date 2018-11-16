@@ -10,7 +10,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import OfflineNotice from './OfflineNotice';
 import styles from "../styles/styles";
@@ -57,6 +58,8 @@ class Otp extends Component {
     }
   }
 
+  
+
   gotoSignIn = () => {
     this.props.navigation.navigate("Login");
   };
@@ -68,32 +71,43 @@ class Otp extends Component {
   };
 
   GetFourthValue = value => {
-    var String_3 = this.state.first.concat(this.state.second);
-    var String_4 = this.state.third.concat(value);
-    var String_34 = String_3.concat(String_4);
-    service
-      .verifyOtp(this.state.mobile, String_34, this.state.type)
-      .then(res => {
-        console.log(res);
-        if (res.status_code == 200) {
-          if (res.status == "success") {
-            service.saveUserData("user", res.user);
-            this.refs.defaultToastBottom.ShowToastFunction(
-              "Login Successfully"
-            );
-            this.goToHome(res);
-          } else {
-            this.refs.defaultToastBottom.ShowToastFunction(
-              "Incorrect OTP! Please Try Again"
-            );
-          }
-          // this.openLogin(this.state.mobile);
-        } else {
-          this.refs.defaultToastBottom.ShowToastFunction(
-            "Incorrect OTP! Please Try Again"
-          );
-        }
-      });
+
+    service.handleConnectivityChange().then((res) => {
+      if(res.type == "none")
+      {
+        Alert.alert('Alert!', 'Check your internet connection');
+      }
+      else
+      {
+        var String_3 = this.state.first.concat(this.state.second);
+        var String_4 = this.state.third.concat(value);
+        var String_34 = String_3.concat(String_4);
+        service
+          .verifyOtp(this.state.mobile, String_34, this.state.type)
+          .then(res => {
+            console.log(res);
+            if (res.status_code == 200) {
+              if (res.status == "success") {
+                service.saveUserData("user", res.user);
+                this.refs.defaultToastBottom.ShowToastFunction(
+                  "Login Successfully"
+                );
+                this.goToHome(res);
+              } else {
+                this.refs.defaultToastBottom.ShowToastFunction(
+                  "Incorrect OTP! Please Try Again"
+                );
+              }
+              // this.openLogin(this.state.mobile);
+            } else {
+              this.refs.defaultToastBottom.ShowToastFunction(
+                "Incorrect OTP! Please Try Again"
+              );
+            }
+          });
+      }
+    });
+ 
   };
 
   GetValueFunction = ValueHolder => {

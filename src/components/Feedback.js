@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
+  Alert,
   SafeAreaView,
   TextInput,
   Text,
@@ -48,6 +49,22 @@ export default class Feedback extends Component {
   searchPage = () => {
     alert("searching Page");
   };
+
+
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.submit();
+    }
+    })
+
+ 
+ }
 
   submit = () => {
     if (this.state.feedback.trim() === "") {
@@ -114,7 +131,7 @@ export default class Feedback extends Component {
 
         <TouchableOpacity
           style={styles.bottomViewRequest}
-          onPress={() => this.submit()}
+          onPress={() => this.CheckInternetConnection()}
         >
           <Text style={styles.textStyle}>{strings.Submit}</Text>
           <CustomToast ref="defaultToastBottom" />

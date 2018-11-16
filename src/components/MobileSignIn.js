@@ -57,20 +57,31 @@ const timeout = 1000 // default is 5000 milis
   
  
     CheckInternetConnection=()=>{
-
-      fetch('http://zaraf.org/freelancerWeb/api/categories')
-         .then((response) => {
+      service.handleConnectivityChange().then((res) => {
+      if(res.type == "none")
+      {
+        Alert.alert('Alert!', 'Check your internet connection');
+      }
+      else
+      {
+        this.submit();
+      }
+      })
+    //   fetch('http://zaraf.org/freelancerWeb/api/categories')
+    //      .then((response) => {
            
-          this.submit();
+    //       this.submit();
            
-         })
-     .catch((error) => {
-           if(error == 'TypeError: Network request failed'){
-           return  Alert.alert('Alert!', 'Check your internet connection'); 
-           }
-          });
+    //      })
+    //  .catch((error) => {
+    //        if(error == 'TypeError: Network request failed'){
+    //        return  Alert.alert('Alert!', 'Check your internet connection'); 
+    //        }
+    //       });
    
    }
+
+
   submit = () => 
   {
 

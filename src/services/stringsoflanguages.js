@@ -142,13 +142,21 @@ JobAddedtoFavouritesSuccessfully : "Job added to favourites successfully",
 ProjectCreatedSuccessfully : "Project Created Successfully",
 JobRemovedFromFavoritesSuccessfully : "Job Removed From Favourites Successfully",
 NomessagesFound: "No Messages Found",
-Invalidenddate : "Invalid end date"
+Invalidenddate : "Invalid end date",
+ExitApp:"Exit App",
+DoyouwanttoExittheapplication: "Do you want to Exit the application?",
+Cancel : "CANCEL",
+Submit : "SUBMIT",
+Writeareview : "Write a review....."
   },
 
 
 
   
 ar:{
+  cancel : "إلغاء",
+  DoyouwanttoExittheapplication: "هل تريد الخروج من التطبيق؟",
+  ExitApp : "الخروج من التطبيق",
   ProjectCreatedSuccessfully : "تم إنشاء المشروع بنجاح",
   JobAddedtoFavouritesSuccessfully : "الوظيفة المضافة إلى المفضلة بنجاح",
   Addskills : "إضافة المهارات",
@@ -287,6 +295,9 @@ Pleaseentervalidemail : "الرجاء إدخال بريد إلكتروني صح�
 JobRemovedFromFavoritesSuccessfully : "تمت إزالة المهمة من المفضلة بنجاح",
 NomessagesFound: "لا توجد رسائل",
 Invalidenddate : "تاريخ غير صالح",
+Cancel : "إلغاء",
+Submit : "خضع",
+Writeareview : "أكتب مراجعة"
 
 
 

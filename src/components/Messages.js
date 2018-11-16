@@ -9,6 +9,7 @@ import CustomToast from './CustomToast';
 import { strings } from '../services/stringsoflanguages';
 import { db } from './db';
 import OfflineNotice from './OfflineNotice';
+import styles from "../styles/styles";
 const {width,height} = Dimensions.get('window')
 let itemsRef = db.ref('/items');
 export default class Messages extends Component {
@@ -72,26 +73,19 @@ export default class Messages extends Component {
    
     return (
         
-     <SafeAreaView>
-    <View style={styles.topView}>
-       <MyView  hide={this.state.search} style={styles.searchContainer}>
-          <View style={styles.topSearchbar}>
-              <Image source={constants.searchicon} style={styles.newsearchIcon} />
-              <View style={styles.empty}>
-              </View>
-            <TextInput  style={styles.searchContainer} placeholder="Search job"  placeholderTextColor="white" style={styles.topInput}/>
-          </View>
-      </MyView>
-    <MyView style={styles.tabsToolbar} hide={!this.state.search}>
-        <TouchableOpacity onPress={() => this.openDrawer()}>
-        <Image source={constants.menuicon} style={styles.hamburgerIcon} />
-        </TouchableOpacity>
-         <Text style={styles.toolbarTitle}>{strings.Messages}</Text>
-         <TouchableOpacity>
-        <Image source={constants.searchicon} style={styles.searchIcon} />
-        </TouchableOpacity>
-     </MyView>
-     </View>
+      <SafeAreaView source={constants.loginbg} style={styles.MainContainer}>
+       
+        <View style={styles.toolbar}>
+          <TouchableOpacity onPress={() => this.openDrawer()}>
+            <Image source={constants.menuicon} style={styles.hamburgerIcon} />
+          </TouchableOpacity>
+          <Text style={styles.toolbarTitle}>{strings.Messages}</Text>
+          <TouchableOpacity>
+            <Image source={constants.fgggf} style={styles.searchIcon} />
+          </TouchableOpacity>
+        </View>
+   
+     
         <View style={styles.noTextContainer}>
         </View>
         {
@@ -122,7 +116,7 @@ export default class Messages extends Component {
                 <View style={{flexDirection:'row',  borderWidth: 1, width:'90%', marginLeft:10,  borderRadius:10}}>
 
                 <TextInput
-                    style={styles.itemInput}
+                    style={styles.chatInput}
                     onChange={this.handleChange}
                     value={this.state.name}
                     placeholder="Type a message...."
@@ -152,111 +146,4 @@ export default class Messages extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-   flex: 1
 
-  },
-  main: {
-      position:'absolute',
-      width : '100%',
-      bottom :20
-    },
-    title: {
-      marginBottom: 20,
-      fontSize: 25,
-      textAlign: 'center'
-    },
-    itemInput: {
-      height: 50,
-      padding: 4,
-      marginRight: 5,
-      fontSize: 15,
-      width:'85%'
-    },
-    buttonText: {
-      fontSize: 18,
-      color: 'blue',
-      alignSelf: 'center',
-      marginTop :10
-    },
-    button: {
-
-
-    },
-    centerText :{
-      textAlign: 'center',
-      fontSize: 20,
-      marginTop :10
-    },
-    toolbar:{
-      paddingTop:10,
-      paddingBottom:10,
-      flexDirection:'row',
-      height:50
-       //Step 1
-  },
-  tabsToolbar:{
-    paddingTop:10,
-    paddingBottom:10,
-    flexDirection:'row',
-
-
-     //Step 1
-  },
-  noTextContainer :{
-    marginTop:30,
-    alignItems:"center",
-    },
-  topView:{
-    paddingTop:10,
-    paddingBottom:10,
-    height:50
-     //Step 1
-  },
-  toolbarButton:{
-      width: 30,            //Step 2
-      textAlign:'center',
-      marginTop:  5,
-      marginLeft:  0
-  },
-  backButton:{
-    width: 30,            //Step 2
-    textAlign:'center',
-    marginTop:  5,
-    marginLeft:0
-  },
-  toolbarTitle:{
-      textAlign:'center',
-      fontWeight:'bold',
-      flex:1,
-      marginTop: 0,
-      fontSize:20               //Step 3
-   },
-   sender:{
-     alignItems: 'flex-end',
-
-     width:'100%'
-   },
-   receiver :{
-       alignItems: 'flex-start',
-
-        width:'100%'
-   },
-   senderText:{
-     padding :20,
-    marginBottom:10,
-
-      width:100,
-      color:'white'
-    //   backgroundColor:"brown"
-   },
-   receiverText:{
-     padding :20,
-    marginBottom:10,
-
-      width:100,
-        color:'white'
-      // backgroundColor:"orange"
-   }
-})

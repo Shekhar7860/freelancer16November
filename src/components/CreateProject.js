@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {
   Platform,
   StyleSheet,
+  Alert,
   Text,
   View,
   TextInput,
@@ -71,7 +72,20 @@ export default class CreateProject extends Component {
     this._hideDateTimePicker();
   };
 
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.submit();
+    }
+    })
 
+ 
+ }
 
   submit = () => 
   {
@@ -183,7 +197,7 @@ this.props.navigation.navigate('JobDetails')
        <TouchableOpacity style={styles.toastMiddle}>
        <CustomToast ref = "defaultToastBottom"/>
        </TouchableOpacity>
-      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.submit()}>
+      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.CheckInternetConnection()}>
          <Text style={styles.textStyle}>{strings.Submit}</Text>
       </TouchableOpacity>
        <Loader

@@ -46,6 +46,8 @@ import Create_milestone from './components/Create_milestone'
 import  MilestoneList from './components/MilestoneList'
 import  CreateProject from './components/CreateProject'
 import  ProjectsList from './components/ProjectsList'
+import strings from './services/stringsoflanguages';
+import Rating from './components/Rating'
 export const Menu = DrawerNavigator({
   Home: { screen: Home},
   Messages: { screen: Messages},
@@ -131,11 +133,11 @@ export default class App extends Component {
      if(this.state.navState.routeName == "Home" || this.state.navState.routeName == "Jobs" || this.state.navState.routeName == "Profile" || this.state.navState.routeName == "Home2" || this.state.navState.routeName == "About")
     {
       Alert.alert(
-        'Exit App',
-        'Do you want to Exit the application?', [{
-            text: 'Cancel',
+        strings.ExitApp,
+        strings.DoyouwanttoExittheapplication, [{
+            text: strings.canc,
             onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel'
+            style: strings.cancel
         }, {
             text: 'OK',
             onPress: () => BackHandler.exitApp()

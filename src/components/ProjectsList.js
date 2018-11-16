@@ -4,6 +4,7 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
+  Alert,
   Text,
   View,
   Image,
@@ -71,7 +72,23 @@ export default class ProjectsList extends Component {
         this.setState({ userResponse: parsedData });
         if(this.state.jobId)
         {
-         this.getMilestoneList();
+
+          CheckInternetConnection=()=>{
+            service.handleConnectivityChange().then((res) => {
+            if(res.type == "none")
+            {
+              Alert.alert('Alert!', 'Check your internet connection');
+            }
+            else
+            {
+              this.getMilestoneList();
+            }
+            })
+        
+         
+         }
+
+        
         }
       },
       error => {

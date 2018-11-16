@@ -1,6 +1,6 @@
 // Screen for accept and refusal of freelancer requests
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, ScrollView, SafeAreaView,Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text,Alert, View, Button, ScrollView, SafeAreaView,Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Loader from './Loader';

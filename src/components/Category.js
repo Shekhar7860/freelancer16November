@@ -29,6 +29,7 @@ export default class CATEGORY extends Component {
   setTimeout(() => {
     this.setState ({ loading: false});
     this.getCategoryResponse();
+    
     }, 3000)
 }
 
