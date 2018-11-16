@@ -73,20 +73,20 @@ export default class ProjectsList extends Component {
         if(this.state.jobId)
         {
 
-          CheckInternetConnection=()=>{
-            service.handleConnectivityChange().then((res) => {
-            if(res.type == "none")
-            {
-              Alert.alert('Alert!', 'Check your internet connection');
-            }
-            else
-            {
+          // CheckInternetConnection=()=>{
+          //   service.handleConnectivityChange().then((res) => {
+          //   if(res.type == "none")
+          //   {
+          //     Alert.alert('Alert!', 'Check your internet connection');
+          //   }
+          //   else
+          //   {
               this.getMilestoneList();
-            }
-            })
+            // }
+            // })
         
          
-         }
+       //  }
 
         
         }

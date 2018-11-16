@@ -175,10 +175,10 @@ getFeedList = (token) =>
      console.error(error);
    });
 }
-
-findFreelancer = (token) => 
+findFreelancer = (token, category) => 
 {
- return  fetch(constants.apiUrl + `/find-freelancer?&api_token=${token}`,
+ //  console.log('url', constants.apiUrl + `/find-freelancer?&api_token=${token}&category_id=${category}`)
+ return  fetch(constants.apiUrl + `/find-freelancer?&api_token=${token}&category_id=${category}`,
     {
       method: "GET"
    }).then((response) => 

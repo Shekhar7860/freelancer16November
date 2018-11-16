@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, TextInput, FlatList, ScrollView, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, TextInput, FlatList, ScrollView,Alert, SafeAreaView, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 import Loader from './Loader';
@@ -43,7 +43,7 @@ export default class FindFreelancer extends Component {
       var parsedData = JSON.parse(keyValue);
       console.log("json", parsedData);
       this.setState({ userResponse: parsedData});
-       this.getFreelancersResponse();
+       this.CheckInternetConnection();
    }, (error) => {
       console.log(error) //Display error
     });
@@ -68,8 +68,26 @@ export default class FindFreelancer extends Component {
    this.props.navigation.openDrawer()
   }
 
-   getFreelancersResponse = () => {
-    service.findFreelancer(this.state.userResponse.api_token).then((res) => {
+
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.getFreelancersResponse();
+    }
+    })
+
+ 
+ }
+
+
+
+  getFreelancersResponse = () => {
+    service.findFreelancer(this.state.userResponse.api_token, this.props.navigation.state.params.client_Details.category).then((res) => {
       console.log("checkres", res);
       newres = JSON.stringify(res);
       json = JSON.parse(newres);

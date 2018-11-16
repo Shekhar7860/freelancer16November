@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView,FlatList, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, SafeAreaView,FlatList,Alert, Text, View, Image, ImageBackground, Button, TouchableOpacity} from 'react-native';
 import Constants from '../constants/Constants';
 import Service from '../services/Service';
 
@@ -21,13 +21,30 @@ export default class FAVOURITE extends Component {
     var parsedData = JSON.parse(keyValue);
     console.log("json", parsedData);
     this.setState({ userResponse: parsedData});
-     this.getFeedRes();
+     this.CheckInternetConnection();
  }, (error) => {
     console.log(error) //Display error
   });
  }
  openDrawer = () => {
    this.props.navigation.openDrawer()}
+  
+  
+   CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.getFeedRes();
+    }
+    })
+
+ 
+ }
+  
    getFeedRes = () => {
     service.getFeedList(this.state.userResponse.api_token).then((res) => {
       console.log("checkres", res);

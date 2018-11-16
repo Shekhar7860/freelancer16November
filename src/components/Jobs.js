@@ -36,7 +36,7 @@ export default class Jobs extends Component {
       failed: false,
       search : true,
       loading:false,
-      dummyText : "",
+      noProject : " ",
       modalVisible: false
     };
     this.arrayholder = []
@@ -98,7 +98,7 @@ export default class Jobs extends Component {
 
  }
   componentDidMount() {
-    console.log("Yaha pe aaja bhai");
+   // console.log("Yaha pe aaja bhai");
     this.checkLanguage();
 
     firebase.notifications().onNotification((notification) => {
@@ -136,10 +136,11 @@ export default class Jobs extends Component {
 
   getFreelancersResponse = () => {
     service.jobs(this.state.userResponse.api_token).then(res => {
-      console.log("reslocal", res.Job.length);
+     //  console.log("reslocal", res.Job.length);
       if(res.Job.length ==  0)
       {
-        this.setState ({ dummyText: "No Project Found"});
+      //   alert("test")
+        this.setState ({ noProject : "No Job Found"});
       }
       else
       {
@@ -209,8 +210,8 @@ export default class Jobs extends Component {
       </MyView>
       </View>
        <ScrollView>
+       <Text style = {styles.defaultTextSize}>{this.state.noProject}</Text>
         <View style={styles.listCenter}>
-        <Text style = {styles.defaultTextSize}>{this.state.dummyText}</Text>
         <FlatList
               data={this.state.jobs}
               keyExtractor={(item, index) => index}

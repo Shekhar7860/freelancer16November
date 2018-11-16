@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, SafeAreaView, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, View, SafeAreaView,Alert, ScrollView, Image, ImageBackground, ActivityIndicator, TouchableOpacity, TouchableNativeFeedback} from 'react-native';
 import styles from '../styles/styles';
 import Constants from '../constants/Constants';
 import Loader from './Loader';
@@ -38,6 +38,24 @@ export default class FreelancerDetails extends Component {
       }, 1000)
    
   }
+
+
+
+  CheckInternetConnection=()=>{
+    service.handleConnectivityChange().then((res) => {
+    if(res.type == "none")
+    {
+      Alert.alert('Alert!', 'Check your internet connection');
+    }
+    else
+    {
+      this.submitProposal();
+    }
+    })
+
+ 
+ }
+
 
   submitProposal = () => {
     this.setState ({ loading: true});
@@ -149,7 +167,7 @@ this.props.navigation.navigate('Jobs')
    <Loader
               loading={this.state.loading} /> 
      <MyView hide={this.state.isJobId}  style={ styles.bottomView}>
-    <TouchableOpacity onPress={() => this.submitProposal()}>
+    <TouchableOpacity onPress={() => this.CheckInternetConnection()}>
       <Text style={styles.textStyle}>{strings.SubmitProposal}</Text>
       </TouchableOpacity>
       </MyView>

@@ -180,7 +180,7 @@ export default class PostProject extends Component {
   }
 
 
-  CheckInternetConnection=()=>{
+  CheckInternetConnection2=()=>{
     service.handleConnectivityChange().then((res) => {
     if(res.type == "none")
     {
@@ -712,7 +712,7 @@ changeTextEndDate=(textString)=>{
           onConfirm={this._handleDatePicked2}
           onCancel={this._hideDateTimePicker2}
         />
-      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.CheckInternetConnection()}>
+      <TouchableOpacity style={ styles.bottomViewRequest} onPress={() => this.CheckInternetConnection2()}>
          <Text style={styles.textStyle}>{strings.Submit} </Text>
       </TouchableOpacity>
       </View></ScrollView>
